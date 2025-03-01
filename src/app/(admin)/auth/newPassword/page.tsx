@@ -1,21 +1,26 @@
 "use client";
-import PageChange from "@/components/PageChange/PageChange";
+import PageChange from "@/components/authentication/PageChange";
 import AuthBtn from "@/components/button/AuthBtn";
-import TextInput from "@/components/textInput/TextInput";
+import TextInput from "@/components/authentication/TextInput";
 import useForgetPassword from "@/hooks/useForgetPassword";
 import React from "react";
 
 const NewPassword = () => {
-  const { newPassword, setNewPassword, forgetError, handleNewPassword } =
-    useForgetPassword();
+  const {
+    newPassword,
+    setNewPassword,
+    forgetError,
+    loading,
+    handleNewPassword,
+  } = useForgetPassword();
   return (
     <div className="flex justify-center h-full py-7 mx-3">
       <div>
         <PageChange
           title="Create New Password"
           link="/auth/login"
-          // signUp="Login"
-          // para="Remembered your password?"
+          signUp="Login"
+          para="Remembered your password?"
         />
 
         <form onSubmit={handleNewPassword}>
@@ -30,7 +35,7 @@ const NewPassword = () => {
             {forgetError && <p className="text-red-600">{forgetError}</p>}
           </div>
           <div className="mt-10">
-            <AuthBtn title="Reset Password" />
+            <AuthBtn loading={loading} title="Reset Password" />
           </div>
         </form>
       </div>

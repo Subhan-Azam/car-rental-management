@@ -36,14 +36,13 @@ export const POST = async (req: Request) => {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
-      // secure: false,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     });
 
-    const resetLink = `${process.env.NEXTAUTH_URL}/newPassword/?token=${resetToken}`;
+    const resetLink = `${process.env.NEXTAUTH_URL}/auth/newPassword/?token=${resetToken}`;
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -93,8 +92,8 @@ export const PUT = async (req: Request) => {
     const user = await prisma.users.findUnique({
       where: { reset_token: resetToken },
     });
-
     console.log("user----------", user);
+    
     if (
       !user ||
       !user.reset_token_expiration ||

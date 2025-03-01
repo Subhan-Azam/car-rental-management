@@ -3,8 +3,8 @@ import React from "react";
 
 interface PageChange {
   title: string;
-  link: string;
-  signUp: string;
+  link?: string;
+  signUp?: string;
   para?: string;
 }
 const PageChange: React.FC<PageChange> = ({ title, link, signUp, para }) => {
@@ -16,7 +16,7 @@ const PageChange: React.FC<PageChange> = ({ title, link, signUp, para }) => {
       <p className="text-[18px] mb-6 text-[#777E90] text-center md:text-start">
         {para}{" "}
         <Link
-          href={link}
+          href={link ?? "#"}
           className="text-purple-600 font-[500] hover:underline"
         >
           {signUp}

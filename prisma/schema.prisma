@@ -27,3 +27,18 @@ model users {
   reset_token            String?   @unique
   reset_token_expiration DateTime?
 }
+
+model addCar {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String
+  // user         User    @relation(fields: [userId], references: [id]) // 🔥 Foreign Key
+  carName      String
+  model        String
+  mileage      Int
+  engine       String
+  transmission String
+  price        Float
+  description  String
+  createdAt    DateTime @default(now()) // 🔥 Added timestamp
+  updatedAt    DateTime @updatedAt // 🔥 Auto-updates on modify
+}

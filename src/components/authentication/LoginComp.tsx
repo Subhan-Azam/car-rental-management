@@ -1,12 +1,13 @@
 "use client";
 import AuthBtn from "@/components/button/AuthBtn";
 import LoginWithSocialMedia from "@/components/button/LoginWithSocialMedia";
-import ForgetPassWithCheckBox from "@/components/forgetPassWithCheckBox/ForgetPassWithCheckBox";
-import OrSec from "@/components/orSec/OrSec";
-import PageChange from "@/components/PageChange/PageChange";
-import TextInput from "@/components/textInput/TextInput";
+import ForgetPassWithCheckBox from "@/components/authentication/ForgetPassWithCheckBox";
+import OrSec from "@/components/authentication/OrSec";
+import PageChange from "@/components/authentication/PageChange";
+import TextInput from "@/components/authentication/TextInput";
 import useLogin from "@/hooks/useLogin";
 import React from "react";
+import { signIn, useSession } from "next-auth/react";
 
 const LoginComp = () => {
   const {
@@ -34,6 +35,10 @@ const LoginComp = () => {
       placeholder: "******",
     },
   ];
+
+  const session = useSession();
+  console.log("session=====", session);
+
   return (
     <div className="flex justify-center h-full py-7 mx-3">
       <div>
@@ -46,6 +51,7 @@ const LoginComp = () => {
 
         <div className="flex flex-wrap justify-center gap-4">
           <LoginWithSocialMedia
+            signIn={() => signIn("google")}
             title="Sign in with Google"
             className="bg-white text-black"
           />

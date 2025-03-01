@@ -5,15 +5,18 @@ import { FaGoogle } from "react-icons/fa";
 interface LoginWithSocialMediaProps {
   className?: string;
   title?: string;
+  signIn?: () => void;
 }
 const LoginWithSocialMedia: React.FC<LoginWithSocialMediaProps> = ({
   className,
   title,
+  signIn,
 }) => {
   return (
     <>
       <button
-        className={`${className} w-[246px] h-[60px] flex items-center gap-3 p-2.5 text-[15px] font-[500] text-center uppercase border border-gray-300 rounded-md transition-transform duration-500 hover:scale-105`}
+        onClick={signIn}
+        className={`${className} md:w-[246px] w-full md:h-[60px] h-[50px] flex items-center justify-center gap-3 p-2.5 text-[15px] font-[500] uppercase border border-gray-300 rounded-md transition-transform duration-500 hover:scale-105`}
       >
         {title === "Sign in with Google" ? (
           <FaGoogle size={24} />

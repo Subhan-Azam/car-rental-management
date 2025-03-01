@@ -1,9 +1,13 @@
-import "./Loader.css";
-
 export default function Loader() {
-  return (
-    <div className="flex justify-center items-center h-screen w-screen bg-white">
-      <div className="loader"></div>
-    </div>
-  );
+  return <div className="loader"></div>;
 }
+
+import React from "react";
+
+export const BtnLoader = () => {
+  return <div className="btnLoader"></div>;
+};
+
+export const InputLoader = () => {
+  return <div className="inputLoader"></div>;
+};

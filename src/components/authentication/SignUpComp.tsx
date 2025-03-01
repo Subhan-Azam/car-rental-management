@@ -2,11 +2,11 @@
 import React from "react";
 import AuthBtn from "@/components/button/AuthBtn";
 import LoginWithSocialMedia from "@/components/button/LoginWithSocialMedia";
-import ForgetPassWithCheckBox from "@/components/forgetPassWithCheckBox/ForgetPassWithCheckBox";
-import OrSec from "@/components/orSec/OrSec";
-import TextInput from "@/components/textInput/TextInput";
+import ForgetPassWithCheckBox from "@/components/authentication/ForgetPassWithCheckBox";
+import OrSec from "@/components/authentication/OrSec";
+import TextInput from "@/components/authentication/TextInput";
 import useSignUp from "@/hooks/useSignUp";
-import PageChange from "@/components/PageChange/PageChange";
+import PageChange from "@/components/authentication/PageChange";
 
 const SignUpComp = () => {
   const {

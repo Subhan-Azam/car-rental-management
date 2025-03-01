@@ -2,7 +2,7 @@ import { axiosInstance } from "@/axiosInstance/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface StateProps {
+interface AuthStateProps {
   firstName: string;
   lastName: string;
   email: string;
@@ -11,7 +11,7 @@ interface StateProps {
   error: string | null;
 }
 
-const initialState: StateProps = {
+const initialState: AuthStateProps = {
   firstName: "",
   lastName: "",
   email: "",
@@ -70,7 +70,6 @@ export const userForgetPassword = createAsyncThunk(
   async (email: string, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post("/forgetPassword", { email });
-
       return response.data;
     } catch (error) {
       console.log("error", error);
@@ -113,12 +112,41 @@ export const userNewPassword = createAsyncThunk(
   }
 );
 
+// change password
+interface ChangePassword {
+  id: string;
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+export const changePassword = createAsyncThunk(
+  "auth/changePassword",
+  async (data: ChangePassword, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.put("/changePassword", data);
+
+      console.log("response", response.data);
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(
+          error.response?.data?.message ||
+            "Error changing password. Please try again later."
+        );
+      } else {
+        return rejectWithValue("An unexpected error occurred.");
+      }
+    }
+  }
+);
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // SignUp
       .addCase(userSignUp.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -158,6 +186,20 @@ export const authSlice = createSlice({
         state.password = action.payload.message;
       })
       .addCase(userNewPassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+
+      // change password
+      .addCase(changePassword.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(changePassword.fulfilled, (state, action) => {
+        state.loading = false;
+        state.password = action.payload.message;
+      })
+      .addCase(changePassword.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
