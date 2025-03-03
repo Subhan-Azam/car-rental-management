@@ -8,6 +8,7 @@ import UserInput from "./UserInput";
 import useUserDetails from "@/hooks/useUserDetails";
 import { FaUserCircle } from "react-icons/fa";
 import { InputLoader } from "../loader/Loader";
+import LogoutModal from "../modal/LogoutModal";
 
 const UserProfile = () => {
   const {
@@ -87,7 +88,6 @@ const UserProfile = () => {
 
   return (
     <>
-      
       <div className="mt-12 px-4">
         <div className="mb-6">
           <h1 className="text-[#242731] text-xl md:text-2xl font-bold mb-2">
@@ -134,12 +134,13 @@ const UserProfile = () => {
             <button className="font-medium text-[#7C7C8D] hover:text-red-600">
               Delete
             </button>
-            <button
+
+            <LogoutModal
+              title="Update"
+              para="Do you really want to update?"
               onClick={updateHandler}
-              className="font-medium text-[#A162F7] hover:text-purple-700"
-            >
-              Update
-            </button>
+              className2="font-medium text-[#A162F7] hover:text-purple-700"
+            />
           </div>
         </div>
         <div className="border-t border-[#E9EAEC]"></div>

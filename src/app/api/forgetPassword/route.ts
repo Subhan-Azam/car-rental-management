@@ -11,7 +11,7 @@ export const POST = async (req: Request) => {
     const userEmail = body.email;
     console.log(userEmail);
 
-    const compareEmail = await prisma.users.findUnique({
+    const compareEmail = await prisma.user.findUnique({
       where: { email: userEmail },
     });
 
@@ -25,7 +25,7 @@ export const POST = async (req: Request) => {
 
     const resetToken = crypto.randomBytes(10).toString("hex");
     const resetTokenExpiration = moment().add(1, "hour").toDate();
-    await prisma.users.update({
+    await prisma.user.update({
       where: { email: userEmail },
       data: {
         reset_token: resetToken,
@@ -89,11 +89,11 @@ export const PUT = async (req: Request) => {
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    const user = await prisma.users.findUnique({
+    const user = await prisma.user.findUnique({
       where: { reset_token: resetToken },
     });
     console.log("user----------", user);
-    
+
     if (
       !user ||
       !user.reset_token_expiration ||
@@ -116,7 +116,7 @@ export const PUT = async (req: Request) => {
       );
     }
 
-    await prisma.users.update({
+    await prisma.user.update({
       where: { id: user.id },
       data: {
         password: hashedPassword,

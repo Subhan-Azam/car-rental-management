@@ -1,20 +1,30 @@
 "use client";
 import { TbLogout2 } from "react-icons/tb";
-import LogoutBtn from "../button/LogoutBtn";
 import useModel from "@/hooks/useModel";
 
-const LogoutModal = () => {
+interface LogoutModalProps {
+  onClick?: () => void;
+  title?: string;
+  para?: string;
+  className1?: string;
+  className2?: string;
+}
+const LogoutModal = ({
+  onClick,
+  title,
+  para,
+  className1,
+  className2,
+}: LogoutModalProps) => {
   const { isOpen, handleIsOpen, handleOverlayClick } = useModel();
 
   return (
     <>
-      <button
-        onClick={handleIsOpen}
-        className="cursor-pointer flex items-center gap-x-2 p-2 w-full rounded-lg hover:bg-gray-100"
-      >
-        <TbLogout2 className="text-gray-600 w-[20px]" />
-        <span className="text-sm font-medium hidden sm:block">Logout</span>
+      <button onClick={handleIsOpen} className={`${className1}`}>
+        {title === "Logout" && <TbLogout2 className="text-gray-600 w-[20px]" />}
+        <span className={`${className2}`}>{title}</span>
       </button>
+
       {isOpen && (
         <div
           id="modalRemove"
@@ -32,7 +42,7 @@ const LogoutModal = () => {
             <h2 className="text-lg font-semibold text-gray-800">
               Are you sure?
             </h2>
-            <p className="text-gray-600 mt-2">Do you really want to logout?</p>
+            <p className="text-gray-600 mt-2">{para}</p>
 
             <div className="mt-5 flex justify-end gap-3">
               <button
@@ -41,10 +51,13 @@ const LogoutModal = () => {
               >
                 Cancel
               </button>
-              <LogoutBtn />
-              {/* <button className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm">
-                logout
-              </button> */}
+
+              <button
+                onClick={onClick}
+                className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm"
+              >
+                Confirm
+              </button>
             </div>
           </div>
         </div>

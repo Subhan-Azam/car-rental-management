@@ -11,7 +11,7 @@ export const GET = async () => {
       return NextResponse.json({ session, authOptions });
     }
     
-    const user = await prisma.users.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email: session?.user?.email as string },
     });
 
@@ -48,12 +48,12 @@ export const PUT = async (req: Request) => {
       return NextResponse.json({ message: "ID is required" }, { status: 400 });
     }
 
-    const existingUser = await prisma.users.findUnique({ where: { id } });
+    const existingUser = await prisma.user.findUnique({ where: { id } });
     if (!existingUser) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
-    const updateUser = await prisma.users.update({
+    const updateUser = await prisma.user.update({
       where: { id },
       data: {
         ...updatedData,

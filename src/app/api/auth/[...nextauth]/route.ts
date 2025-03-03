@@ -32,7 +32,7 @@ export const authOptions: AuthOptions = {
             throw new Error("Missing email or password");
           }
 
-          const user = await prisma.users.findUnique({
+          const user = await prisma.user.findUnique({
             where: { email: credentials.email },
           });
 
@@ -58,9 +58,20 @@ export const authOptions: AuthOptions = {
     }),
 
     // google provider
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_CLIENT_ID as string,
+    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    // }),
+
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      authorization: {
+        params: {
+          scope:
+            "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",
+        },
+      },
     }),
   ],
 
@@ -89,7 +100,6 @@ export const authOptions: AuthOptions = {
       return session;
     },
   },
-  debug: true,
 };
 
 const handler = NextAuth(authOptions);

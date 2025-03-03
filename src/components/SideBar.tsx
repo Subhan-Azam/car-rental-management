@@ -12,6 +12,7 @@ import { LuMessageSquareText } from "react-icons/lu";
 import { SlSettings } from "react-icons/sl";
 import NavbarMainLogo from "../../public/assets/Heading.png";
 import LogoutModal from "./modal/LogoutModal";
+import { signOut } from "next-auth/react";
 
 const SideBar = () => {
   return (
@@ -99,7 +100,13 @@ const SideBar = () => {
           </li>
 
           <li className="mb-10">
-            <LogoutModal />
+            <LogoutModal
+              onClick={() => signOut()}
+              title="Logout"
+              para="Do you really want to logout?"
+              className1="cursor-pointer flex items-center gap-x-2 p-2 w-full rounded-lg hover:bg-gray-100"
+              className2="text-sm font-medium hidden sm:block"
+            />
           </li>
         </ul>
       </div>

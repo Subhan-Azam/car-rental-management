@@ -6,7 +6,7 @@ export const PUT = async (req: Request) => {
   try {
     const { id, oldPassword, newPassword } = await req.json();
 
-    const user = await prisma.users.findUnique({
+    const user = await prisma.user.findUnique({
       where: { id: id },
     });
     if (!user || !user.password) {
@@ -42,7 +42,7 @@ export const PUT = async (req: Request) => {
       return NextResponse.json({ success: false, error: "password not fond" });
     }
 
-    const changePassword = await prisma.users.update({
+    const changePassword = await prisma.user.update({
       where: { id: id },
       data: { password: hashPassword },
     });
@@ -81,7 +81,7 @@ export const PUT = async (req: Request) => {
 //     }
 
 //     // Find user
-//     const user = await prisma.users.findUnique({ where: { id } });
+//     const user = await prisma.user.findUnique({ where: { id } });
 
 //     if (!user || !user.password) {
 //       return NextResponse.json(
@@ -113,7 +113,7 @@ export const PUT = async (req: Request) => {
 //     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
 //     // Update password in DB
-//     const updatedUser = await prisma.users.update({
+//     const updatedUser = await prisma.user.update({
 //       where: { id },
 //       data: { password: hashedPassword },
 //     });
