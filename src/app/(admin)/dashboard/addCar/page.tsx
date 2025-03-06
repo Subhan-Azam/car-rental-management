@@ -3,12 +3,29 @@ import CarDropDown from "@/components/addCar/CarDropDown";
 import CarInput from "@/components/addCar/CarInput";
 import AuthBtn from "@/components/button/AuthBtn";
 import useAddCar from "@/hooks/useAddCar";
-import Image from "next/image";
-import { FaCircleInfo } from "react-icons/fa6";
-import { MdCancel } from "react-icons/md";
 
 const AddCar = () => {
-  const { pictures, handleImageSelect, removeImage } = useAddCar();
+  const {
+    carName,
+    setCarName,
+    model,
+    setModel,
+    mileage,
+    setMileage,
+    engineType,
+    setEngineType,
+    transmissionType,
+    setTransmissionType,
+    price,
+    setPrice,
+    description,
+    setDescription,
+    handleImageChange,
+    submitHandler,
+    loading,
+    errorMessage,
+  } = useAddCar();
+
   return (
     <div className="bg-white p-7 rounded-md">
       <div className="mb-6">
@@ -19,41 +36,57 @@ const AddCar = () => {
           Update your photo and personal details here.
         </p>
       </div>
-      <form className="max-w-[788px] flex flex-col gap-6 my-6">
+      <form
+        onSubmit={submitHandler}
+        className="max-w-[788px] flex flex-col gap-6 my-6"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <CarInput
             type="text"
             placeholder="Enter car name"
             title="Car Name:"
+            value={carName}
+            onChange={(e) => setCarName(e.target.value)}
           />
           <CarInput
             type="number"
-            placeholder="Enter car name"
+            placeholder="Enter model year"
             title="Model Year:"
+            value={model}
+            onChange={(e) => setModel(e.target.value)}
           />
         </div>
-
-        <CarInput type="text" placeholder="Enter car name" title="Mileage" />
-
+        <CarInput
+          type="text"
+          placeholder="Enter mileage"
+          title="Mileage"
+          value={mileage}
+          onChange={(e) => setMileage(e.target.value)}
+        />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <CarDropDown
+            value={engineType}
+            onChange={(e) => setEngineType(e.target.value)}
+            options={["Select Engine Type", "Petrol", "Diesel", "Electric"]}
             title="Engine Type"
-            option1="Select Engine Type"
-            option2="Petrol"
-            option3="Diesel"
-            option4="Electric"
           />
           <CarDropDown
+            value={transmissionType} // ✅ Bind state
+            onChange={(e) => setTransmissionType(e.target.value)} // ✅ Update state
+            options={["Transmission Type", "Automatic", "Manual"]}
             title="Transmission Type"
-            option1="Select Transmission"
-            option2="Automatic"
-            option3="Manual"
           />
         </div>
-
-        <CarInput type="number" placeholder="Enter car name" title="Price:" />
-
+        <CarInput
+          type="number"
+          placeholder="Enter price"
+          title="Price:"
+          value={price}
+          onChange={(e) => setPrice(e.target.value as string)}
+        />
         <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           name="description"
           placeholder="Car Description"
           className="w-full p-2 border focus:outline-[#A162F7] rounded"
@@ -64,45 +97,49 @@ const AddCar = () => {
         <input
           type="file"
           accept="image/*"
-          onChange={handleImageSelect}
-          className="mt-2"
-          disabled={pictures.length >= 5}
+          onChange={handleImageChange}
+          required
         />
 
-        {/* Show Selected Images with Delete Icon */}
-        <div className="mt-4 flex gap-2 flex-wrap">
-          {pictures.map((pic, index) => (
-            <div key={index} className="relative">
-              <Image
-                src={pic}
-                alt="Selected Car"
-                width={50}
-                height={50}
-                className="w-24 h-24 object-cover rounded-full border"
-              />
-
-              {/* Delete Button (Cross Icon) */}
-              <button
-                onClick={() => removeImage(index)}
-                className="absolute top-0 right-0 bg-white text-sm p-1 rounded-full transform translate-x-1 -translate-y-1"
-              >
-                <MdCancel size={22} className="text-red-500 hover:text-red-600" />
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* Message when max limit is reached */}
-        {pictures.length >= 5 && (
-          <div className="text-blue-500 flex items-center gap-1 mt-2">
-            <FaCircleInfo />
-            Maximum 5 images allowed.
-          </div>
-        )}
-        <AuthBtn title="Submit" />
+        {errorMessage && <p className="text-red-600">{errorMessage}</p>}
+        <AuthBtn title="Submit" loading={loading} />
       </form>
     </div>
   );
 };
 
 export default AddCar;
+
+{
+  /* <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          className="mt-2"
+        />
+        <button
+          type="button"
+          onClick={uploadImage}
+          className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
+        >
+          Upload Image
+        </button> */
+}
+
+{
+  /* Show Uploaded Images */
+}
+{
+  /* {image && (
+          <div className="mt-4">
+            <p>Uploaded Image:</p>
+            <Image
+              src={image}
+              alt="Uploaded Car"
+              width={200}
+              height={200}
+              className="rounded-md"
+            />
+          </div>
+        )} */
+}

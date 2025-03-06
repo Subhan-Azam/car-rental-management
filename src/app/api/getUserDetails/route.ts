@@ -10,15 +10,14 @@ export const GET = async () => {
     if (!session) {
       return NextResponse.json({ session, authOptions });
     }
-    
+
     const user = await prisma.user.findUnique({
-      where: { email: session?.user?.email as string },
+      where: { id: session?.user?.id },
     });
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
-
     return NextResponse.json(
       {
         message: "Successfully retrieved user info",

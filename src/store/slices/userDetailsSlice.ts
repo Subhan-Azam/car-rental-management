@@ -27,6 +27,7 @@ const initialState: UserState = {
   error: null,
 };
 
+// Get Details
 export const fetchUserDetails = createAsyncThunk(
   "userDetails/get",
   async (_, { rejectWithValue }) => {
@@ -46,6 +47,7 @@ export const fetchUserDetails = createAsyncThunk(
   }
 );
 
+// update user details
 export const updateUser = createAsyncThunk(
   "userDetails/updateUser",
   async (updatedData: Partial<userDetailsProps>, { rejectWithValue }) => {

@@ -5,13 +5,20 @@ import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 
 declare module "next-auth" {
+  interface User {
+    id: string;
+    email?: string;
+    role?: "ADMIN" | "USER";
+  }
+
   interface Session {
-    user: {
-      id: string;
-      name?: string | null;
-      email?: string | null;
-      image?: string | null;
-    };
+    user: User;
+  }
+
+  interface JWT {
+    id: string;
+    email?: string;
+    role?: "ADMIN" | "USER";
   }
 }
 
@@ -49,7 +56,11 @@ export const authOptions: AuthOptions = {
             throw new Error("Invalid credentials");
           }
 
-          return user;
+          return {
+            id: user.id,
+            email: user.email,
+            role: user.role ?? "USER",
+          };
         } catch (error) {
           console.error("Authorization error:", error);
           return null;
@@ -84,18 +95,18 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async jwt({ token, user }) {
-      console.log("Token:", token);
-      console.log(user, "User");
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        token.role = user.role ?? "USER";
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
-        session.user.email = token.email;
+        session.user.email = token.email ?? undefined;
+        session.user.role = token.role as "ADMIN" | "USER";
       }
       return session;
     },
@@ -103,5 +114,4 @@ export const authOptions: AuthOptions = {
 };
 
 const handler = NextAuth(authOptions);
-
 export { handler as GET, handler as POST };

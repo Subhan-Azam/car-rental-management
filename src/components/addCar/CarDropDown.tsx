@@ -2,31 +2,27 @@ import React from "react";
 
 interface CarDropDownProps {
   title: string;
-  option1: string;
-  option2: string;
-  option3: string;
-  option4?: string;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  options: string[];
 }
-const CarDropDown = ({
-  title,
-  option1,
-  option2,
-  option3,
-  option4,
-}: CarDropDownProps) => {
+const CarDropDown = ({ title, value, onChange, options }: CarDropDownProps) => {
   return (
     <>
       <div>
         <label className="block text-[#7C7C8D] font-[500] mb-2">{title}</label>
         <select
+          value={value}
+          onChange={onChange}
           name="transmission"
           className="w-full p-2 border rounded"
           required
         >
-          <option value="">{option1}</option>
-          <option value="Automatic">{option2}</option>
-          <option value="Manual">{option3}</option>
-          <option value="Manual">{option4}</option>
+          {options?.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
         </select>
       </div>
     </>

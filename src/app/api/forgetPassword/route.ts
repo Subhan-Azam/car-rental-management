@@ -53,7 +53,7 @@ export const POST = async (req: Request) => {
 
     console.log("mailOptions----------", mailOptions);
 
-    const sendMail = transporter.sendMail(mailOptions);
+    const sendMail = await transporter.sendMail(mailOptions);
     if (!sendMail) {
       return NextResponse.json({
         success: false,

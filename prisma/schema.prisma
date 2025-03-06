@@ -19,25 +19,46 @@ model User {
   lastName               String
   email                  String    @unique
   password               String
+  role                   Role      @default(USER)
   city                   String?
   street                 String?
   dateOfBirth            DateTime?
   gender                 String?
   profilePhoto           String?
+  publicId               String?
   reset_token            String?   @unique
   reset_token_expiration DateTime?
 }
 
+enum Role {
+  ADMIN
+  USER
+}
+
 model AddCar {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId       String
-  carName      String
-  model        String
-  mileage      Int
-  engine       String
-  transmission String
-  price        Float
-  description  String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id            String           @id @default(auto()) @map("_id") @db.ObjectId
+  userID        String           @db.ObjectId
+  carName       String
+  model         String
+  mileage       String
+  engine        EngineType
+  transmission  TransmissionType
+  price         String
+  description   String
+  imageUrl      String? // Store Cloudinary image URL
+  imagePublicId String? // Store Cloudinary public_id for deletion
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+}
+
+enum EngineType {
+  PETROL
+  DIESEL
+  ELECTRIC
+  HYBRID
+}
+
+enum TransmissionType {
+  MANUAL
+  AUTOMATIC
 }

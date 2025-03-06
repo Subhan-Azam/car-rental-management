@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { FiHome } from "react-icons/fi";
 import { HiOutlineMail } from "react-icons/hi";
 import { LiaBirthdayCakeSolid } from "react-icons/lia";
@@ -9,6 +9,7 @@ import useUserDetails from "@/hooks/useUserDetails";
 import { FaUserCircle } from "react-icons/fa";
 import { InputLoader } from "../loader/Loader";
 import LogoutModal from "../modal/LogoutModal";
+import Image from "next/image";
 
 const UserProfile = () => {
   const {
@@ -21,12 +22,20 @@ const UserProfile = () => {
     setDateOfBirth,
     gender,
     setGender,
-    // profilePhoto,
-    // setProfilePhoto,
+    profilePhoto,
     updateHandler,
     loading,
+    handleFileChange,
+    loadingProfile,
     errorMessage,
   } = useUserDetails();
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Function to trigger file input
+  const handlePhotoClick = () => {
+    fileInputRef.current?.click();
+  };
 
   const userInputArray = [
     {
@@ -126,9 +135,32 @@ const UserProfile = () => {
                 This will be displayed on your profile
               </p>
             </div>
-            <button className="w-16 h-16 rounded-full">
-              <FaUserCircle size={"full"} color="#7C7C8D" />
-            </button>
+
+            <div
+              className="w-16 h-16 relative cursor-pointer flex items-center"
+              onClick={handlePhotoClick}
+            >
+              {loadingProfile ? (
+                <InputLoader />
+              ) : profilePhoto ? (
+                <Image
+                  src={profilePhoto}
+                  width={100}
+                  height={100}
+                  alt="user photo"
+                  className="absolute inset-0 w-full h-full object-cover rounded-full"
+                />
+              ) : (
+                <FaUserCircle size={"full"} color="#7C7C8D" />
+              )}
+            </div>
+            <input
+              type="file"
+              ref={fileInputRef}
+              className="hidden"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
           </div>
           <div className="flex gap-4">
             <button className="font-medium text-[#7C7C8D] hover:text-red-600">

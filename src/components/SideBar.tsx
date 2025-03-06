@@ -12,9 +12,72 @@ import { LuMessageSquareText } from "react-icons/lu";
 import { SlSettings } from "react-icons/sl";
 import NavbarMainLogo from "../../public/assets/Heading.png";
 import LogoutModal from "./modal/LogoutModal";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const SideBar = () => {
+  const session = useSession();
+
+  const links =
+    session.data?.user.role === "ADMIN"
+      ? [
+          {
+            href: "/dashboard",
+            icon: <RxDashboard />,
+            label: "Dashboard",
+          },
+          {
+            href: "/dashboard/assets",
+            icon: <TbSteeringWheel />,
+            label: "Assets",
+          },
+          {
+            href: "/dashboard/booking",
+            icon: <BiCar />,
+            label: "Booking",
+          },
+          {
+            href: "/dashboard/sellCars",
+            icon: <HiOutlineShoppingBag />,
+            label: "Sell Cars",
+          },
+          {
+            href: "/dashboard/buyCars",
+            icon: <BsCart2 />,
+            label: "Buy Cars",
+          },
+          {
+            href: "/dashboard/services",
+            icon: <GiCrossedSabres />,
+            label: "Services",
+          },
+          {
+            href: "/dashboard/calender",
+            icon: <HiOutlineCalendar />,
+            label: "Calendar",
+          },
+          {
+            href: "/dashboard/messages",
+            icon: <LuMessageSquareText />,
+            label: "Messages",
+          },
+        ]
+      : [
+          {
+            href: "/dashboard/assets",
+            icon: <TbSteeringWheel />,
+            label: "Assets",
+          },
+          {
+            href: "/dashboard/booking",
+            icon: <BiCar />,
+            label: "Booking",
+          },
+          {
+            href: "/dashboard/messages",
+            icon: <LuMessageSquareText />,
+            label: "Messages",
+          },
+        ];
   return (
     <aside className="pt-1 flex flex-col justify-between w-[60px] sm:w-[250px] h-screen fixed left-0 top-0 bg-white">
       <div>
@@ -27,48 +90,7 @@ const SideBar = () => {
         </div>
         <div className="px-3 pb-4 pt-5">
           <ul className="space-y-2 font-medium">
-            {[
-              {
-                href: "/dashboard",
-                icon: <RxDashboard />,
-                label: "Dashboard",
-              },
-              {
-                href: "/dashboard/assets",
-                icon: <TbSteeringWheel />,
-                label: "Assets",
-              },
-              {
-                href: "/dashboard/booking",
-                icon: <BiCar />,
-                label: "Booking",
-              },
-              {
-                href: "/dashboard/sellCars",
-                icon: <HiOutlineShoppingBag />,
-                label: "Sell Cars",
-              },
-              {
-                href: "/dashboard/buyCars",
-                icon: <BsCart2 />,
-                label: "Buy Cars",
-              },
-              {
-                href: "/dashboard/services",
-                icon: <GiCrossedSabres />,
-                label: "Services",
-              },
-              {
-                href: "/dashboard/calender",
-                icon: <HiOutlineCalendar />,
-                label: "Calendar",
-              },
-              {
-                href: "/dashboard/messages",
-                icon: <LuMessageSquareText />,
-                label: "Messages",
-              },
-            ].map((item) => (
+            {links.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
