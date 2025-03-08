@@ -77,9 +77,9 @@ const DashboardCharts: React.FC<DashboardMilesChartPropsTypes> = ({
   className3 = "",
 }) => {
   return (
-    <div className="bg-white px-5 sm:px-8 md:px-10 lg:px-12 xl:px-14 mt-6 rounded-xl py-4 sm:py-6 flex flex-col items-center w-full">
+    <div className="bg-white px-5 sm:px-8 md:px-10 lg:px-12 xl:px-14 mt-6 rounded-xl py-4 sm:py-6 flex flex-col items-center w-full dark:bg-[#242731] transition-all duration-300">
       <div className="w-full">
-        <h3 className="text-lg sm:text-xl text-[#242731] font-semibold">
+        <h3 className="text-lg sm:text-xl text-[#242731] dark:text-white font-semibold">
           <span className="font-bold">{heading}</span> statistics
         </h3>
 

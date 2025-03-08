@@ -27,18 +27,18 @@ const AddCar = () => {
   } = useAddCar();
 
   return (
-    <div className="bg-white p-7 rounded-md">
+    <div className="bg-white  p-7 rounded-md dark:bg-[#242731] transition-all duration-300">
       <div className="mb-6">
-        <h1 className="text-[#242731] text-xl md:text-2xl font-bold mb-2">
-          Profile
+        <h1 className="text-[#242731] text-xl md:text-2xl font-bold mb-2 dark:text-white">
+          Add Car
         </h1>
-        <p className="text-[#5F6165] text-[16px] md:text-base">
-          Update your photo and personal details here.
+        <p className="text-[#7C7C8D] text-[16px] md:text-base">
+          You can add a new car
         </p>
       </div>
       <form
         onSubmit={submitHandler}
-        className="max-w-[788px] flex flex-col gap-6 my-6"
+        className="max-w-[788px] flex flex-col gap-8 my-6"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <CarInput
@@ -56,6 +56,7 @@ const AddCar = () => {
             onChange={(e) => setModel(e.target.value)}
           />
         </div>
+
         <CarInput
           type="text"
           placeholder="Enter mileage"
@@ -63,6 +64,7 @@ const AddCar = () => {
           value={mileage}
           onChange={(e) => setMileage(e.target.value)}
         />
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <CarDropDown
             value={engineType}
@@ -77,6 +79,7 @@ const AddCar = () => {
             title="Transmission Type"
           />
         </div>
+
         <CarInput
           type="number"
           placeholder="Enter price"
@@ -84,20 +87,28 @@ const AddCar = () => {
           value={price}
           onChange={(e) => setPrice(e.target.value as string)}
         />
-        <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          name="description"
-          placeholder="Car Description"
-          className="w-full p-2 border focus:outline-[#A162F7] rounded"
-          rows={3}
-          required
-        ></textarea>
+
+        <div>
+          <label className="block text-[#7C7C8D] mb-2 font-[500] dark:text-[#E0E4E7]">
+            Description:
+          </label>
+
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            name="description"
+            placeholder="Car Description"
+            className="w-full px-[22px] py-[14px] font-[500] text-[#5F6165] border outline-none focus:outline-[#A162F7] dark:bg-[#1F2128] dark:text-[#7C7C8D] dark:border-[#2C303D] rounded-[10px] transition-all duration-300"
+            rows={3}
+            required
+          ></textarea>
+        </div>
 
         <input
           type="file"
           accept="image/*"
           onChange={handleImageChange}
+          className="dark:bg-[#1F2128] text-[#7C7C8D] rounded-[10px] transition-all duration-300"
           required
         />
 
@@ -109,37 +120,3 @@ const AddCar = () => {
 };
 
 export default AddCar;
-
-{
-  /* <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          className="mt-2"
-        />
-        <button
-          type="button"
-          onClick={uploadImage}
-          className="bg-blue-500 text-white px-4 py-2 mt-2 rounded"
-        >
-          Upload Image
-        </button> */
-}
-
-{
-  /* Show Uploaded Images */
-}
-{
-  /* {image && (
-          <div className="mt-4">
-            <p>Uploaded Image:</p>
-            <Image
-              src={image}
-              alt="Uploaded Car"
-              width={200}
-              height={200}
-              className="rounded-md"
-            />
-          </div>
-        )} */
-}

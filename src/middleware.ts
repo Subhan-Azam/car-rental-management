@@ -1,15 +1,11 @@
-// // export { default } from "next-auth/middleware";
-
-// // export const config = { matcher: ["/", "/dashboard/:path*"] };
-
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
 export default withAuth(
   async function middleware(req) {
-    const user = req.nextauth.token;
+    const user = req.nextauth?.token;
 
-    if (!user) {
+    if (!user || !user.role) {
       return NextResponse.json(
         { success: false, message: "Unauthorized" },
         { status: 401 }
@@ -25,6 +21,7 @@ export default withAuth(
 
     // ✅ Paths that USERS can access inside /dashboard
     const allowedUserPaths = [
+      "/dashboard/assets",
       "/dashboard/booking",
       "/dashboard/messages",
       "/dashboard/settings",
@@ -34,10 +31,9 @@ export default withAuth(
     if (
       pathname.startsWith("/dashboard") &&
       !allowedUserPaths.includes(pathname)
-    )
-    //  {
-    //   return NextResponse.redirect(new URL("/dashboard/booking", req.url));
-    // }
+    ) {
+      return NextResponse.redirect(new URL("/dashboard/booking", req.url));
+    }
 
     return NextResponse.next();
   },

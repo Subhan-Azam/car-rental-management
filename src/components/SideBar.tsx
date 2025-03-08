@@ -79,7 +79,7 @@ const SideBar = () => {
           },
         ];
   return (
-    <aside className="pt-1 flex flex-col justify-between w-[60px] sm:w-[250px] h-screen fixed left-0 top-0 bg-white">
+    <aside className="pt-1 flex flex-col justify-between w-[60px] sm:w-[250px] h-screen fixed left-0 top-0 bg-white dark:bg-[#242731] dark:text-white transition-all duration-300">
       <div>
         <div className="flex items-center p-6">
           <Image
@@ -94,9 +94,9 @@ const SideBar = () => {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 focus:bg-gray-100"
+                  className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 focus:bg-[#F3F5F8] text-[#5F6165] dark:hover:bg-[#292E3D] dark:focus:bg-[#292E3D] dark:text-[#808191]"
                 >
-                  <span className="text-gray-600 w-[20px]">{item.icon}</span>
+                  <span className="w-[20px]">{item.icon}</span>
                   <span className="text-sm font-medium sm:block hidden">
                     {item.label}
                   </span>
@@ -112,10 +112,10 @@ const SideBar = () => {
           <li>
             <Link
               href="/dashboard/settings"
-              className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100"
+              className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#292E3D] focus:bg-[#F3F5F8] dark:focus:bg-[#292E3D]"
             >
-              <SlSettings className="text-gray-600 w-[20px]" />
-              <span className="text-sm font-medium hidden sm:block">
+              <SlSettings className="text-gray-600 w-[20px] dark:text-[#808191]" />
+              <span className="text-sm font-medium hidden sm:block dark:text-[#808191]">
                 Settings
               </span>
             </Link>
@@ -126,8 +126,8 @@ const SideBar = () => {
               onClick={() => signOut()}
               title="Logout"
               para="Do you really want to logout?"
-              className1="cursor-pointer flex items-center gap-x-2 p-2 w-full rounded-lg hover:bg-gray-100"
-              className2="text-sm font-medium hidden sm:block"
+              className1="cursor-pointer flex items-center gap-x-2 p-2 w-full rounded-lg hover:bg-gray-100 dark:focus:bg-[#292E3D] dark:hover:bg-[#292E3D]"
+              className2="text-sm font-medium hidden sm:block dark:text-[#808191] "
             />
           </li>
         </ul>

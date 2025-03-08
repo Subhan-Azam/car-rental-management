@@ -9,7 +9,7 @@ import DashboardCharts from "@/components/dashboard/DashboardCharts";
 
 const Dashboard = () => {
   return (
-    <div className="p-4 sm:p-6 lg:p-8">
+    <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
         <PerformanceCard
           className1="bg-[#A162F7]"
@@ -43,7 +43,7 @@ const Dashboard = () => {
           heading="Car"
           para="20 February 2022"
           className1="flex-row-reverse"
-          className2="bg-[#F5F4F6] rounded-[10px] "
+          className2="bg-[#F5F4F6] rounded-[10px] dark:bg-[#2B2E38] "
           className3=" focus:bg-[#FF764C] "
         />
       </div>

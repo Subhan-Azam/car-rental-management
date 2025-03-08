@@ -21,7 +21,7 @@ const LogoutModal = ({
   return (
     <>
       <button onClick={handleIsOpen} className={`${className1}`}>
-        {title === "Logout" && <TbLogout2 className="text-gray-600 w-[20px]" />}
+        {title === "Logout" && <TbLogout2 className="text-gray-600 w-[20px] dark:text-[#808191]" />}
         <span className={`${className2}`}>{title}</span>
       </button>
 
@@ -29,7 +29,7 @@ const LogoutModal = ({
         <div
           id="modalRemove"
           onClick={handleOverlayClick}
-          className="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
+          className="fixed inset-0 flex items-center justify-center bg-black/50 z-[10000]"
         >
           <div className="bg-white rounded-lg shadow-lg w-[90%] sm:w-[350px] p-6 relative">
             <button

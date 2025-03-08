@@ -27,16 +27,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const session = await getServerSession(authOptions);
-  // if (!session) {
-  //   return redirect("/auth/login");
-  // }
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        // data-new-gr-c-s-check-loaded="14.1223.0"
-        data-new-gr-c-s-check-loaded="14.1224.0"
+        data-new-gr-c-s-check-loaded="14.1226.0"
+        // data-new-gr-c-s-check-loaded="14.1224.0"
         data-gr-ext-installed=""
         cz-shortcut-listen="true"
       >
