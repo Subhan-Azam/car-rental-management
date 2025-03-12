@@ -60,7 +60,13 @@ export const PUT = async (req: Request) => {
       message: "post successfully working",
     });
   } catch (error) {
-    return NextResponse.json({ success: false, message: error });
+    return NextResponse.json(
+      {
+        success: false,
+        message: error instanceof Error ? error.message : "An error occurred",
+      },
+      { status: 500 }
+    );
   }
 };
 

@@ -68,11 +68,13 @@ export const POST = async (req: Request) => {
       message: "Request successful",
     });
   } catch (error) {
-    return NextResponse.json({
-      success: false,
-      status: 400,
-      message: error.message,
-    });
+    return NextResponse.json(
+      {
+        success: false,
+        message: error instanceof Error ? error.message : "An error occurred",
+      },
+      { status: 500 }
+    );
   }
 };
 
@@ -131,7 +133,10 @@ export const PUT = async (req: Request) => {
     );
   } catch (error) {
     return NextResponse.json(
-      { success: false, message: "Something went wrong", error: error.message },
+      {
+        success: false,
+        message: error instanceof Error ? error.message : "An error occurred",
+      },
       { status: 500 }
     );
   }

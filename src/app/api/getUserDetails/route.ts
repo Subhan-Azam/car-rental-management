@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
 
-// Get detail
+// Get user details
 export const GET = async () => {
   try {
     const session = await getServerSession(authOptions);
@@ -26,17 +26,17 @@ export const GET = async () => {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error while fetching user session data:", error);
     return NextResponse.json(
       {
-        message: "Error while getting session data",
-        error: error.message || "Internal Server Error",
+        success: false,
+        message: error instanceof Error ? error.message : "An error occurred",
       },
       { status: 500 }
     );
   }
 };
 
+// update user details
 export const PUT = async (req: Request) => {
   try {
     const body = await req.json();
@@ -65,11 +65,10 @@ export const PUT = async (req: Request) => {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Update Error:", error);
     return NextResponse.json(
       {
-        message: "Error while updating",
-        error: error.message || "Internal Server Error",
+        success: false,
+        message: error instanceof Error ? error.message : "An error occurred",
       },
       { status: 500 }
     );

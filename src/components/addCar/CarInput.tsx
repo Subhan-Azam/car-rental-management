@@ -2,10 +2,10 @@ import React from "react";
 
 interface CarInputProps {
   type: string;
-  title: string;
+  title?: string;
   placeholder: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 const CarInput = ({
   type,

@@ -1,10 +1,10 @@
 import React from "react";
 import RecommendCard from "@/components/dashboard/RecommendCard";
 import PerformanceCard from "@/components/dashboard/PerformanceCard";
-import performanceCardImg1 from "../../../../public/assets/dashboard-card-icon.png";
-import performanceCardImg2 from "../../../../public/assets/dashboard-card-icon.png";
-import performanceCardImg3 from "../../../../public/assets/dashboard-card-icon.png";
-import performanceCardImg4 from "../../../../public/assets/dashboard-card-icon.png";
+import performanceCardImg1 from "../../../../public/icons/dashboard-card-icon.png";
+import performanceCardImg2 from "../../../../public/icons/dashboard-card-icon.png";
+import performanceCardImg3 from "../../../../public/icons/dashboard-card-icon.png";
+import performanceCardImg4 from "../../../../public/icons/dashboard-card-icon.png";
 import DashboardCharts from "@/components/dashboard/DashboardCharts";
 
 const Dashboard = () => {

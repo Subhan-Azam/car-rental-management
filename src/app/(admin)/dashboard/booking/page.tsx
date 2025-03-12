@@ -12,8 +12,8 @@ const Booking = () => {
       </h1>
       <div className="flex max-sm:flex-wrap  gap-3 justify-between items-center  mb-[34px]">
         <div className="flex gap-4">
-          <BookingDropDown title="Now" />
-          <BookingDropDown title="Toyota" />
+          <BookingDropDown className="text-[#5F6165]" title="Now" />
+          <BookingDropDown className="text-[#5F6165]" title="Toyota" />
         </div>
 
         <div className="flex gap-[16px]">

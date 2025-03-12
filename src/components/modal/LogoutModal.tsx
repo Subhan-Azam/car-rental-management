@@ -21,7 +21,9 @@ const LogoutModal = ({
   return (
     <>
       <button onClick={handleIsOpen} className={`${className1}`}>
-        {title === "Logout" && <TbLogout2 className="text-gray-600 w-[20px] dark:text-[#808191]" />}
+        {title === "Logout" && (
+          <TbLogout2 className="text-gray-600 w-[20px] dark:text-[#808191]" />
+        )}
         <span className={`${className2}`}>{title}</span>
       </button>
 

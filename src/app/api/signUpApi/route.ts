@@ -40,12 +40,11 @@ export const POST = async (req: Request) => {
       { success: true, message: "User created successfully", newUser: newUser },
       { status: 201 }
     );
-  } catch (error: any) {
+  } catch (error) {
     return NextResponse.json(
       {
         success: false,
-        error: "Something went wrong in the API",
-        message: error.message || "Unknown error",
+        message: error instanceof Error ? error.message : "An error occurred",
       },
       { status: 500 }
     );

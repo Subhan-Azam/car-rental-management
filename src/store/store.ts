@@ -2,14 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import authSlice from "./slices/authSlice";
 import userDetailsSlice from "./slices/userDetailsSlice";
-import addCarSlice from "./slices/addCarSlice";
+import carCrudSlice from "./slices/carCrudSlice";
 
 export const store = () => {
   return configureStore({
     reducer: {
       authStore: authSlice,
       userDetailStore: userDetailsSlice,
-      addCarStore: addCarSlice,
+      carCrudStore: carCrudSlice,
     },
   });
 };

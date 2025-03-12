@@ -1,9 +1,9 @@
 import React from "react";
 
 interface CarDropDownProps {
-  title: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  title?: string;
+  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   options: string[];
 }
 const CarDropDown = ({ title, value, onChange, options }: CarDropDownProps) => {

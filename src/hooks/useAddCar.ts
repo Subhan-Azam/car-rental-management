@@ -1,4 +1,4 @@
-import { addCar } from "@/store/slices/addCarSlice";
+import { addCar } from "@/store/slices/carCrudSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useState } from "react";
 
@@ -27,24 +27,32 @@ const useAddCar = () => {
     }
   };
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (error) {
-      setErrorMessage(error);
-      return;
-    }
-    const carData = {
-      carName,
-      model,
-      mileage,
-      engineType,
-      transmissionType,
-      price,
-      description,
-      image,
-    };
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      if (error) {
+        setErrorMessage(error);
+        return;
+      }
+      const carData = {
+        carName,
+        model,
+        mileage,
+        engineType,
+        transmissionType,
+        price,
+        description,
+        image,
+      };
 
-    dispatch(addCar(carData));
+      const resilt = await dispatch(addCar(carData)).unwrap();
+      if (resilt) {
+        alert("car data save");
+      }
+    } catch (error) {
+      console.log(error);
+      alert("error saving car");
+    }
   };
 
   return {
