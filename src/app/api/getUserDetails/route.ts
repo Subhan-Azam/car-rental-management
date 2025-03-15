@@ -2,6 +2,13 @@ import { prisma } from "@/config/prisma";
 import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // Get user details
 export const GET = async () => {
@@ -42,7 +49,7 @@ export const PUT = async (req: Request) => {
     const body = await req.json();
     console.log("Received body:", body);
 
-    const { id, ...updatedData } = body;
+    const { id, profilePhoto, ...updatedData } = body;
     if (!id) {
       return NextResponse.json({ message: "ID is required" }, { status: 400 });
     }
@@ -52,10 +59,31 @@ export const PUT = async (req: Request) => {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
 
+    // update image in cloudinary
+    let imageUrl = existingUser.profilePhoto;
+    let publicId = existingUser.profilePublicId;
+
+    if (profilePhoto) {
+      if (publicId) {
+        await cloudinary.uploader.destroy(publicId);
+      }
+
+      const uploadResponse = await cloudinary.uploader.upload(profilePhoto, {
+        folder: "car_images",
+        resource_type: "image",
+      });
+
+      imageUrl = uploadResponse.secure_url;
+      publicId = uploadResponse.public_id;
+    }
+
+    // update data in db
     const updateUser = await prisma.user.update({
       where: { id },
       data: {
         ...updatedData,
+        profilePhoto: imageUrl,
+        profilePublicId: publicId,
       },
     });
 

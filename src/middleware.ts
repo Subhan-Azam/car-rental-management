@@ -14,12 +14,12 @@ export default withAuth(
 
     const pathname = req.nextUrl.pathname;
 
-    // ✅ Admin has full access to all dashboard routes
-    if (pathname.startsWith("/dashboard") && user.role === "ADMIN") {
+    // ✅ Admin has full access
+    if (user.role === "ADMIN") {
       return NextResponse.next();
     }
 
-    // ✅ Paths that USERS can access inside /dashboard
+    // ✅ Paths that "USER" role can access
     const allowedUserPaths = [
       "/dashboard/assets",
       "/dashboard/booking",
@@ -27,12 +27,11 @@ export default withAuth(
       "/dashboard/settings",
     ];
 
-    // ⛔ If a user (not admin) tries to access a restricted route
-    if (
-      pathname.startsWith("/dashboard") &&
-      !allowedUserPaths.includes(pathname)
-    ) {
-      return NextResponse.redirect(new URL("/dashboard/booking", req.url));
+    // ⛔ Block "USER" if they try to access restricted dashboard pages
+    if (pathname.startsWith("/dashboard") && user.role === "USER") {
+      if (!allowedUserPaths.includes(pathname)) {
+        return NextResponse.redirect(new URL("/dashboard/booking", req.url));
+      }
     }
 
     return NextResponse.next();
@@ -45,5 +44,5 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: ["/dashboard/:path*"], // Middleware applies to these routes
+  matcher: ["/dashboard/:path*"], // Middleware applies to all dashboard routes
 };

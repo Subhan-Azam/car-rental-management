@@ -2,6 +2,7 @@ import { changePassword } from "@/store/slices/authSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const useChangePassword = () => {
   const [oldPassword, setOldPassword] = useState<string>("");
@@ -38,7 +39,7 @@ const useChangePassword = () => {
     };
     try {
       await dispatch(changePassword(data)).unwrap();
-      alert("Password changed successfully!");
+      toast.success("Password changed successfully!");
       setOldPassword("");
       setNewPassword("");
       setConfirmPassword("");

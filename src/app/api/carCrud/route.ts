@@ -176,8 +176,46 @@ export const PUT = async (req: Request) => {
       transmission,
       price,
       description,
+      image,
     } = await req.json();
 
+    if (!id) {
+      return NextResponse.json(
+        { success: false, message: "Car ID is required" },
+        { status: 400 }
+      );
+    }
+
+    const existingCar = await prisma.addCar.findUnique({
+      where: { id },
+    });
+
+    if (!existingCar) {
+      return NextResponse.json(
+        { success: false, message: "Car not found" },
+        { status: 404 }
+      );
+    }
+
+    // update image
+    let imageUrl = existingCar.imageUrl;
+    let publicId = existingCar.imagePublicId;
+
+    if (image) {
+      if (publicId) {
+        await cloudinary.uploader.destroy(publicId);
+      }
+
+      const uploadResponse = await cloudinary.uploader.upload(image, {
+        folder: "car_images",
+        resource_type: "image",
+      });
+
+      imageUrl = uploadResponse.secure_url;
+      publicId = uploadResponse.public_id;
+    }
+
+    // update data in db
     const response = await prisma.addCar.update({
       where: { id: id },
       data: {
@@ -188,6 +226,8 @@ export const PUT = async (req: Request) => {
         transmission: transmission.toUpperCase(),
         price,
         description,
+        imageUrl,
+        imagePublicId: publicId,
       },
     });
 

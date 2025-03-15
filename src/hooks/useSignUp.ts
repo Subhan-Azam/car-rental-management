@@ -2,6 +2,7 @@ import { userSignUp } from "@/store/slices/authSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const useSignUp = () => {
   const [firstName, setFirstName] = useState<string>("");
@@ -32,15 +33,13 @@ const useSignUp = () => {
     }
 
     try {
-      const result = await dispatch(
+      await dispatch(
         userSignUp({ firstName, lastName, email, password })
-      )
-        .unwrap()
-        .then(() => {
-          router.replace("/auth/login");
-        });
+      ).unwrap();
 
-      console.log("Signup Success:", result);
+      toast.success("You are registerd successfully");
+      router.replace("/auth/login");
+
       setAuthError(null);
     } catch (err) {
       setAuthError(err as string);

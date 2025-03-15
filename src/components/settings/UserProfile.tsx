@@ -10,6 +10,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { InputLoader } from "../loader/Loader";
 import LogoutModal from "../modal/LogoutModal";
 import Image from "next/image";
+// import Image from "next/image";
 
 const UserProfile = () => {
   const {
@@ -23,19 +24,19 @@ const UserProfile = () => {
     gender,
     setGender,
     profilePhoto,
+    handleImageChange,
     updateHandler,
     loading,
-    handleFileChange,
-    loadingProfile,
     errorMessage,
   } = useUserDetails();
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Function to trigger file input
-  const handlePhotoClick = () => {
-    fileInputRef.current?.click();
+  const handleImageClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
   };
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const userInputArray = [
     {
@@ -47,6 +48,7 @@ const UserProfile = () => {
       value: city,
       onChange: setCity,
     },
+
     {
       icon: <FiHome className="w-6 h-6 text-[#7C7C8D]" />,
       title: "Street Address",
@@ -56,6 +58,7 @@ const UserProfile = () => {
       value: street,
       onChange: setStreet,
     },
+
     {
       icon: <HiOutlineMail className="w-6 h-6 text-[#7C7C8D]" />,
       title: "Email Address",
@@ -69,6 +72,7 @@ const UserProfile = () => {
       ),
       readOnly: true,
     },
+
     {
       icon: <LiaBirthdayCakeSolid className="w-6 h-6 text-[#7C7C8D]" />,
       title: "Date Of Birth",
@@ -84,6 +88,7 @@ const UserProfile = () => {
       value: dateOfBirth ? dateOfBirth.toISOString().split("T")[0] : "",
       onChange: (value: string) => setDateOfBirth(new Date(value)),
     },
+
     {
       icon: <IoIosMale className="w-6 h-6 text-[#7C7C8D]" />,
       title: "Gender",
@@ -136,31 +141,29 @@ const UserProfile = () => {
               </p>
             </div>
 
-            <div
-              className="w-16 h-16 relative cursor-pointer flex items-center"
-              onClick={handlePhotoClick}
-            >
-              {loadingProfile ? (
-                <InputLoader />
-              ) : profilePhoto ? (
-                <Image
-                  src={profilePhoto}
-                  width={100}
-                  height={100}
-                  alt="user photo"
-                  className="absolute inset-0 w-full h-full object-cover rounded-full"
-                />
-              ) : (
-                <FaUserCircle size={"full"} color="#7C7C8D" />
-              )}
-            </div>
             <input
               type="file"
               ref={fileInputRef}
               className="hidden"
               accept="image/*"
-              onChange={handleFileChange}
+              onChange={handleImageChange}
             />
+            <div
+              onClick={handleImageClick}
+              className="cursor-pointer w-[65px] h-[65px] "
+            >
+              {profilePhoto ? (
+                <Image
+                  src={profilePhoto}
+                  width={100}
+                  height={100}
+                  alt="user photo"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              ) : (
+                <FaUserCircle className="w-full h-full text-gray-400" />
+              )}
+            </div>
           </div>
           <div className="flex gap-4">
             <button className="font-medium text-[#7C7C8D] hover:text-red-600">
@@ -191,35 +194,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-
-{
-  /* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <UserInput
-            icon={<FiHome className="w-6 h-6 text-[#7C7C8D]" />}
-            title="Live in"
-            placeholder={userDetails?.city || "City Address"}
-          />
-          <UserInput
-            icon={<FiHome className="w-6 h-6 text-[#7C7C8D]" />}
-            title="Street Address"
-            placeholder={userDetails?.street || "Street Address"}
-          />
-        </div>
-        <UserInput
-          icon={<HiOutlineMail className="w-6 h-6 text-[#7C7C8D]" />}
-          title="Email Address"
-          placeholder={userDetails?.email}
-        />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <UserInput
-            icon={<LiaBirthdayCakeSolid className="w-6 h-6 text-[#7C7C8D]" />}
-            title="Date Of Birth"
-            placeholder={userDetails?.dateOfBirth}
-          />
-          <UserInput
-            icon={<IoIosMale className="w-6 h-6 text-[#7C7C8D]" />}
-            title="Gender"
-            placeholder={userDetails?.gender || "Select Gender"}
-          />
-        </div> */
-}

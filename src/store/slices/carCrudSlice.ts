@@ -20,12 +20,14 @@ interface AddCarState {
   cars: Car[];
   loading: boolean;
   error: string | null;
+  updateCarData: Car | null;
 }
 
 const initialState: AddCarState = {
   cars: [],
   loading: false,
   error: null,
+  updateCarData: null,
 };
 
 interface carStateTypes {
@@ -44,8 +46,6 @@ export const addCar = createAsyncThunk(
   "CarCrud/add",
   async (carData: carStateTypes, { rejectWithValue }) => {
     try {
-      console.log("Sending car data to API:", carData);
-
       const formattedCarState = {
         ...carData,
         engine: carData.engineType.toUpperCase(),
@@ -72,9 +72,9 @@ export const fetchCars = createAsyncThunk(
       const response = await axiosInstance.get("/carCrud");
       console.log("Fetched cars:", response.data);
       return response.data.data;
-    } catch (error) {
-      console.log(error);
-      rejectWithValue(error);
+    } catch {
+      console.log ("Something went wrong. Please try again");
+      rejectWithValue("Something went wrong. Please try again");
     }
   }
 );
@@ -95,21 +95,53 @@ export const deleteCar = createAsyncThunk(
   }
 );
 
+interface updateCarDataType {
+  id: string;
+  carName: string;
+  model: string;
+  mileage: string;
+  engineType: string;
+  transmissionType: string;
+  price: string;
+  description: string;
+  image: string;
+}
+
+// update Car
+export const updateCar = createAsyncThunk(
+  "CarCrud/updateCar",
+  async (updateCarData: updateCarDataType, { rejectWithValue }) => {
+    try {
+      const formatedData = {
+        ...updateCarData,
+        engine: updateCarData.engineType.toUpperCase(),
+        transmission: updateCarData.transmissionType.toUpperCase(),
+      };
+      const response = await axiosInstance.put("/carCrud", formatedData);
+
+      console.log("response.data", response.data);
+      return response.data;
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      return rejectWithValue(
+        axiosError.response?.data || "Failed to update car"
+      );
+    }
+  }
+);
+
 export const carCrudSlice = createSlice({
   name: "CarCrud",
   initialState,
   reducers: {
-    updateCar: (state, action) => {
-      const carIndex = state.cars.findIndex(
-        (car) => car.id === action.payload.id
-      );
-      if (carIndex !== -1) {
-        state.cars[carIndex] = action.payload;
-      } else {
-        console.log("Car not found to update");
-      }
+    setUpdateCarData: (state, action) => {
+      state.updateCarData = action.payload;
+    },
+    resetUpdateCarData: (state) => {
+      state.updateCarData = null;
     },
   },
+
   extraReducers: (builder) => {
     builder
       // add car ====================
@@ -134,7 +166,6 @@ export const carCrudSlice = createSlice({
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
         state.cars = action.payload;
-        console.log("this is acction", state.cars);
       })
       .addCase(fetchCars.rejected, (state, action) => {
         state.loading = false;
@@ -148,30 +179,31 @@ export const carCrudSlice = createSlice({
       })
       .addCase(deleteCar.fulfilled, (state, action) => {
         state.loading = false;
-        // state.cars = action.payload;
         state.cars = state.cars.filter((car) => car.id !== action.payload);
-        console.log("state.cars------", state.cars);
       })
       .addCase(deleteCar.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
-      });
+      })
 
-    // Delete Car ==================
-    // .addCase(deleteCar.pending, (state) => {
-    //   state.loading = true;
-    //   state.error = null;
-    // })
-    // .addCase(deleteCar.fulfilled, (state, action) => {
-    //   state.loading = false;
-    //   state.cars = state.cars.filter((car) => car.id !== action.payload); // Use action.payload (deleted ID)
-    //   console.log("Updated cars list:", state.cars);
-    // })
-    // .addCase(deleteCar.rejected, (state, action) => {
-    //   state.loading = false;
-    //   state.error = action.payload as string;
-    // });
+      // update car
+      .addCase(updateCar.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateCar.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cars = state.cars?.map((car) =>
+          car.id === action.payload.id ? action.payload : car
+        );
+      })
+      .addCase(updateCar.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
   },
 });
 
 export default carCrudSlice.reducer;
+export const { setUpdateCarData } = carCrudSlice.actions;
+export const { resetUpdateCarData } = carCrudSlice.actions;

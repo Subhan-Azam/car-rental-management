@@ -23,7 +23,6 @@ const AddCar = () => {
     handleImageChange,
     submitHandler,
     loading,
-    errorMessage,
   } = useAddCar();
 
   return (
@@ -112,7 +111,6 @@ const AddCar = () => {
           required
         />
 
-        {errorMessage && <p className="text-red-600">{errorMessage}</p>}
         <AuthBtn title="Submit" loading={loading} />
       </form>
     </div>

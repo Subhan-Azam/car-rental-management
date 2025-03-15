@@ -8,6 +8,7 @@ import React from "react";
 const ForgetPassword = () => {
   const { email, setEmail, forgetError, loading, handleForgetPass } =
     useForgetPassword();
+
   return (
     <div className="flex justify-center items-center h-screen py-7 mx-3">
       <div className="max-w-[506px] w-full">

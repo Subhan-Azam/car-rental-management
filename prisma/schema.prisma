@@ -25,7 +25,7 @@ model User {
   dateOfBirth            DateTime?
   gender                 String?
   profilePhoto           String?
-  publicId               String?
+  profilePublicId        String?
   reset_token            String?   @unique
   reset_token_expiration DateTime?
 }
@@ -45,8 +45,8 @@ model AddCar {
   transmission  TransmissionType
   price         String
   description   String
-  imageUrl      String? // Store Cloudinary image URL
-  imagePublicId String? // Store Cloudinary public_id for deletion
+  imageUrl      String?
+  imagePublicId String?
   createdAt     DateTime         @default(now())
   updatedAt     DateTime         @updatedAt
 }

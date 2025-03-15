@@ -45,8 +45,6 @@ export const userSignUp = createAsyncThunk(
         password,
       });
 
-      alert("Data saved successfully");
-
       return response.data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {

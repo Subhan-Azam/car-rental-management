@@ -5,19 +5,19 @@ import useCarCrud from "@/hooks/useCarCrud";
 import CarCrudBtn from "../button/CarCrudBtn";
 import useModel from "@/hooks/useModel";
 import UpdateModal from "../modal/UpdateModal";
+import { useAppDispatch } from "@/store/store";
+import { setUpdateCarData } from "@/store/slices/carCrudSlice";
 
 const CarsListCard = () => {
   const { cars, deleteHandler } = useCarCrud();
   const { isOpen, handleIsOpen, handleOverlayClick } = useModel();
+  const dispatch = useAppDispatch();
 
   return (
-    <>
-      {cars?.map((car, index) => (
-        <>
-          <div
-            key={index}
-            className="border rounded-lg p-4 shadow-lg bg-white flex items-center space-x-4"
-          >
+    <div className="space-y-4">
+      {cars?.map((car) => (
+        <div key={car.id}>
+          <div className="border rounded-lg p-4 shadow-lg bg-white flex items-center space-x-4">
             <Image
               src={car?.imageUrl}
               alt="car-image"
@@ -32,7 +32,10 @@ const CarsListCard = () => {
               <div className="mt-2 flex space-x-2">
                 <CarCrudBtn
                   title="Update"
-                  onclick={handleIsOpen}
+                  onclick={() => {
+                    handleIsOpen();
+                    dispatch(setUpdateCarData(car));
+                  }}
                   style={"bg-blue-500 hover:bg-blue-600"}
                 />
 
@@ -52,9 +55,9 @@ const CarsListCard = () => {
               handleOverlayClick={handleOverlayClick}
             />
           )}
-        </>
+        </div>
       ))}
-    </>
+    </div>
   );
 };
 

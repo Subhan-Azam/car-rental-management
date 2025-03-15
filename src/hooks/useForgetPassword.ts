@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const useForgetPassword = () => {
   const [email, setEmail] = useState<string>("");
@@ -11,7 +12,7 @@ const useForgetPassword = () => {
 
   const searchParams = useSearchParams();
   const params = searchParams.get("token");
-  
+
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state) => state.authStore);
   const router = useRouter();
@@ -20,9 +21,11 @@ const useForgetPassword = () => {
     e.preventDefault();
     setForgetError(null);
     try {
-      const result = await dispatch(userForgetPassword(email)).unwrap();
+      await dispatch(userForgetPassword(email)).unwrap();
 
-      console.log("Password reset result:", result);
+      toast.info("Please check your email!");
+      setEmail("");
+      router.push("/auth/login");
     } catch (error) {
       console.log("Error in useForgetPassword:", error);
       setForgetError("Something went wrong. Please try again.");
@@ -31,7 +34,6 @@ const useForgetPassword = () => {
     }
   };
 
-  
   const handleNewPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setForgetError(null);
@@ -41,15 +43,26 @@ const useForgetPassword = () => {
         return;
       }
 
+      if (newPassword.length < 6) {
+        setForgetError("Length must be 6 characters");
+        return;
+      }
+
       try {
         await dispatch(
           userNewPassword({ newPassword, token: params })
         ).unwrap();
+        toast.success("Congratulations! password updated.");
         router.push("/auth/login");
-        alert("Congratulations! Your password has been updated.");
-      } catch (error) {
-        alert(error);
-        setForgetError("Something went wrong. Please try again.");
+      } catch (error: unknown) {
+        const errorMessage =
+          error instanceof Error
+            ? error.message
+            : "Something went wrong. Please try again.";
+
+        console.log("Error in handleNewPassword:", error);
+        toast.error(errorMessage);
+        setForgetError(errorMessage);
       }
     } catch (error) {
       console.log("Error in useForgetPassword:", error);

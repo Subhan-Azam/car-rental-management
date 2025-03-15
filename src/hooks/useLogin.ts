@@ -1,6 +1,7 @@
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const useLogin = () => {
   const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ const useLogin = () => {
         return;
       }
 
-      alert("User logged in");
+      toast.success("You are logged in!");
       router.replace("/dashboard");
     } catch (error: unknown) {
       if (error instanceof Error) {

@@ -25,6 +25,7 @@ export const POST = async (req: Request) => {
 
     const resetToken = crypto.randomBytes(10).toString("hex");
     const resetTokenExpiration = moment().add(1, "hour").toDate();
+
     await prisma.user.update({
       where: { email: userEmail },
       data: {
@@ -85,9 +86,6 @@ export const PUT = async (req: Request) => {
     const body = await req.json();
     const newPassword = body.password;
     const resetToken = body.token;
-
-    console.log("newPassword----------------", newPassword);
-    console.log("reset_token----------------", resetToken);
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
