@@ -16,7 +16,7 @@ const useModel = () => {
       setIsOpen(false);
     }
   };
-  return { isOpen, handleIsOpen, handleOverlayClick, handleClose };
+  return { isOpen,setIsOpen, handleIsOpen, handleOverlayClick, handleClose };
 };
 
 export default useModel;

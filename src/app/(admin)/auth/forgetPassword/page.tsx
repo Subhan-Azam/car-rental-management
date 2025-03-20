@@ -6,7 +6,7 @@ import useForgetPassword from "@/hooks/useForgetPassword";
 import React from "react";
 
 const ForgetPassword = () => {
-  const { email, setEmail, forgetError, loading, handleForgetPass } =
+  const { email, setEmail, loading, forgetError, handleForgetPass } =
     useForgetPassword();
 
   return (

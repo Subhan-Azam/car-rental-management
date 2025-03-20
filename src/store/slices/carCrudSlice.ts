@@ -73,8 +73,7 @@ export const fetchCars = createAsyncThunk(
       console.log("Fetched cars:", response.data);
       return response.data.data;
     } catch {
-      console.log ("Something went wrong. Please try again");
-      rejectWithValue("Something went wrong. Please try again");
+      return rejectWithValue("Something went wrong. Please try again");
     }
   }
 );

@@ -19,7 +19,7 @@ export const POST = async (req: Request) => {
       return NextResponse.json({
         success: false,
         status: 404,
-        message: "User not found in the database",
+        message: "User not found",
       });
     }
 

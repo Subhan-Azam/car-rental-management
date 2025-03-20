@@ -7,10 +7,9 @@ import { IoIosMale } from "react-icons/io";
 import UserInput from "./UserInput";
 import useUserDetails from "@/hooks/useUserDetails";
 import { FaUserCircle } from "react-icons/fa";
-import { InputLoader } from "../loader/Loader";
+import { Loader } from "../loader/Loader";
 import LogoutModal from "../modal/LogoutModal";
 import Image from "next/image";
-// import Image from "next/image";
 
 const UserProfile = () => {
   const {
@@ -43,7 +42,17 @@ const UserProfile = () => {
       icon: <FiHome className="w-6 h-6 text-[#7C7C8D]" />,
       title: "Live in",
       type: "text",
-      placeholder: loading ? <InputLoader /> : city ? city : "empty",
+      placeholder: loading ? (
+        <Loader
+          style={
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+          }
+        />
+      ) : city ? (
+        city
+      ) : (
+        "empty"
+      ),
       readOnly: false,
       value: city,
       onChange: setCity,
@@ -53,7 +62,17 @@ const UserProfile = () => {
       icon: <FiHome className="w-6 h-6 text-[#7C7C8D]" />,
       title: "Street Address",
       type: "text",
-      placeholder: loading ? <InputLoader /> : street ? street : "empty",
+      placeholder: loading ? (
+        <Loader
+          style={
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+          }
+        />
+      ) : street ? (
+        street
+      ) : (
+        "empty"
+      ),
       readOnly: false,
       value: street,
       onChange: setStreet,
@@ -64,7 +83,11 @@ const UserProfile = () => {
       title: "Email Address",
       type: "email",
       placeholder: loading ? (
-        <InputLoader />
+        <Loader
+          style={
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+          }
+        />
       ) : email ? (
         email
       ) : (
@@ -78,7 +101,11 @@ const UserProfile = () => {
       title: "Date Of Birth",
       type: "date",
       placeholder: loading ? (
-        <InputLoader />
+        <Loader
+          style={
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+          }
+        />
       ) : dateOfBirth ? (
         new Date(dateOfBirth).toISOString().split("T")[0]
       ) : (
@@ -93,7 +120,17 @@ const UserProfile = () => {
       icon: <IoIosMale className="w-6 h-6 text-[#7C7C8D]" />,
       title: "Gender",
       type: "text",
-      placeholder: loading ? <InputLoader /> : gender ? gender : "empty",
+      placeholder: loading ? (
+        <Loader
+          style={
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+          }
+        />
+      ) : gender ? (
+        gender
+      ) : (
+        "empty"
+      ),
       readOnly: false,
       value: gender,
       onChange: setGender,

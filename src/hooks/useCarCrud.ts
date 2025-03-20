@@ -24,20 +24,12 @@ const useCarCrud = () => {
   );
   const [image, setImage] = useState<string>(updateCarData?.imageUrl || "");
 
-  // get cars
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      return;
-    }
-  }, [error]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         await dispatch(fetchCars()).unwrap();
-      } catch (error) {
-        console.error("Error fetching cars:", error);
+      } catch {
+        console.log("Something went wrong. Please try again");
       }
     };
 
@@ -110,6 +102,7 @@ const useCarCrud = () => {
   return {
     cars,
     loading,
+    error,
     deleteHandler,
     carName,
     setCarName,

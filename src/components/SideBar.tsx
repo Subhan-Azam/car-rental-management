@@ -3,13 +3,12 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { RxDashboard } from "react-icons/rx";
-import { TbSteeringWheel } from "react-icons/tb";
 import { BiCar } from "react-icons/bi";
 import { HiOutlineCalendar, HiOutlineShoppingBag } from "react-icons/hi";
-import { BsCart2 } from "react-icons/bs";
 import { GiCrossedSabres } from "react-icons/gi";
 import { LuMessageSquareText } from "react-icons/lu";
 import { SlSettings } from "react-icons/sl";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 import NavbarMainLogo from "../../public/assets/Heading.png";
 import LogoutModal from "./modal/LogoutModal";
 import { signOut, useSession } from "next-auth/react";
@@ -26,9 +25,9 @@ const SideBar = () => {
             label: "Dashboard",
           },
           {
-            href: "/dashboard/assets",
-            icon: <TbSteeringWheel />,
-            label: "Assets",
+            href: "/dashboard/addCar",
+            icon: <AiOutlinePlusCircle />,
+            label: "Add Car",
           },
           {
             href: "/dashboard/booking",
@@ -40,11 +39,7 @@ const SideBar = () => {
             icon: <HiOutlineShoppingBag />,
             label: "Sell Cars",
           },
-          {
-            href: "/dashboard/buyCars",
-            icon: <BsCart2 />,
-            label: "Buy Cars",
-          },
+
           {
             href: "/dashboard/services",
             icon: <GiCrossedSabres />,
@@ -62,11 +57,11 @@ const SideBar = () => {
           },
         ]
       : [
-          {
-            href: "/dashboard/assets",
-            icon: <TbSteeringWheel />,
-            label: "Assets",
-          },
+          // {
+          //   href: "/dashboard/assets",
+          //   icon: <TbSteeringWheel />,
+          //   label: "Assets",
+          // },
           {
             href: "/dashboard/booking",
             icon: <BiCar />,

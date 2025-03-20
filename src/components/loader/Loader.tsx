@@ -1,13 +1,9 @@
-export default function Loader() {
-  return <div className="loader"></div>;
+
+
+interface LoaderType {
+  style: string;
 }
 
-import React from "react";
-
-export const BtnLoader = () => {
-  return <div className="btnLoader"></div>;
-};
-
-export const InputLoader = () => {
-  return <div className="inputLoader"></div>;
+export const Loader = ({ style }: LoaderType) => {
+  return <span className={style}></span>;
 };

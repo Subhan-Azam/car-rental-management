@@ -95,8 +95,8 @@ const SellCars = () => {
       <div className="flex flex-col md:flex-row justify-between items-center my-[30px] gap-4">
         <h1 className="font-[700] text-[30px] dark:text-white">Offers</h1>
         <div className="flex flex-wrap gap-[16px]">
-          <BookingDropDown className="text-[#A162F7]" title="New" />
-          <BookingDropDown className="text-[#A162F7]" title="Toyota" />
+          <BookingDropDown className="text-[#A162F7]" />
+          <BookingDropDown className="text-[#A162F7]" />
         </div>
       </div>
 
