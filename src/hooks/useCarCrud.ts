@@ -1,17 +1,24 @@
-import { deleteCar, fetchCars, updateCar } from "@/store/slices/carCrudSlice";
+import {
+  // carCrudSlice,
+  deleteCar,
+  fetchCars,
+  updateCar,
+} from "@/store/slices/carCrudSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useState } from "react";
+// import { Car } from "@/store/slices/carCrudSlice";
 import { toast } from "react-toastify";
 
 const useCarCrud = () => {
   const dispatch = useAppDispatch();
-  const { cars, updateCarData, loading, error } = useAppSelector(
+  const { cars = [], updateCarData } = useAppSelector(
     (state) => state.carCrudStore
   );
 
   const [carName, setCarName] = useState<string>(updateCarData?.carName || "");
   const [model, setModel] = useState<string>(updateCarData?.model || "");
   const [mileage, setMileage] = useState<string>(updateCarData?.mileage || "");
+  const [loading, setloading] = useState<boolean>();
   const [engineType, setEngineType] = useState<string>(
     updateCarData?.engine || ""
   );
@@ -19,22 +26,27 @@ const useCarCrud = () => {
     updateCarData?.transmission || ""
   );
   const [price, setPrice] = useState<string>(updateCarData?.price || "");
+  const [carType, setCarType] = useState<string>(updateCarData?.carType || "");
   const [description, setDescription] = useState<string>(
     updateCarData?.description || ""
   );
   const [image, setImage] = useState<string>(updateCarData?.imageUrl || "");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await dispatch(fetchCars()).unwrap();
-      } catch {
-        console.log("Something went wrong. Please try again");
-      }
-    };
+    // const loadCars = async () => {
+    try {
+      setloading(true);
+      dispatch(fetchCars()).unwrap();
+      console.log("Cars fetched successfully.");
+    } catch {
+      toast.error("Failed to load cars.");
+    } finally {
+      setloading(false);
+    }
+    // };
 
-    fetchData();
-  }, [dispatch]);
+    // loadCars();
+  }, []);
 
   // delete car btn functionality
   const deleteHandler = async (id: string) => {
@@ -67,6 +79,7 @@ const useCarCrud = () => {
     setEngineType(updateCarData?.engine || "");
     setTransmissionType(updateCarData?.transmission || "");
     setPrice(updateCarData?.price || "");
+    setCarType(updateCarData?.carType || "");
     setDescription(updateCarData?.description || "");
     setImage(updateCarData?.imageUrl || "");
   }, [updateCarData]);
@@ -88,6 +101,7 @@ const useCarCrud = () => {
         engineType,
         transmissionType,
         price,
+        carType,
         description,
         image,
       };
@@ -102,7 +116,6 @@ const useCarCrud = () => {
   return {
     cars,
     loading,
-    error,
     deleteHandler,
     carName,
     setCarName,
@@ -116,6 +129,8 @@ const useCarCrud = () => {
     setTransmissionType,
     price,
     setPrice,
+    carType,
+    setCarType,
     description,
     setDescription,
     handleImageChange,

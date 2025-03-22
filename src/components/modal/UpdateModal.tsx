@@ -24,6 +24,8 @@ const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
     setTransmissionType,
     price,
     setPrice,
+    // carType,
+    // setCarType,
     description,
     setDescription,
     handleImageChange,

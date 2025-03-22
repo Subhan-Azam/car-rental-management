@@ -62,7 +62,7 @@ export const authOptions: AuthOptions = {
             role: user.role ?? "USER",
           };
         } catch (error) {
-          console.error("Authorization error:", error);
+          console.log("Authorization error:", error);
           return null;
         }
       },

@@ -1,0 +1,74 @@
+"use client";
+import React from "react";
+import HomeButton from "@/components/button/HomeButton";
+import ImpressiveCollectionCard from "./ImpressiveCollectionCard";
+import useFilterCars from "@/hooks/useFilterCars";
+import { Loader } from "@/components/loader/Loader";
+
+const ImpressiveCollection = () => {
+  const { uniqueCarTypes, selectedCar, setSelectedCar, filterdCar, loading } =
+    useFilterCars();
+  console.log("Cars data:", uniqueCarTypes);
+  console.log("selectedCar::::::", selectedCar);
+
+  return (
+    <div className="py-[100px]">
+      <div className="text-center w-[720px] mx-auto">
+        <h1 className="text-[44px] font-[700]">
+          Our Impressive Collection of Cars
+        </h1>
+        <p className="text-[18px] font-[500] mt-[24px]">
+          Ranging from elegant sedans to powerful sports cars, all carefully
+          selected to provide our customers with the ultimate driving
+          experience.
+        </p>
+      </div>
+      {loading ? (
+        <Loader style="w-8 h-8 border-4 border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom" />
+      ) : (
+        <>
+          <div className="flex gap-[16px] justify-center mt-[48px]">
+            <HomeButton
+              title="Popular Cars"
+              onClick={() => setSelectedCar(null)}
+              style={` h-[50px] font-[500] px-[20px] text-[18px] bg-[#FFFFFF] rounded-[58px] ${
+                selectedCar === null
+                  ? "bg-black text-white"
+                  : "bg-white text-black hover:bg-gray-200 transition-all duration-250 ease-in-out"
+              }`}
+            />
+            {uniqueCarTypes?.map((carType) => (
+              <HomeButton
+                key={carType}
+                onClick={() => setSelectedCar(carType)}
+                carType={carType}
+                style={` h-[50px] font-[500] px-[20px] text-[18px] bg-[#FFFFFF] rounded-[58px] ${
+                  selectedCar === carType
+                    ? "bg-black text-white"
+                    : "bg-white text-black hover:bg-gray-200 transition-all duration-250 ease-in-out"
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="flex justify-center gap-[32px] my-[64px]">
+            {filterdCar?.map((car) => (
+              <ImpressiveCollectionCard
+                key={car?.id}
+                carId={car?.id}
+                imageUrl={car?.imageUrl}
+                carName={car?.carName}
+                price={car?.price}
+                milage={car?.mileage}
+                enginType={car?.engine}
+                transmissionType={car?.transmission}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default ImpressiveCollection;

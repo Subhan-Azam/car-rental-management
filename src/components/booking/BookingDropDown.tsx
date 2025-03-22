@@ -18,14 +18,14 @@ const BookingDropDown = ({
     "All Cars",
     ...new Set(cars.map?.((car) => car?.carName)),
   ];
-  const { isOpen, setIsOpen, handleIsOpen, handleOverlayClick } = useModel();
+  const { isOpen, setIsOpen, handleIsOpen } = useModel();
   const [selectedOption, setSelectedOption] = useState<string>(
     uniqueCars.length > 1 ? uniqueCars[1] : "All Cars"
   );
 
-  useEffect(() => {
-    setSelectedCar(selectedOption === "All Cars" ? null : selectedOption);
-  }, [setSelectedCar, selectedOption]);
+  // useEffect(() => {
+  //   setSelectedCar(selectedOption === "All Cars" ? null : selectedOption);
+  // }, [setSelectedCar, selectedOption]);
 
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
@@ -44,8 +44,6 @@ const BookingDropDown = ({
 
       {isOpen && (
         <div
-          id="modalRemove"
-          onClick={handleOverlayClick}
           className="absolute left-0 mt-2 w-[122px] bg-white border border-gray-200 shadow-lg rounded-lg dark:bg-[#242731] dark:border-gray-700"
         >
           {uniqueCars.map((carName, index) => (

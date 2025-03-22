@@ -12,11 +12,14 @@ const Booking = () => {
   const { cars, loading, error } = useCarCrud();
   const [selectedCar, setSelectedCar] = useState<string | null>(null);
 
-  const handleFilterCar =
-    selectedCar && selectedCar !== "All Cars"
+  const handleFilterCar = Array.isArray(cars)
+    ? selectedCar && selectedCar !== "All Cars"
       ? cars.filter((car) => car.carName === selectedCar)
-      : cars;
+      : cars
+    : [];
 
+  console.log("handleFilterCar:>>", handleFilterCar);
+  console.log("cars:>>", Array.isArray(cars));
   return (
     <div>
       <h1 className="font-[700] text-[30px] mb-[30px] dark:text-white">
@@ -40,29 +43,31 @@ const Booking = () => {
         </div>
       </div>
       <div className="flex flex-wrap gap-[24px]">
-        {loading ? (
+        {/* {loading ? (
           <div className="flex justify-center w-full">
             <Loader style="w-8 h-8 border-4 border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom" />
           </div>
-        ) : error ? (
-          <div className="text-red-500 font-bold text-xl">{error}</div>
+        ) : */}
+
+        {cars &&
+          cars.map((car) => (
+            <Link
+              href={`/dashboard/assets/${car?.id}`}
+              key={car?.id}
+              onClick={() => console.log("car id:>>", car?.id)}
+            >
+              <BookingCard
+                carName={car?.carName}
+                carImage={car?.imageUrl}
+                price={car?.price}
+              />
+            </Link>
+          ))}
+        {/* )) ? (
+          error
         ) : (
-          <>
-            {handleFilterCar?.map((car) => (
-              <Link
-                href={`/dashboard/assets/${car?.id}`}
-                key={car?.id}
-                onClick={() => console.log("car id:>>", car?.id)}
-              >
-                <BookingCard
-                  carName={car?.carName}
-                  carImage={car?.imageUrl}
-                  price={car?.price}
-                />
-              </Link>
-            ))}
-          </>
-        )}
+          <div className="text-red-500 font-bold text-xl">{error}</div>
+        )} */}
       </div>
     </div>
   );

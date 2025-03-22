@@ -11,6 +11,7 @@ export interface Car {
   engine: string;
   transmission: string;
   price: string;
+  carType: string;
   description: string;
   image: string;
   imageUrl: string;
@@ -37,6 +38,7 @@ interface carStateTypes {
   engineType: string;
   transmissionType: string;
   price: string;
+  carType: string;
   description: string;
   image: string;
 }
@@ -50,6 +52,7 @@ export const addCar = createAsyncThunk(
         ...carData,
         engine: carData.engineType.toUpperCase(),
         transmission: carData.transmissionType.toUpperCase(),
+        carType: carData.carType.toUpperCase(),
       };
 
       const response = await axiosInstance.post("/carCrud", formattedCarState);
@@ -70,7 +73,6 @@ export const fetchCars = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get("/carCrud");
-      console.log("Fetched cars:", response.data);
       return response.data.data;
     } catch {
       return rejectWithValue("Something went wrong. Please try again");
@@ -102,6 +104,7 @@ interface updateCarDataType {
   engineType: string;
   transmissionType: string;
   price: string;
+  carType: string;
   description: string;
   image: string;
 }
@@ -115,6 +118,7 @@ export const updateCar = createAsyncThunk(
         ...updateCarData,
         engine: updateCarData.engineType.toUpperCase(),
         transmission: updateCarData.transmissionType.toUpperCase(),
+        carType: updateCarData.carType.toUpperCase(),
       };
       const response = await axiosInstance.put("/carCrud", formatedData);
 
@@ -164,7 +168,7 @@ export const carCrudSlice = createSlice({
       })
       .addCase(fetchCars.fulfilled, (state, action) => {
         state.loading = false;
-        state.cars = action.payload;
+        state.cars = action.payload || [];
       })
       .addCase(fetchCars.rejected, (state, action) => {
         state.loading = false;

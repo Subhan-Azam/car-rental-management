@@ -19,12 +19,14 @@ export const POST = async (req: Request) => {
       mileage,
       engine,
       transmission,
+      carType,
       price,
       description,
       image,
     } = await req.json();
 
     const session = await getServerSession(authOptions);
+    console.log("session id :>>", session?.user?.id);
     if (!session) {
       return NextResponse.json({
         success: false,
@@ -35,6 +37,12 @@ export const POST = async (req: Request) => {
     // Validate engine & transmission
     const validEngines = ["PETROL", "DIESEL", "ELECTRIC", "HYBRID"];
     const validTransmissions = ["MANUAL", "AUTOMATIC"];
+    const validCarTypes = [
+      "LUXURYCAR",
+      "VINTAGECAR",
+      "FAMILYCAR",
+      "OFFROADCAR",
+    ];
 
     if (!validEngines.includes(engine.toUpperCase())) {
       return NextResponse.json({
@@ -51,6 +59,12 @@ export const POST = async (req: Request) => {
         message: `Invalid transmission type. Valid options: ${validTransmissions.join(
           ", "
         )}`,
+      });
+    }
+    if (!validCarTypes.includes(carType.toUpperCase())) {
+      return NextResponse.json({
+        success: false,
+        message: `Invalid car Type. Valid options: ${validCarTypes.join(", ")}`,
       });
     }
 
@@ -77,6 +91,7 @@ export const POST = async (req: Request) => {
         engine: engine.toUpperCase(),
         transmission: transmission.toUpperCase(),
         price,
+        carType: carType.replace(/\s+/g, "").toUpperCase(),
         description,
         imageUrl,
         imagePublicId: publicId,
@@ -104,12 +119,12 @@ export const POST = async (req: Request) => {
 // Get Car =================================================================
 export const GET = async () => {
   try {
-    const res = await prisma.addCar.findMany();
+    const cars = await prisma.addCar.findMany();
 
     return NextResponse.json({
       success: true,
       message: "Get successfull",
-      data: res,
+      data: cars,
     });
   } catch (error) {
     return NextResponse.json(
@@ -175,6 +190,7 @@ export const PUT = async (req: Request) => {
       engine,
       transmission,
       price,
+      carType,
       description,
       image,
     } = await req.json();
@@ -225,6 +241,7 @@ export const PUT = async (req: Request) => {
         engine: engine.toUpperCase(),
         transmission: transmission.toUpperCase(),
         price,
+        carType: carType.toUpperCase(),
         description,
         imageUrl,
         imagePublicId: publicId,

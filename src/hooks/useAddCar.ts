@@ -10,11 +10,12 @@ const useAddCar = () => {
   const [engineType, setEngineType] = useState<string>("");
   const [transmissionType, setTransmissionType] = useState<string>("");
   const [price, setPrice] = useState<string>("");
+  const [carType, setCarType] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [image, setImage] = useState<string>("");
 
   const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector((state) => state.userDetailStore);
+  const { loading, error } = useAppSelector((state) => state.carCrudStore);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -41,9 +42,11 @@ const useAddCar = () => {
         engineType,
         transmissionType,
         price,
+        carType,
         description,
         image,
       };
+      console.log("Car Data Sent:", carData);
 
       await dispatch(addCar(carData)).unwrap();
 
@@ -54,11 +57,12 @@ const useAddCar = () => {
       setEngineType("");
       setTransmissionType("");
       setPrice("");
+      setCarType("");
       setDescription("");
       setImage("");
     } catch (error) {
       console.log(error);
-      alert("error saving car");
+      toast.error("error saving car");
     }
   };
 
@@ -75,6 +79,8 @@ const useAddCar = () => {
     setTransmissionType,
     price,
     setPrice,
+    carType,
+    setCarType,
     description,
     setDescription,
     submitHandler,

@@ -53,7 +53,7 @@ export const userSignUp = createAsyncThunk(
             "Server error. Please try again later."
         );
       } else {
-        console.error("Unexpected error:", error);
+        console.log("Unexpected error:", error);
         return rejectWithValue(
           "An unexpected error occurred. Please try again."
         );

@@ -36,7 +36,7 @@ const useUserDetails = () => {
     } else {
       dispatch(fetchUserDetails());
     }
-  }, [userDetails, dispatch]);
+  }, []);
 
   // ** Function to update user details **
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

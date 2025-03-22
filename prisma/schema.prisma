@@ -44,6 +44,7 @@ model AddCar {
   engine        EngineType
   transmission  TransmissionType
   price         String
+  carType       CarType
   description   String
   imageUrl      String?
   imagePublicId String?
@@ -61,4 +62,11 @@ enum EngineType {
 enum TransmissionType {
   MANUAL
   AUTOMATIC
+}
+
+enum CarType {
+  LUXURYCAR
+  VINTAGECAR
+  FAMILYCAR
+  OFFROADCAR
 }

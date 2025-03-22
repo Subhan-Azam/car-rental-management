@@ -18,6 +18,8 @@ const AddCar = () => {
     setTransmissionType,
     price,
     setPrice,
+    carType,
+    setCarType,
     description,
     setDescription,
     handleImageChange,
@@ -85,6 +87,19 @@ const AddCar = () => {
           title="Price:"
           value={price}
           onChange={(e) => setPrice(e.target.value as string)}
+        />
+
+        <CarDropDown
+          value={carType} // ✅ Bind state
+          onChange={(e) => setCarType(e.target.value)} // ✅ Update state
+          options={[
+            "Car Type",
+            "LuxuryCar",
+            "VintageCar",
+            "FamiliyCar",
+            "OffRoadCar",
+          ]}
+          title="Car Type"
         />
 
         <div>
