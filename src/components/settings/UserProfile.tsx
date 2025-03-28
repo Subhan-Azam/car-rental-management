@@ -187,7 +187,7 @@ const UserProfile = () => {
             />
             <div
               onClick={handleImageClick}
-              className="cursor-pointer w-[65px] h-[65px] "
+              className="cursor-pointer w-[100px] h-[80px] "
             >
               {profilePhoto ? (
                 <Image
@@ -195,7 +195,7 @@ const UserProfile = () => {
                   width={100}
                   height={100}
                   alt="user photo"
-                  className="w-full h-full object-cover rounded-full"
+                  className="w-full h-full rounded-full"
                 />
               ) : (
                 <FaUserCircle className="w-full h-full text-gray-400" />

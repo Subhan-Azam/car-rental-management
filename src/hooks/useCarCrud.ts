@@ -1,17 +1,11 @@
-import {
-  // carCrudSlice,
-  deleteCar,
-  fetchCars,
-  updateCar,
-} from "@/store/slices/carCrudSlice";
+import { deleteCar, fetchCars, updateCar } from "@/store/slices/carCrudSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useState } from "react";
-// import { Car } from "@/store/slices/carCrudSlice";
 import { toast } from "react-toastify";
 
 const useCarCrud = () => {
   const dispatch = useAppDispatch();
-  const { cars = [], updateCarData } = useAppSelector(
+  const { cars, updateCarData, error } = useAppSelector(
     (state) => state.carCrudStore
   );
 
@@ -33,20 +27,19 @@ const useCarCrud = () => {
   const [image, setImage] = useState<string>(updateCarData?.imageUrl || "");
 
   useEffect(() => {
-    // const loadCars = async () => {
-    try {
-      setloading(true);
-      dispatch(fetchCars()).unwrap();
-      console.log("Cars fetched successfully.");
-    } catch {
-      toast.error("Failed to load cars.");
-    } finally {
-      setloading(false);
-    }
-    // };
+    const fetchData = async () => {
+      try {
+        setloading(true);
+        await dispatch(fetchCars()).unwrap();
+      } catch {
+        toast.error("Failed to load cars.");
+      } finally {
+        setloading(false);
+      }
+    };
 
-    // loadCars();
-  }, []);
+    fetchData();
+  }, [dispatch]);
 
   // delete car btn functionality
   const deleteHandler = async (id: string) => {
@@ -84,8 +77,10 @@ const useCarCrud = () => {
     setImage(updateCarData?.imageUrl || "");
   }, [updateCarData]);
 
-  const updateHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const updateHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    console.log("submit working:>>>>");
 
     if (!updateCarData?.id) {
       console.log("Car ID is missing");
@@ -105,17 +100,21 @@ const useCarCrud = () => {
         description,
         image,
       };
-      console.log("updateCarDataPayload=====", updateCarDataPayload);
-      dispatch(updateCar(updateCarDataPayload));
+
+      const response = await dispatch(updateCar(updateCarDataPayload)).unwrap();
+      await dispatch(fetchCars()).unwrap();
+
+      toast.success(response.message || "Car updated successfully.");
     } catch (error) {
       console.log("error in update car hook======", error);
-      alert("Error updating car");
+      toast.error("Error updating car");
     }
   };
 
   return {
-    cars,
     loading,
+    error,
+    cars,
     deleteHandler,
     carName,
     setCarName,
@@ -133,6 +132,7 @@ const useCarCrud = () => {
     setCarType,
     description,
     setDescription,
+    image,
     handleImageChange,
     updateHandler,
   };

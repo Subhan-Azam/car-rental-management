@@ -12,15 +12,19 @@ cloudinary.config({
 
 // Get user details
 export const GET = async () => {
+  const session = await getServerSession(authOptions);
   try {
-    const session = await getServerSession(authOptions);
+    console.log("session:>> userdetail api", session?.user);
+
     if (!session) {
-      return NextResponse.json({ session, authOptions });
+      return NextResponse.json({ message: "session not found" });
     }
 
     const user = await prisma.user.findUnique({
-      where: { id: session?.user?.id },
+      where: { email: session?.user?.email },
     });
+
+    console.log("user:>> api", user);
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
@@ -33,6 +37,7 @@ export const GET = async () => {
       { status: 200 }
     );
   } catch (error) {
+    console.log("session => ", session);
     return NextResponse.json(
       {
         success: false,

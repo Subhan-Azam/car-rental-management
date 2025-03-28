@@ -5,13 +5,8 @@ import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import ThemeToggle from "./themeToggle/ThemeToggle";
 import useUserDetails from "@/hooks/useUserDetails";
-// import { useAppDispatch, useAppSelector } from "@/store/store";
-
 const Navbar = () => {
   const { profilePhoto } = useUserDetails();
-
-  // const { userDetails } = useAppSelector((state) => state.userDetailStore);
-  // const dispatch = useAppDispatch()
 
   return (
     <div className="fixed top-0 left-0 sm:left-[250px] w-full sm:w-[calc(100%-250px)] py-4 px-6 flex items-center justify-between bg-white dark:bg-[#242731] dark:text-white transition-all duration-300">

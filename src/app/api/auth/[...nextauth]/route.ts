@@ -2,6 +2,7 @@ import { prisma } from "@/config/prisma";
 import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 import bcrypt from "bcryptjs";
 
 declare module "next-auth" {
@@ -68,20 +69,34 @@ export const authOptions: AuthOptions = {
       },
     }),
 
-    // google provider
-    // GoogleProvider({
-    //   clientId: process.env.GOOGLE_CLIENT_ID as string,
-    //   clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    // }),
-
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       authorization: {
         params: {
-          scope:
-            "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email",
+          scope: "openid email profile",
         },
+      },
+      profile(profile) {
+        return {
+          id: profile.id,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture,
+        };
+      },
+    }),
+
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID as string,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET as string,
+      profile(profile) {
+        return {
+          id: profile.id,
+          name: profile.name,
+          email: profile.email,
+          image: profile.picture?.data?.url || null,
+        };
       },
     }),
   ],
@@ -93,19 +108,62 @@ export const authOptions: AuthOptions = {
   pages: {
     signIn: "/auth/login",
   },
+
   callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === "google" || account?.provider === "facebook") {
+        try {
+          if (!user.email) {
+            console.error("Error: Email is required but missing.");
+            return false;
+          }
+
+          let existingUser = await prisma.user.findUnique({
+            where: { email: user.email! },
+          });
+
+          if (!existingUser) {
+            // Create new user without password
+            existingUser = await prisma.user.create({
+              data: {
+                firstName: user.name?.split(" ")[0] || "Unknown",
+                lastName: user.name?.split(" ")[1] || null,
+                email: user.email,
+                password: "",
+                profilePhoto: user.image || null,
+                role: "USER",
+                city: null,
+                street: null,
+                dateOfBirth: null,
+                gender: null,
+              },
+            });
+          }
+        } catch (error) {
+          console.error("Error creating user:", error);
+          return false;
+        }
+      }
+      return true;
+    },
+
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        token.name = user.name;
+        token.image = user.image;
         token.role = user.role ?? "USER";
       }
       return token;
     },
+
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id as string;
         session.user.email = token.email ?? undefined;
+        session.user.name = token.name;
+        session.user.image = token.image as string;
         session.user.role = token.role as "ADMIN" | "USER";
       }
       return session;

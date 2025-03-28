@@ -1,9 +1,12 @@
 "use client";
 import UserPassword from "@/components/settings/UserPassword";
 import UserProfile from "@/components/settings/UserProfile";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 const Settings = () => {
+  const session = useSession();
+  console.log("session=====setting", session);
   const [selectedTab, setSelectedTab] = useState("Profile");
 
   return (

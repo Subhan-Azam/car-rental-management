@@ -101,7 +101,7 @@ const ImpressiveCollectionCard = ({
               title="Rent Now"
               onClick={rentNow}
               style={
-                "w-[336px] py-[12px] border border-black rounded-[32px] text-[16px] font-[600] hover:bg-black hover:text-white transition-all duration-250 ease-in-out"
+                "w-[336px] py-[12px] text-center border border-black rounded-[32px] text-[16px] font-[600] hover:bg-black hover:text-white transition-all duration-250 ease-in-out"
               }
             />
             {/* </Link> */}

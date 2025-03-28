@@ -3,6 +3,9 @@ import CarDropDown from "@/components/addCar/CarDropDown";
 import CarInput from "@/components/addCar/CarInput";
 import AuthBtn from "@/components/button/AuthBtn";
 import useAddCar from "@/hooks/useAddCar";
+import Image from "next/image";
+import { useRef } from "react";
+import { IoCloudUploadOutline } from "react-icons/io5";
 
 const AddCar = () => {
   const {
@@ -22,10 +25,18 @@ const AddCar = () => {
     setCarType,
     description,
     setDescription,
+    image,
     handleImageChange,
     submitHandler,
     loading,
   } = useAddCar();
+
+  const handleImageClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
     <div className="bg-white  p-7 rounded-md dark:bg-[#242731] transition-all duration-300">
@@ -59,9 +70,9 @@ const AddCar = () => {
         </div>
 
         <CarInput
+          title="Mileage"
           type="text"
           placeholder="Enter mileage"
-          title="Mileage"
           value={mileage}
           onChange={(e) => setMileage(e.target.value)}
         />
@@ -74,8 +85,8 @@ const AddCar = () => {
             title="Engine Type"
           />
           <CarDropDown
-            value={transmissionType} // ✅ Bind state
-            onChange={(e) => setTransmissionType(e.target.value)} // ✅ Update state
+            value={transmissionType}
+            onChange={(e) => setTransmissionType(e.target.value)}
             options={["Transmission Type", "Automatic", "Manual"]}
             title="Transmission Type"
           />
@@ -90,8 +101,8 @@ const AddCar = () => {
         />
 
         <CarDropDown
-          value={carType} // ✅ Bind state
-          onChange={(e) => setCarType(e.target.value)} // ✅ Update state
+          value={carType}
+          onChange={(e) => setCarType(e.target.value)}
           options={[
             "Car Type",
             "LuxuryCar",
@@ -122,9 +133,29 @@ const AddCar = () => {
           type="file"
           accept="image/*"
           onChange={handleImageChange}
-          className="dark:bg-[#1F2128] text-[#7C7C8D] rounded-[10px] transition-all duration-300"
+          ref={fileInputRef}
+          className="hidden"
           required
         />
+
+        <div
+          onClick={handleImageClick}
+          className="cursor-pointer w-[200px] h-[100px]"
+        >
+          {image ? (
+            <Image
+              src={image}
+              width={100}
+              height={100}
+              alt="user photo"
+              className="w-full h-full object-cover rounded-[10px] dark:border-[#2C303D] transition-all duration-300"
+            />
+          ) : (
+            <div className="group w-full h-full border outline-none rounded-[10px] flex justify-center items-center dark:border-[#2C303D] dark:bg-[#1F2128] transition-all duration-300">
+              <IoCloudUploadOutline className="text-[60px] group-hover:scale-125 hover:outline-[#A162F7] transition-all ease-in-out duration-200 text-[#7C7C8D] dark:text-white" />
+            </div>
+          )}
+        </div>
 
         <AuthBtn title="Submit" loading={loading} />
       </form>

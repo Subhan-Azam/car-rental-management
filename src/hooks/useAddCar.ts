@@ -50,7 +50,7 @@ const useAddCar = () => {
 
       await dispatch(addCar(carData)).unwrap();
 
-      alert("car data save");
+      toast.success("Congratulation! Car added successfully");
       setCarName("");
       setModel("");
       setMileage("");
@@ -83,6 +83,7 @@ const useAddCar = () => {
     setCarType,
     description,
     setDescription,
+    image,
     submitHandler,
     handleImageChange,
     loading,

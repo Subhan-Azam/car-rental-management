@@ -7,7 +7,7 @@ import PageChange from "@/components/authentication/PageChange";
 import TextInput from "@/components/authentication/TextInput";
 import useLogin from "@/hooks/useLogin";
 import React from "react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 const LoginComp = () => {
   const {
@@ -36,9 +36,6 @@ const LoginComp = () => {
     },
   ];
 
-  const session = useSession();
-  console.log("session=====", session);
-
   return (
     <div className="flex justify-center h-full py-7 mx-3">
       <div>
@@ -57,6 +54,7 @@ const LoginComp = () => {
           />
           <LoginWithSocialMedia
             title="Sign in with Facebook"
+            signIn={() => signIn("facebook")}
             className="bg-[#4776D0] text-white"
           />
         </div>

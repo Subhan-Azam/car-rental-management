@@ -1,7 +1,6 @@
 "use client";
 import BookingCard from "@/components/booking/BookingCard";
 import BookingDropDown from "@/components/booking/BookingDropDown";
-import { Loader } from "@/components/loader/Loader";
 import useCarCrud from "@/hooks/useCarCrud";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -9,7 +8,7 @@ import { LuLayoutGrid } from "react-icons/lu";
 import { VscSettings } from "react-icons/vsc";
 
 const Booking = () => {
-  const { cars, loading, error } = useCarCrud();
+  const { cars } = useCarCrud();
   const [selectedCar, setSelectedCar] = useState<string | null>(null);
 
   const handleFilterCar = Array.isArray(cars)
@@ -19,7 +18,6 @@ const Booking = () => {
     : [];
 
   console.log("handleFilterCar:>>", handleFilterCar);
-  console.log("cars:>>", Array.isArray(cars));
   return (
     <div>
       <h1 className="font-[700] text-[30px] mb-[30px] dark:text-white">
@@ -43,14 +41,8 @@ const Booking = () => {
         </div>
       </div>
       <div className="flex flex-wrap gap-[24px]">
-        {/* {loading ? (
-          <div className="flex justify-center w-full">
-            <Loader style="w-8 h-8 border-4 border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom" />
-          </div>
-        ) : */}
-
-        {cars &&
-          cars.map((car) => (
+        {handleFilterCar &&
+          handleFilterCar.map((car) => (
             <Link
               href={`/dashboard/assets/${car?.id}`}
               key={car?.id}
@@ -63,11 +55,6 @@ const Booking = () => {
               />
             </Link>
           ))}
-        {/* )) ? (
-          error
-        ) : (
-          <div className="text-red-500 font-bold text-xl">{error}</div>
-        )} */}
       </div>
     </div>
   );

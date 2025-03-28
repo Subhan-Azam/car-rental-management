@@ -2,6 +2,19 @@ import { axiosInstance } from "@/axiosInstance/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  city: string;
+  street: string;
+  dateOfBirth: Date;
+  gender: string;
+  profilePhoto: string;
+  role: string;
+}
+
 interface AuthStateProps {
   firstName: string;
   lastName: string;
@@ -9,6 +22,7 @@ interface AuthStateProps {
   password: string;
   loading: boolean;
   error: string | null;
+  allUsers: User[];
 }
 
 const initialState: AuthStateProps = {
@@ -18,6 +32,7 @@ const initialState: AuthStateProps = {
   password: "",
   loading: false,
   error: null,
+  allUsers: [],
 };
 
 // signUp slice
@@ -116,6 +131,7 @@ interface ChangePassword {
   newPassword: string;
   confirmPassword: string;
 }
+
 export const changePassword = createAsyncThunk(
   "auth/changePassword",
   async (data: ChangePassword, { rejectWithValue }) => {
@@ -129,6 +145,27 @@ export const changePassword = createAsyncThunk(
         return rejectWithValue(
           error.response?.data?.message ||
             "Error changing password. Please try again later."
+        );
+      } else {
+        return rejectWithValue("An unexpected error occurred.");
+      }
+    }
+  }
+);
+
+// get All Users
+export const getAllUsers = createAsyncThunk(
+  "auth/getAllUsers",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get("/allUsers");
+      console.log("get All Users", response.data.users);
+      return response.data.users;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(
+          error.response?.data?.message ||
+            "Error fetching all users. Please try again later."
         );
       } else {
         return rejectWithValue("An unexpected error occurred.");
@@ -197,6 +234,19 @@ export const authSlice = createSlice({
         state.password = action.payload.message;
       })
       .addCase(changePassword.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      // get all users
+      .addCase(getAllUsers.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.allUsers = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

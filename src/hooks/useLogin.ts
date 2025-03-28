@@ -29,7 +29,7 @@ const useLogin = () => {
       }
 
       toast.success("You are logged in!");
-      router.replace("/dashboard");
+      router.replace("/");
     } catch (error: unknown) {
       if (error instanceof Error) {
         setLoginError(`Invalid email or password: ${error.message}`);

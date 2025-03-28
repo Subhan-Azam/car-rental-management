@@ -33,8 +33,8 @@ export const fetchUserDetails = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get("/getUserDetails");
-      console.log("response========", response.data.user);
-      return response.data.user;
+      const data = await response.data.user;
+      return data;
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
         const errorMessage =

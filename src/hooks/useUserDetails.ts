@@ -24,19 +24,23 @@ const useUserDetails = () => {
 
   // show user Details
   useEffect(() => {
-    if (userDetails) {
-      setEmail(userDetails.email || "");
-      setCity(userDetails.city || "");
-      setStreet(userDetails.street || "");
-      setDateOfBirth(
-        userDetails.dateOfBirth ? new Date(userDetails.dateOfBirth) : null
-      );
-      setGender(userDetails.gender || "");
-      setProfilePhoto(userDetails.profilePhoto);
-    } else {
-      dispatch(fetchUserDetails());
+    try {
+      if (userDetails) {
+        setEmail(userDetails.email || "");
+        setCity(userDetails.city || "");
+        setStreet(userDetails.street || "");
+        setDateOfBirth(
+          userDetails.dateOfBirth ? new Date(userDetails.dateOfBirth) : null
+        );
+        setGender(userDetails.gender || "");
+        setProfilePhoto(userDetails.profilePhoto);
+      } else {
+        dispatch(fetchUserDetails()).unwrap();
+      }
+    } catch (error) {
+      console.log("get user detail effect", error);
     }
-  }, []);
+  }, [dispatch, userDetails]);
 
   // ** Function to update user details **
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {

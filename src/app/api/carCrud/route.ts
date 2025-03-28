@@ -217,7 +217,7 @@ export const PUT = async (req: Request) => {
     let imageUrl = existingCar.imageUrl;
     let publicId = existingCar.imagePublicId;
 
-    if (image) {
+    if (image && !image.startsWith("http")) {
       if (publicId) {
         await cloudinary.uploader.destroy(publicId);
       }
@@ -238,10 +238,12 @@ export const PUT = async (req: Request) => {
         carName,
         model,
         mileage,
-        engine: engine.toUpperCase(),
-        transmission: transmission.toUpperCase(),
+        engine: engine ? engine.toUpperCase() : existingCar.engine,
+        transmission: transmission
+          ? transmission.toUpperCase()
+          : existingCar.transmission,
         price,
-        carType: carType.toUpperCase(),
+        carType: carType ? carType.toUpperCase() : existingCar.carType,
         description,
         imageUrl,
         imagePublicId: publicId,
@@ -252,7 +254,7 @@ export const PUT = async (req: Request) => {
 
     return NextResponse.json({
       success: true,
-      message: "PUT successfull",
+      message: "Car updated successfully.",
       data: response,
     });
   } catch (error) {

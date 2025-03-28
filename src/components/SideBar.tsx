@@ -6,12 +6,13 @@ import { RxDashboard } from "react-icons/rx";
 import { BiCar } from "react-icons/bi";
 import { HiOutlineCalendar, HiOutlineShoppingBag } from "react-icons/hi";
 import { GiCrossedSabres } from "react-icons/gi";
-import { LuMessageSquareText } from "react-icons/lu";
+import { LuMessageSquareText, LuUsersRound } from "react-icons/lu";
 import { SlSettings } from "react-icons/sl";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import NavbarMainLogo from "../../public/assets/Heading.png";
 import LogoutModal from "./modal/LogoutModal";
 import { signOut, useSession } from "next-auth/react";
+import { IoCarSportOutline } from "react-icons/io5";
 
 const SideBar = () => {
   const session = useSession();
@@ -25,11 +26,6 @@ const SideBar = () => {
             label: "Dashboard",
           },
           {
-            href: "/dashboard/addCar",
-            icon: <AiOutlinePlusCircle />,
-            label: "Add Car",
-          },
-          {
             href: "/dashboard/booking",
             icon: <BiCar />,
             label: "Booking",
@@ -39,7 +35,21 @@ const SideBar = () => {
             icon: <HiOutlineShoppingBag />,
             label: "Sell Cars",
           },
-
+          {
+            href: "/dashboard/addCar",
+            icon: <AiOutlinePlusCircle />,
+            label: "Add Car",
+          },
+          {
+            href: "/dashboard/carsList",
+            icon: <IoCarSportOutline />,
+            label: "Cars",
+          },
+          {
+            href: "/dashboard/usersList",
+            icon: <LuUsersRound />,
+            label: "Users",
+          },
           {
             href: "/dashboard/services",
             icon: <GiCrossedSabres />,
@@ -50,18 +60,8 @@ const SideBar = () => {
             icon: <HiOutlineCalendar />,
             label: "Calendar",
           },
-          {
-            href: "/dashboard/messages",
-            icon: <LuMessageSquareText />,
-            label: "Messages",
-          },
         ]
       : [
-          // {
-          //   href: "/dashboard/assets",
-          //   icon: <TbSteeringWheel />,
-          //   label: "Assets",
-          // },
           {
             href: "/dashboard/booking",
             icon: <BiCar />,

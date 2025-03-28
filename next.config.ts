@@ -6,7 +6,11 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["res.cloudinary.com"], // Allow Cloudinary images
+    domains: [
+      "res.cloudinary.com",
+      "via.placeholder.com",
+      "platform-lookaside.fbsbx.com"
+    ], // Allow Cloudinary images
   },
 };
 
