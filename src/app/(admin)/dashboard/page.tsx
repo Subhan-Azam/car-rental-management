@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import PerformanceCard from "@/components/dashboard/PerformanceCard";
 import performanceCardImg1 from "../../../../public/icons/dashboard-card-icon.png";

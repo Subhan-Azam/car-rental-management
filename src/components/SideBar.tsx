@@ -12,7 +12,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import NavbarMainLogo from "../../public/assets/Heading.png";
 import LogoutModal from "./modal/LogoutModal";
 import { signOut, useSession } from "next-auth/react";
-import { IoCarSportOutline } from "react-icons/io5";
+import { FaRegListAlt } from "react-icons/fa";
 
 const SideBar = () => {
   const session = useSession();
@@ -42,8 +42,8 @@ const SideBar = () => {
           },
           {
             href: "/dashboard/carsList",
-            icon: <IoCarSportOutline />,
-            label: "Cars",
+            icon: <FaRegListAlt />,
+            label: "Cars List",
           },
           {
             href: "/dashboard/usersList",

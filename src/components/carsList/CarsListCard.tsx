@@ -10,7 +10,7 @@ import { setUpdateCarData } from "@/store/slices/carCrudSlice";
 import { Loader } from "../loader/Loader";
 
 const CarsListCard = () => {
-  const { cars, deleteHandler, loading, error } = useCarCrud();
+  const { cars, deleteHandler, loading } = useCarCrud();
 
   const { isOpen, handleIsOpen, handleOverlayClick } = useModel();
   const dispatch = useAppDispatch();
@@ -21,14 +21,11 @@ const CarsListCard = () => {
         <div className="flex justify-center w-full mt-20">
           <Loader style="w-8 h-8 border-4 border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom" />
         </div>
-      ) : error ? (
-        <div className="text-red-500 font-bold text-xl">{error}</div>
       ) : (
         <>
           {cars?.map((car) => (
             <div key={car.id}>
               <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4 p-4 bg-white shadow-md rounded-[16px] hover:bg-gray-100">
-                {/* Car Image and Text Section */}
                 <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 w-full sm:w-auto">
                   <div className="min-w-[100px]">
                     <h2 className="text-xl font-bold text-gray-900">
@@ -66,26 +63,28 @@ const CarsListCard = () => {
                   </div>
                 </div>
 
-                {/* Buttons Section */}
                 <div className="flex flex-col sm:flex-row mt-4 sm:mt-0 space-x-0 sm:space-x-2">
                   <CarCrudBtn
                     title="Update"
-                    onclick={() => {
+                    onClick={() => {
                       handleIsOpen();
                       dispatch(setUpdateCarData(car));
                     }}
-                    style={"bg-blue-500 hover:bg-blue-600 sm:w-[100px] w-full"}
+                    style={
+                      "bg-blue-500 hover:bg-blue-600 sm:w-[100px] w-full text-white px-4 py-2 rounded"
+                    }
                   />
 
                   <CarCrudBtn
                     title="Delete"
-                    onclick={() => deleteHandler(car?.id)}
-                    style={"bg-red-500 hover:bg-red-600 sm:w-[100px] w-full"}
+                    onClick={() => deleteHandler(car?.id)}
+                    style={
+                      "bg-red-500 hover:bg-red-600 sm:w-[100px] w-full text-white px-4 py-2 rounded"
+                    }
                   />
                 </div>
               </div>
 
-              {/* Update Modal */}
               {isOpen && (
                 <UpdateModal
                   car={car}

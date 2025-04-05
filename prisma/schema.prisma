@@ -38,6 +38,7 @@ enum Role {
 model AddCar {
   id            String           @id @default(auto()) @map("_id") @db.ObjectId
   userID        String           @db.ObjectId
+  brand         String
   carName       String
   model         String
   mileage       String

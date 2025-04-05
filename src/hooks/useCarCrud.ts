@@ -1,24 +1,18 @@
-import {
-  deleteCar,
-  fetchCars,
-  popularCars,
-  updateCar,
-} from "@/store/slices/carCrudSlice";
+import { deleteCar, fetchCars, updateCar } from "@/store/slices/carCrudSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const useCarCrud = () => {
   const dispatch = useAppDispatch();
-  const { cars, updateCarData, error } = useAppSelector(
-    (state) => state.carCrudStore
-  );
+  const { cars, updateCarData } = useAppSelector((state) => state.carCrudStore);
   console.log("cars::", cars);
 
+  const [brand, setBrand] = useState<string>(updateCarData?.carName || "");
   const [carName, setCarName] = useState<string>(updateCarData?.carName || "");
   const [model, setModel] = useState<string>(updateCarData?.model || "");
   const [mileage, setMileage] = useState<string>(updateCarData?.mileage || "");
-  const [loading, setloading] = useState<boolean>();
+  const [loading, setloading] = useState<boolean>(false);
   const [engineType, setEngineType] = useState<string>(
     updateCarData?.engine || ""
   );
@@ -47,8 +41,6 @@ const useCarCrud = () => {
     fetchData();
   }, [dispatch]);
 
-
-
   // delete car btn functionality
   const deleteHandler = async (id: string) => {
     try {
@@ -74,6 +66,7 @@ const useCarCrud = () => {
   };
 
   useEffect(() => {
+    setBrand(updateCarData?.brand || "");
     setCarName(updateCarData?.carName || "");
     setModel(updateCarData?.model || "");
     setMileage(updateCarData?.mileage || "");
@@ -98,6 +91,7 @@ const useCarCrud = () => {
     try {
       const updateCarDataPayload = {
         id: updateCarData?.id,
+        brand,
         carName,
         model,
         mileage,
@@ -121,9 +115,10 @@ const useCarCrud = () => {
 
   return {
     loading,
-    error,
     cars,
     deleteHandler,
+    brand,
+    setBrand,
     carName,
     setCarName,
     model,

@@ -3,11 +3,11 @@ import useCarCrud from "./useCarCrud";
 
 const useAssets = () => {
   const { id } = useParams();
-  const { cars, loading, error } = useCarCrud();
+  const { cars } = useCarCrud();
 
   const car = cars?.find((c) => c.id === id);
 
-  return { car, loading, error };
+  return { car };
 };
 
 export default useAssets;

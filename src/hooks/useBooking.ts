@@ -13,7 +13,7 @@ const useBooking = () => {
   const handleFilterCar =
     !selectedCar || selectedCar === "All Cars"
       ? cars
-      : cars.filter((car) => car.carName === selectedCar);
+      : cars.filter((car) => car.brand === selectedCar);
 
   const clickeViewsHandler = async (id: string) => {
     await dispatch(carViews(id));
@@ -21,7 +21,7 @@ const useBooking = () => {
 
   const uniqueCars = [
     "All Cars",
-    ...new Set(cars.map?.((car) => car?.carName)),
+    ...new Set(cars.map?.((car) => car?.brand)),
   ];
 
   const { isOpen, setIsOpen, handleIsOpen } = useModel();

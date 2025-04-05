@@ -5,6 +5,7 @@ import { AxiosError } from "axios";
 export interface Car {
   id: string;
   userID: string;
+  brand: string;
   carName: string;
   model: string;
   mileage: string;
@@ -33,6 +34,7 @@ const initialState: AddCarState = {
 };
 
 interface carStateTypes {
+  brand: string;
   carName: string;
   model: string;
   mileage: string;
@@ -73,11 +75,11 @@ export const fetchCars = createAsyncThunk(
   "CarCrud/fetch",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.get("/carCrud");
+      const response = await axiosInstance.get("/carCrud", {});
       console.log("response.data:>>", response.data.data);
       return response.data.data;
     } catch {
-      return rejectWithValue("Something went wrong.>> Please try again");
+      return rejectWithValue("Something went wrong. Please try again!");
     }
   }
 );
@@ -100,6 +102,7 @@ export const deleteCar = createAsyncThunk(
 
 interface updateCarDataType {
   id: string;
+  brand: string;
   carName: string;
   model: string;
   mileage: string;

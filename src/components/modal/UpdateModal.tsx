@@ -15,6 +15,8 @@ interface UpdateModalType {
 
 const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
   const {
+    brand,
+    setBrand,
     carName,
     setCarName,
     model,
@@ -67,6 +69,13 @@ const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
             style={{ maxHeight: "calc(100% - 120px)" }}
           >
             <form className="space-y-4 p-6">
+              <CarInput
+                type="text"
+                placeholder="Enter car name"
+                title="Brand Name:"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <CarInput
                   type="text"

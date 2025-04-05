@@ -28,6 +28,7 @@ const RecommendSection = () => {
         {cars?.map((item, index) => (
           <Link href={`/dashboard/assets/${item?.id}`} key={item?.id}>
             <RecommendCard
+              brand={item?.brand}
               carName={item?.carName}
               image={item?.imageUrl}
               price={item?.price}

@@ -1,9 +1,10 @@
 import { addCar } from "@/store/slices/carCrudSlice";
-import { useAppDispatch, useAppSelector } from "@/store/store";
+import { useAppDispatch } from "@/store/store";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
 const useAddCar = () => {
+  const [brand, setBrand] = useState<string>("");
   const [carName, setCarName] = useState<string>("");
   const [model, setModel] = useState<string>("");
   const [mileage, setMileage] = useState<string>("");
@@ -13,9 +14,9 @@ const useAddCar = () => {
   const [carType, setCarType] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [image, setImage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector((state) => state.carCrudStore);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -29,13 +30,12 @@ const useAddCar = () => {
   };
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     try {
       e.preventDefault();
-      if (error) {
-        toast.error(error);
-        return;
-      }
+
       const carData = {
+        brand,
         carName,
         model,
         mileage,
@@ -51,6 +51,7 @@ const useAddCar = () => {
       await dispatch(addCar(carData)).unwrap();
 
       toast.success("Congratulation! Car added successfully");
+      setBrand("");
       setCarName("");
       setModel("");
       setMileage("");
@@ -63,10 +64,14 @@ const useAddCar = () => {
     } catch (error) {
       console.log(error);
       toast.error("error saving car");
+    } finally {
+      setLoading(false);
     }
   };
 
   return {
+    brand,
+    setBrand,
     carName,
     setCarName,
     model,

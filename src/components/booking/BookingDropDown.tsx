@@ -3,14 +3,14 @@ import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 interface BookingDropDownType {
-  className: string;
-  setSelectedCar: (carName: string | null) => void;
+  className?: string;
+  setSelectedCar?: (carName: string | null) => void;
   isOpen?: boolean;
   handleIsOpen?: () => void;
   selectedOption?: string;
-  setSelectedOption: (option: string) => void;
-  setIsOpen: (isOpen: boolean) => void;
-  uniqueCars: string[];
+  setSelectedOption?: (option: string) => void;
+  setIsOpen?: (isOpen: boolean) => void;
+  uniqueCars?: string[];
 }
 
 const BookingDropDown = ({
@@ -24,9 +24,9 @@ const BookingDropDown = ({
   setIsOpen,
 }: BookingDropDownType) => {
   const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
-    setSelectedCar(option);
-    setIsOpen(false);
+    setSelectedOption?.(option);
+    setSelectedCar?.(option);
+    setIsOpen?.(false);
   };
 
   return (
@@ -38,7 +38,7 @@ const BookingDropDown = ({
         {selectedOption} <IoMdArrowDropdown size={25} color="#B4B4C6" />
       </button>
 
-      {isOpen && (
+      {isOpen && uniqueCars && (
         <div className="absolute left-0 mt-2 w-[122px] bg-white border border-gray-200 shadow-lg rounded-lg dark:bg-[#242731] dark:border-gray-700">
           {uniqueCars.map((carName, index) => (
             <li

@@ -6,6 +6,7 @@ import { RiRepeatLine } from "react-icons/ri";
 
 interface BookingCardType {
   id: string;
+  brand: string;
   carName: string;
   carImage: string;
   price: string;
@@ -15,6 +16,7 @@ interface BookingCardType {
 }
 const BookingCard = ({
   id,
+  brand,
   carName,
   carImage,
   price,
@@ -35,11 +37,11 @@ const BookingCard = ({
           <div>
             <div className="flex items-center justify-between">
               <h2 className="font-[700] text-[18px] dark:text-white">
-                {carName}
+                {brand}
               </h2>
               <FaRegHeart className="text-[#A4A5A6] w-[20px]" />
             </div>
-            <p className="text-[#72767C] text-[16px]">Coupe</p>
+            <p className="text-[#72767C] text-[16px]">{carName}</p>
           </div>
 
           <div className="w-[250px] flex justify-center mx-auto my-3 overflow-hidden rounded-[16px]">

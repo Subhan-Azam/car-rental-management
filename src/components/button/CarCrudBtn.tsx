@@ -2,17 +2,14 @@
 import React from "react";
 
 interface CarCrudBtnType {
-  title: string;
+  title?: string;
   style: string;
-  onclick?: () => void;
+  onClick?: () => void;
 }
-const CarCrudBtn = ({ title, onclick, style }: CarCrudBtnType) => {
+const CarCrudBtn = ({ title, onClick, style }: CarCrudBtnType) => {
   return (
     <>
-      <button
-        onClick={onclick}
-        className={`${style} text-white px-4 py-2 rounded`}
-      >
+      <button onClick={onClick} className={`${style}`}>
         {title}
       </button>
     </>

@@ -54,6 +54,7 @@ const Booking = () => {
             <Link href={`/dashboard/assets/${car?.id}`} key={car?.id}>
               <BookingCard
                 id={car?.id}
+                brand={car?.brand}
                 carName={car?.carName}
                 carImage={car?.imageUrl}
                 price={car?.price}

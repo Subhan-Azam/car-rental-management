@@ -9,6 +9,8 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 
 const AddCar = () => {
   const {
+    brand,
+    setBrand,
     carName,
     setCarName,
     model,
@@ -55,26 +57,26 @@ const AddCar = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <CarInput
             type="text"
+            placeholder="Enter brand name"
+            title="Brand Name:"
+            value={brand}
+            onChange={(e) => setBrand(e.target.value)}
+          />
+          <CarInput
+            type="text"
             placeholder="Enter car name"
             title="Car Name:"
             value={carName}
             onChange={(e) => setCarName(e.target.value)}
           />
-          <CarInput
-            type="number"
-            placeholder="Enter model year"
-            title="Model Year:"
-            value={model}
-            onChange={(e) => setModel(e.target.value)}
-          />
         </div>
 
         <CarInput
-          title="Mileage"
-          type="text"
-          placeholder="Enter mileage"
-          value={mileage}
-          onChange={(e) => setMileage(e.target.value)}
+          type="number"
+          placeholder="Enter model year"
+          title="Model Year:"
+          value={model}
+          onChange={(e) => setModel(e.target.value)}
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -92,14 +94,6 @@ const AddCar = () => {
           />
         </div>
 
-        <CarInput
-          type="number"
-          placeholder="Enter price"
-          title="Price:"
-          value={price}
-          onChange={(e) => setPrice(e.target.value as string)}
-        />
-
         <CarDropDown
           value={carType}
           onChange={(e) => setCarType(e.target.value)}
@@ -112,6 +106,23 @@ const AddCar = () => {
           ]}
           title="Car Type"
         />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CarInput
+            title="Mileage"
+            type="text"
+            placeholder="Enter mileage"
+            value={mileage}
+            onChange={(e) => setMileage(e.target.value)}
+          />
+          <CarInput
+            type="number"
+            placeholder="Enter price"
+            title="Price:"
+            value={price}
+            onChange={(e) => setPrice(e.target.value as string)}
+          />
+        </div>
 
         <div>
           <label className="block text-[#7C7C8D] mb-2 font-[500] dark:text-[#E0E4E7]">
@@ -128,7 +139,6 @@ const AddCar = () => {
             required
           ></textarea>
         </div>
-
         <input
           type="file"
           accept="image/*"
@@ -137,7 +147,6 @@ const AddCar = () => {
           className="hidden"
           required
         />
-
         <div
           onClick={handleImageClick}
           className="cursor-pointer w-[200px] h-[100px]"
@@ -156,7 +165,6 @@ const AddCar = () => {
             </div>
           )}
         </div>
-
         <AuthBtn title="Submit" loading={loading} />
       </form>
     </div>

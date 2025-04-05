@@ -37,7 +37,7 @@ const Navbar = () => {
         <ul className="absolute top-[100%] left-0 w-full mt-1 bg-white dark:bg-[#1F2128] border border-gray-200 dark:border-[#333] rounded-md shadow-lg z-50">
           {suggestions
             ?.filter((item) =>
-              item?.carName
+              item?.brand
                 .toLowerCase()
                 .includes(searchTerm.toLowerCase())
             )
@@ -45,18 +45,18 @@ const Navbar = () => {
               <Link href={`/dashboard/assets/${item?.id}`} key={item?.id}>
                 <li
                   onClick={() => {
-                    setSearchTerm(item?.carName);
+                    setSearchTerm(item?.brand);
                     setIsDropDownOpen(false);
                   }}
                   className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-[#2a2d36] cursor-pointer"
                 >
-                  {item?.carName}
+                  {item?.brand}
                 </li>
               </Link>
             ))}
 
           {suggestions.filter((item) =>
-            item?.carName
+            item?.brand
               ?.toLowerCase()
               .includes(searchTerm.toLowerCase())
           ).length === 0 && (

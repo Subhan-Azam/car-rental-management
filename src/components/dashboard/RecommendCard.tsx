@@ -6,6 +6,7 @@ import { TfiSettings } from "react-icons/tfi";
 import { SlEnergy } from "react-icons/sl";
 
 interface RecommendCardPropsTypes {
+  brand: string;
   className?: string;
   carName: string;
   image: string;
@@ -15,6 +16,7 @@ interface RecommendCardPropsTypes {
 }
 
 const RecommendCard: React.FC<RecommendCardPropsTypes> = ({
+  brand,
   className,
   carName,
   image,
@@ -49,7 +51,7 @@ const RecommendCard: React.FC<RecommendCardPropsTypes> = ({
       {/* Car Details */}
       <div>
         <h2 className="text-gray-900 font-bold text-lg md:text-xl">
-          {carName}
+          {brand} {carName}
         </h2>
 
         <div className="flex items-center justify-between mt-2">

@@ -14,6 +14,7 @@ cloudinary.config({
 export const POST = async (req: Request) => {
   try {
     const {
+      brand,
       carName,
       model,
       mileage,
@@ -85,6 +86,7 @@ export const POST = async (req: Request) => {
     const response = await prisma.addCar.create({
       data: {
         userID: session.user.id,
+        brand,
         carName,
         model,
         mileage,
@@ -185,6 +187,7 @@ export const PUT = async (req: Request) => {
   try {
     const {
       id,
+      brand,
       carName,
       model,
       mileage,
@@ -236,6 +239,7 @@ export const PUT = async (req: Request) => {
     const response = await prisma.addCar.update({
       where: { id: id },
       data: {
+        brand,
         carName,
         model,
         mileage,
