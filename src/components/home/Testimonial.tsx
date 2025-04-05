@@ -2,7 +2,7 @@ import React from "react";
 import client from "../../../lib/contentfulClient";
 import { MdArrowBack } from "react-icons/md";
 import { MdArrowForward } from "react-icons/md";
-import Image from "next/image";
+// import Image from "next/image";
 
 const fetchTestimonial = async () => {
   const response = await client.getEntries({
@@ -48,18 +48,18 @@ const Testimonial = async () => {
             </p>
 
             <div className="flex items-center gap-[24px]">
-              <Image
+              {/* <Image
                 src={String(item.image)}
                 alt="profile-photo"
                 width={50}
                 height={50}
                 className="w-[80px] h-[80px] rounded-full"
-              />
-              {/* <img
+              /> */}
+              <img
                 src={String(item.image)}
                 alt="profile-photo"
                 className="w-[80px] h-[80px] rounded-full"
-              /> */}
+              />
               <div className="">
                 <h3 className="font-[700] text-[24px] text-[#0F0F0F]">
                   {String(item.userName)}

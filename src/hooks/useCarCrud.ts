@@ -1,4 +1,9 @@
-import { deleteCar, fetchCars, updateCar } from "@/store/slices/carCrudSlice";
+import {
+  deleteCar,
+  fetchCars,
+  popularCars,
+  updateCar,
+} from "@/store/slices/carCrudSlice";
 import { useAppDispatch, useAppSelector } from "@/store/store";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -8,6 +13,7 @@ const useCarCrud = () => {
   const { cars, updateCarData, error } = useAppSelector(
     (state) => state.carCrudStore
   );
+  console.log("cars::", cars);
 
   const [carName, setCarName] = useState<string>(updateCarData?.carName || "");
   const [model, setModel] = useState<string>(updateCarData?.model || "");
@@ -30,9 +36,9 @@ const useCarCrud = () => {
     const fetchData = async () => {
       try {
         setloading(true);
-        await dispatch(fetchCars()).unwrap();
+        dispatch(fetchCars()).unwrap();
       } catch {
-        toast.error("Failed to load cars.");
+        alert("cars not get");
       } finally {
         setloading(false);
       }
@@ -40,6 +46,8 @@ const useCarCrud = () => {
 
     fetchData();
   }, [dispatch]);
+
+
 
   // delete car btn functionality
   const deleteHandler = async (id: string) => {

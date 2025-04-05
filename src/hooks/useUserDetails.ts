@@ -10,9 +10,10 @@ const useUserDetails = () => {
   const [gender, setGender] = useState<string>("");
   const [profilePhoto, setProfilePhoto] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
-  const { userDetails, loading, error } = useAppSelector(
+  const { userDetails, error } = useAppSelector(
     (state) => state.userDetailStore
   );
 
@@ -24,21 +25,25 @@ const useUserDetails = () => {
 
   // show user Details
   useEffect(() => {
-    try {
-      if (userDetails) {
-        setEmail(userDetails.email || "");
-        setCity(userDetails.city || "");
-        setStreet(userDetails.street || "");
-        setDateOfBirth(
-          userDetails.dateOfBirth ? new Date(userDetails.dateOfBirth) : null
-        );
-        setGender(userDetails.gender || "");
-        setProfilePhoto(userDetails.profilePhoto);
-      } else {
-        dispatch(fetchUserDetails()).unwrap();
-      }
-    } catch (error) {
-      console.log("get user detail effect", error);
+    setLoading(true);
+    if (userDetails) {
+      setEmail(userDetails.email || "");
+      setCity(userDetails.city || "");
+      setStreet(userDetails.street || "");
+      setDateOfBirth(
+        userDetails.dateOfBirth ? new Date(userDetails.dateOfBirth) : null
+      );
+      setGender(userDetails.gender || "");
+      setProfilePhoto(userDetails.profilePhoto);
+      setLoading(false);
+    } else {
+      dispatch(fetchUserDetails())
+        .unwrap()
+        .then(() => setLoading(false))
+        .catch(() => {
+          setErrorMessage("Error fetching user details");
+          setLoading(false);
+        });
     }
   }, [dispatch, userDetails]);
 

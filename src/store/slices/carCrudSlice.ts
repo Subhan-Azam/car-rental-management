@@ -15,6 +15,7 @@ export interface Car {
   description: string;
   image: string;
   imageUrl: string;
+  views: number;
 }
 
 interface AddCarState {
@@ -73,9 +74,10 @@ export const fetchCars = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get("/carCrud");
+      console.log("response.data:>>", response.data.data);
       return response.data.data;
     } catch {
-      return rejectWithValue("Something went wrong. Please try again");
+      return rejectWithValue("Something went wrong.>> Please try again");
     }
   }
 );
@@ -129,6 +131,36 @@ export const updateCar = createAsyncThunk(
       return rejectWithValue(
         axiosError.response?.data || "Failed to update car"
       );
+    }
+  }
+);
+
+// Views
+export const carViews = createAsyncThunk(
+  "CarCrud/Views",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.post("/carViews", { id });
+      console.log("response.data", response.data);
+      return response.data;
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      return rejectWithValue(axiosError.response?.data || "Failed to views");
+    }
+  }
+);
+
+// popular cars
+export const popularCars = createAsyncThunk(
+  "CarCrud/PopularCars",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get("/carViews");
+      console.log("get.data", response.data.data);
+      return response.data.data;
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      return rejectWithValue(axiosError.response?.data || "Failed to views");
     }
   }
 );
@@ -189,7 +221,7 @@ export const carCrudSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // update car
+      // update car ==============
       .addCase(updateCar.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -201,6 +233,37 @@ export const carCrudSlice = createSlice({
         );
       })
       .addCase(updateCar.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+
+      // car views =============
+      .addCase(carViews.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(carViews.fulfilled, (state, action) => {
+        state.loading = false;
+        const updateCar = action.payload;
+        state.cars = state.cars?.map((car) =>
+          car.id === updateCar.id ? { ...car, views: updateCar?.views } : car
+        );
+      })
+      .addCase(carViews.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+
+      // popular Cars =============
+      .addCase(popularCars.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(popularCars.fulfilled, (state, action) => {
+        state.loading = false;
+        state.cars = action.payload;
+      })
+      .addCase(popularCars.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

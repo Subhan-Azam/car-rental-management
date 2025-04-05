@@ -34,7 +34,6 @@ const UsersListCard = () => {
             <p className="text-gray-600">{user.email}</p>
           </div>
         </Link>
-        // </div>
       ))}
     </>
   );

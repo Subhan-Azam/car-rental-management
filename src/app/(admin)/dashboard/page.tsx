@@ -1,11 +1,11 @@
 import React from "react";
-import RecommendCard from "@/components/dashboard/RecommendCard";
 import PerformanceCard from "@/components/dashboard/PerformanceCard";
 import performanceCardImg1 from "../../../../public/icons/dashboard-card-icon.png";
 import performanceCardImg2 from "../../../../public/icons/dashboard-card-icon.png";
 import performanceCardImg3 from "../../../../public/icons/dashboard-card-icon.png";
 import performanceCardImg4 from "../../../../public/icons/dashboard-card-icon.png";
 import DashboardCharts from "@/components/dashboard/DashboardCharts";
+import RecommendSection from "@/components/dashboard/RecommendSection";
 
 const Dashboard = () => {
   return (
@@ -48,11 +48,7 @@ const Dashboard = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-6">
-        <RecommendCard className="bg-[#E1DFA4]" heading="Mini Cooper" />
-        <RecommendCard className="bg-[#E3ECF1]" heading="Porsche 911 Carrera" />
-        <RecommendCard className="bg-[#F4E3E5]" heading="Mercedes" />
-      </div>
+      <RecommendSection />
     </div>
   );
 };

@@ -10,11 +10,12 @@ const useSignUp = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [authError, setAuthError] = useState<null | string>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
 
   const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector((state) => state.authStore);
+  const { error } = useAppSelector((state) => state.authStore);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,6 +33,8 @@ const useSignUp = () => {
       return;
     }
 
+    setLoading(true);
+
     try {
       await dispatch(
         userSignUp({ firstName, lastName, email, password })
@@ -43,6 +46,8 @@ const useSignUp = () => {
       setAuthError(null);
     } catch (err) {
       setAuthError(err as string);
+    } finally {
+      setLoading(false);
     }
   };
 

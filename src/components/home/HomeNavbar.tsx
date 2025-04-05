@@ -1,13 +1,13 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import HomeButton from "../button/HomeButton";
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { useSession } from "next-auth/react";
 
 const HomeNavbar = () => {
-  const session = getServerSession(authOptions);
+  const session = useSession();
 
   return (
     <div className="flex justify-between items-center px-[12px] md:px-[112px] py-[46px]">
@@ -22,9 +22,17 @@ const HomeNavbar = () => {
         className="w-[178px]"
       />
 
-      <Link href={!session ? "/auth/login" : "/dashboard"}>
+      <Link
+        href={
+          !session.data?.user
+            ? "/auth/login"
+            : session.data?.user.role === "ADMIN"
+            ? "/dashboard"
+            : "/dashboard/booking"
+        }
+      >
         <HomeButton
-          title={!session ? "Login / Register" : "Dashboard"}
+          title={!session.data?.user ? "Login / Register" : "Dashboard"}
           style="w-[168px] h-[40px] pt-[6px] text-center border border-[#FFFFFF80] rounded-[48px] text-[#FFFFFF] font-[600] text-[16px]"
         />
       </Link>

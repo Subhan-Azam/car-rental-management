@@ -1,32 +1,28 @@
-'use client'
-import useCarCrud from "@/hooks/useCarCrud";
-import useModel from "@/hooks/useModel";
-import React, { useEffect, useState } from "react";
+"use client";
+import React from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 interface BookingDropDownType {
   className: string;
   setSelectedCar: (carName: string | null) => void;
+  isOpen?: boolean;
+  handleIsOpen?: () => void;
+  selectedOption?: string;
+  setSelectedOption: (option: string) => void;
+  setIsOpen: (isOpen: boolean) => void;
+  uniqueCars: string[];
 }
+
 const BookingDropDown = ({
   className,
   setSelectedCar,
+  uniqueCars,
+  isOpen,
+  handleIsOpen,
+  selectedOption,
+  setSelectedOption,
+  setIsOpen,
 }: BookingDropDownType) => {
-  const { cars = [] } = useCarCrud();
-
-  const uniqueCars = [
-    "All Cars",
-    ...new Set(cars.map?.((car) => car?.carName)),
-  ];
-  const { isOpen, setIsOpen, handleIsOpen } = useModel();
-  const [selectedOption, setSelectedOption] = useState<string>(
-    uniqueCars.length > 1 ? uniqueCars[1] : "All Cars"
-  );
-
-  // useEffect(() => {
-  //   setSelectedCar(selectedOption === "All Cars" ? null : selectedOption);
-  // }, [setSelectedCar, selectedOption]);
-
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     setSelectedCar(option);
@@ -43,9 +39,7 @@ const BookingDropDown = ({
       </button>
 
       {isOpen && (
-        <div
-          className="absolute left-0 mt-2 w-[122px] bg-white border border-gray-200 shadow-lg rounded-lg dark:bg-[#242731] dark:border-gray-700"
-        >
+        <div className="absolute left-0 mt-2 w-[122px] bg-white border border-gray-200 shadow-lg rounded-lg dark:bg-[#242731] dark:border-gray-700">
           {uniqueCars.map((carName, index) => (
             <li
               key={index}

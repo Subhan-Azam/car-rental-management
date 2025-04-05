@@ -58,7 +58,7 @@ const PerformanceCard: React.FC<PerformanceCardPropsTypes> = ({
 }) => {
   return (
     <div
-      className={` ${className1} dark:bg-[#242731] transition-all duration-300 flex flex-col justify-between items-center gap-y-4 md:gap-y-6 rounded-2xl p-4 sm:p-6 md:p-8 w-full max-w-[400px] bg-white shadow-md`}
+      className={` ${className1} dark:bg-[#242731]  transition-all duration-300 flex flex-col justify-between items-center gap-y-4 md:gap-y-6 rounded-2xl p-4 sm:p-6 md:p-8 w-full max-w-[400px] bg-white shadow-md`}
     >
       {/* Top Section */}
       <div className="flex flex-col justify-between items-center gap-y-2 md:gap-y-4">
@@ -71,7 +71,7 @@ const PerformanceCard: React.FC<PerformanceCardPropsTypes> = ({
             className="object-contain"
           />
         )}
-        <h3 className={`${className2} text-lg md:text-xl lg:text-2xl font-bold text-center`}>
+        <h3 className={`${className2} dark:text-white text-black text-lg md:text-xl lg:text-2xl font-bold text-center`}>
           {heading}
         </h3>
       </div>

@@ -9,16 +9,18 @@ const useForgetPassword = () => {
   const [email, setEmail] = useState<string>("");
   const [newPassword, setNewPassword] = useState<string>("");
   const [forgetError, setForgetError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const searchParams = useSearchParams();
   const params = searchParams.get("token");
 
   const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector((state) => state.authStore);
+  const { error } = useAppSelector((state) => state.authStore);
   const router = useRouter();
 
   const handleForgetPass = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await dispatch(userForgetPassword(email)).unwrap();
 
@@ -28,11 +30,14 @@ const useForgetPassword = () => {
     } catch {
       setForgetError(error);
       toast.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleNewPassword = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     setForgetError(null);
     try {
       if (!params) {
@@ -57,46 +62,10 @@ const useForgetPassword = () => {
       console.log("Error in handleNewPassword:", error);
       toast.error(errorMessage);
       setForgetError(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
-
-  // const handleNewPassword = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setForgetError(null);
-  //   try {
-  //     if (!params) {
-  //       setForgetError("Invalid or missing reset token.");
-  //       return;
-  //     }
-
-  //     if (newPassword.length < 6) {
-  //       setForgetError("Length must be 6 characters");
-  //       return;
-  //     }
-
-  //     try {
-  //       await dispatch(
-  //         userNewPassword({ newPassword, token: params })
-  //       ).unwrap();
-  //       toast.success("Congratulations! password updated.");
-  //       router.push("/auth/login");
-  //     } catch (error: unknown) {
-  //       const errorMessage =
-  //         error instanceof Error
-  //           ? error.message
-  //           : "Something went wrong. Please try again.";
-
-  //       console.log("Error in handleNewPassword:", error);
-  //       toast.error(errorMessage);
-  //       setForgetError(errorMessage);
-  //     }
-  //   } catch (error) {
-  //     console.log("Error in useForgetPassword:", error);
-  //     setForgetError("Something went wrong. Please try again.");
-  //   } finally {
-  //     setForgetError(null);
-  //   }
-  // };
 
   return {
     email,

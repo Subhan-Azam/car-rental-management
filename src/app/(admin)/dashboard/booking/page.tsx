@@ -1,23 +1,25 @@
 "use client";
 import BookingCard from "@/components/booking/BookingCard";
 import BookingDropDown from "@/components/booking/BookingDropDown";
-import useCarCrud from "@/hooks/useCarCrud";
+import useBooking from "@/hooks/useBooking";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import { LuLayoutGrid } from "react-icons/lu";
 import { VscSettings } from "react-icons/vsc";
 
 const Booking = () => {
-  const { cars } = useCarCrud();
-  const [selectedCar, setSelectedCar] = useState<string | null>(null);
+  const {
+    setSelectedCar,
+    handleFilterCar,
+    clickeViewsHandler,
+    uniqueCars,
+    isOpen,
+    handleIsOpen,
+    selectedOption,
+    setSelectedOption,
+    setIsOpen,
+  } = useBooking();
 
-  const handleFilterCar = Array.isArray(cars)
-    ? selectedCar && selectedCar !== "All Cars"
-      ? cars.filter((car) => car.carName === selectedCar)
-      : cars
-    : [];
-
-  console.log("handleFilterCar:>>", handleFilterCar);
   return (
     <div>
       <h1 className="font-[700] text-[30px] mb-[30px] dark:text-white">
@@ -26,7 +28,13 @@ const Booking = () => {
       <div className="flex max-sm:flex-wrap  gap-3 justify-between items-center  mb-[34px]">
         <div className="flex gap-4">
           <BookingDropDown
+            isOpen={isOpen}
+            uniqueCars={uniqueCars}
+            handleIsOpen={handleIsOpen}
+            selectedOption={selectedOption}
             setSelectedCar={setSelectedCar}
+            setSelectedOption={setSelectedOption}
+            setIsOpen={setIsOpen}
             className="text-[#5F6165]"
           />
         </div>
@@ -41,20 +49,25 @@ const Booking = () => {
         </div>
       </div>
       <div className="flex flex-wrap gap-[24px]">
-        {handleFilterCar &&
+        {handleFilterCar.length > 0 ? (
           handleFilterCar.map((car) => (
-            <Link
-              href={`/dashboard/assets/${car?.id}`}
-              key={car?.id}
-              onClick={() => console.log("car id:>>", car?.id)}
-            >
+            <Link href={`/dashboard/assets/${car?.id}`} key={car?.id}>
               <BookingCard
+                id={car?.id}
                 carName={car?.carName}
                 carImage={car?.imageUrl}
                 price={car?.price}
+                views={car?.views}
+                engine={car?.engine}
+                onClick={() => clickeViewsHandler(car?.id)}
               />
             </Link>
-          ))}
+          ))
+        ) : (
+          <p className="text-gray-500 dark:text-white font-bold text-xl">
+            No cars available.
+          </p>
+        )}
       </div>
     </div>
   );

@@ -2,17 +2,35 @@ import Image from "next/image";
 import React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { LuUserRound } from "react-icons/lu";
+import { RiRepeatLine } from "react-icons/ri";
 
 interface BookingCardType {
+  id: string;
   carName: string;
   carImage: string;
   price: string;
+  views: number;
+  engine: string;
+  onClick: () => void;
 }
-const BookingCard = ({ carName, carImage, price }: BookingCardType) => {
+const BookingCard = ({
+  id,
+  carName,
+  carImage,
+  price,
+  views,
+  engine,
+  onClick,
+}: BookingCardType) => {
   console.log("carImage:>>", carImage);
+  console.log("ID:>>", id);
+
   return (
     <>
-      <div className="group cursor-pointer max-w-[325px] w-full bg-white rounded-[16px] p-[24px] flex flex-col justify-between dark:bg-[#242731] transition-all duration-300 hover:shadow-md">
+      <div
+        onClick={onClick}
+        className="group cursor-pointer max-w-[325px] w-full bg-white rounded-[16px] p-[24px] flex flex-col justify-between dark:bg-[#242731] transition-all duration-300 hover:shadow-md"
+      >
         <>
           <div>
             <div className="flex items-center justify-between">
@@ -38,12 +56,16 @@ const BookingCard = ({ carName, carImage, price }: BookingCardType) => {
             <div className="flex gap-3 dark:text-white">
               <div className="flex items-center gap-1 text-[16px]">
                 <LuUserRound color="#A162F7" />
-                <span>4</span>
+                <span>{views === null ? 0 : views}</span>
               </div>
 
               <div className="flex items-center gap-1 text-[16px]">
-                <LuUserRound color="#A162F7" />
-                <span>Manual</span>
+                <RiRepeatLine color="#A162F7" />
+
+                <span>
+                  {engine?.slice(0, 1).toUpperCase() +
+                    engine?.slice(1).toLowerCase()}
+                </span>
               </div>
             </div>
 

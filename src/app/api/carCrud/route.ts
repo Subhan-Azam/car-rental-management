@@ -95,6 +95,7 @@ export const POST = async (req: Request) => {
         description,
         imageUrl,
         imagePublicId: publicId,
+        views: 0,
       },
     });
 
