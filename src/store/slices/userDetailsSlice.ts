@@ -1,8 +1,7 @@
 import { axiosInstance } from "@/axiosInstance/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
 
-interface userDetailsProps {
+export interface userDetailsProps {
   id: string;
   firstName: string;
   lastName: string;
@@ -33,16 +32,10 @@ export const fetchUserDetails = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get("/getUserDetails");
-      const data = await response.data.user;
-      return data;
-    } catch (error: unknown) {
-      if (axios.isAxiosError(error)) {
-        const errorMessage =
-          (error.response?.data as { message?: string })?.message ||
-          "Failed to fetch user details";
-        return rejectWithValue(errorMessage);
-      }
-      return rejectWithValue("An unexpected error occurred");
+      console.log("response", response.data.user);
+      return response.data.user;
+    } catch {
+      rejectWithValue("Failed to fetch user details");
     }
   }
 );
@@ -55,13 +48,9 @@ export const updateUser = createAsyncThunk(
       const response = await axiosInstance.put("/getUserDetails", updatedData);
       console.log("response", response.data.user);
       return response.data.user;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        return rejectWithValue(
-          error.response?.data?.message || "Failed to update user details"
-        );
-      }
-      return rejectWithValue("An unexpected error occurred");
+    } catch {
+      console.error("Error updating user details");
+      return rejectWithValue("Failed to update user details");
     }
   }
 );

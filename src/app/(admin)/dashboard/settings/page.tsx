@@ -10,11 +10,11 @@ const Settings = () => {
   const [selectedTab, setSelectedTab] = useState("Profile");
 
   return (
-    <div className="w-full mx-auto p-6 bg-white shadow-lg">
-      <h1 className="text-2xl font-bold">Settings</h1>
+    <div className="w-full mx-auto p-6 bg-white shadow-lg dark:bg-[#242731] transition-all duration-300">
+      <h1 className="text-2xl font-bold dark:text-white transition-all duration-300">Settings</h1>
 
-      <div className="flex space-x-4 border-b mt-4">
-        {["My details", "Profile", "Password"].map((tab) => (
+      <div className="flex space-x-4 border-b mt-4 dark:border-b-[#323745] transition-all duration-300">
+        {["Profile", "Password"].map((tab) => (
           <button
             key={tab}
             onClick={() => setSelectedTab(tab)}

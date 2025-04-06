@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/store";
-import { fetchUserDetails, updateUser } from "@/store/slices/userDetailsSlice";
+import {
+  fetchUserDetails,
+  updateUser,
+  userDetailsProps,
+} from "@/store/slices/userDetailsSlice";
+import { toast } from "react-toastify";
 
 const useUserDetails = () => {
   const [email, setEmail] = useState<string>("");
@@ -13,16 +18,9 @@ const useUserDetails = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
-  const { userDetails, error } = useAppSelector(
-    (state) => state.userDetailStore
-  );
+  const { userDetails } = useAppSelector((state) => state.userDetailStore);
 
-  useEffect(() => {
-    if (error) {
-      setErrorMessage("Failed to fetch data. Please reload the page");
-    }
-  }, [error]);
-
+  console.log("profilePhoto:>>", profilePhoto);
   // show user Details
   useEffect(() => {
     setLoading(true);
@@ -47,7 +45,7 @@ const useUserDetails = () => {
     }
   }, [dispatch, userDetails]);
 
-  // ** Function to update user details **
+  // Function to update user details
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -59,18 +57,29 @@ const useUserDetails = () => {
     }
   };
 
-  const updateHandler = () => {
-    dispatch(
-      updateUser({
+  const updateHandler = async () => {
+    setLoading(true);
+    try {
+      const updatedData: Partial<userDetailsProps> = {
         id: userDetails?.id,
         email,
         city,
         street,
         dateOfBirth: dateOfBirth || undefined,
         gender,
-        profilePhoto,
-      })
-    );
+      };
+
+      if (profilePhoto && profilePhoto !== userDetails?.profilePhoto) {
+        updatedData.profilePhoto = profilePhoto;
+      }
+
+      await dispatch(updateUser(updatedData)).unwrap();
+      toast.success("User updated successfully");
+    } catch {
+      toast.error("Something went wrong in updating");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return {

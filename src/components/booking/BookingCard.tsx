@@ -31,7 +31,7 @@ const BookingCard = ({
     <>
       <div
         onClick={onClick}
-        className="group cursor-pointer max-w-[325px] w-full bg-white rounded-[16px] p-[24px] flex flex-col justify-between dark:bg-[#242731] transition-all duration-300 hover:shadow-md"
+        className="group cursor-pointer w-full bg-white rounded-[16px] p-4 sm:p-6 flex flex-col justify-between dark:bg-[#242731] transition-all duration-300 hover:shadow-md"
       >
         <>
           <div>
@@ -44,11 +44,11 @@ const BookingCard = ({
             <p className="text-[#72767C] text-[16px]">{carName}</p>
           </div>
 
-          <div className="w-[250px] flex justify-center mx-auto my-3 overflow-hidden rounded-[16px]">
+          <div className="w-full aspect-[4/3] my-4 overflow-hidden rounded-[16px]">
             <Image
               src={carImage}
               alt="booking-car"
-              className="rounded-[16px] aspect-[3/2] group-hover:scale-110 transition-all duration-300"
+              className="rounded-[16px] w-full h-full object-cover group-hover:scale-110 transition-all duration-300"
               width={300}
               height={300}
             />
@@ -73,7 +73,7 @@ const BookingCard = ({
 
             <div className="text-[18px]">
               <span className="text-black font-[500] dark:text-white">
-                Rs{price}
+                Rs.{price}
               </span>
               /d
             </div>

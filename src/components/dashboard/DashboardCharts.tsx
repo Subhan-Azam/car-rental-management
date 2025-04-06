@@ -1,61 +1,3 @@
-// "use client";
-// import React from "react";
-// import DashboardMilesChart from "../charts/DashboardMilesChart";
-// import DashboardCarsChart from "../charts/DashboardCarsChart";
-
-// interface DashboardMilesChartPropsTypes {
-//   heading?: string;
-//   para?: string;
-//   className1?: string;
-//   className2?: string;
-//   className3?: string;
-// }
-
-// const DashboardCharts: React.FC<DashboardMilesChartPropsTypes> = ({
-//   heading,
-//   para,
-//   className1,
-//   className2,
-//   className3,
-// }) => {
-//   return (
-//     <div className="bg-white px-[35px] mt-[23px] rounded-[14px] py-[15px] flex flex-col items-center">
-//       <div className="w-full">
-//         <h3 className="text-[20px] text-[#242731] leading-[26.04px]">
-//           <span className="font-bold">{heading}</span> statistics
-//         </h3>
-//         <div
-//           className={`${className1} mt-[24px] flex items-center justify-between`}
-//         >
-//           <div className={`${className2} flex items-center gap-x-[10px]`}>
-//             <button
-//               className={`${className3} leading-[13.02px] text-[10px] text-[#5F6165] focus:bg-blue-500 focus:text-white py-1 px-3 rounded-[24px]`}
-//             >
-//               Day
-//             </button>
-//             <button
-//               className={`${className3} leading-[13.02px] text-[10px] text-[#5F6165] focus:bg-blue-500 focus:text-white py-1 px-3 rounded-[24px]`}
-//             >
-//               Week
-//             </button>
-//             <button
-//               className={`${className3} leading-[13.02px] text-[10px] text-[#5F6165] focus:bg-blue-500 focus:text-white py-1 px-3 rounded-[24px]`}
-//             >
-//               Month
-//             </button>
-//           </div>
-//           <h3 className="text-[#5F6165] text-[14px] leading-[18.23px] font-bold">
-//             {para}
-//           </h3>{" "}
-//         </div>
-//         {heading === "Miles" ? <DashboardMilesChart /> : <DashboardCarsChart />}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default DashboardCharts;
-
 "use client";
 import React from "react";
 import DashboardMilesChart from "../charts/DashboardMilesChart";
@@ -77,7 +19,7 @@ const DashboardCharts: React.FC<DashboardMilesChartPropsTypes> = ({
   className3 = "",
 }) => {
   return (
-    <div className="bg-white px-5 sm:px-8 md:px-10 lg:px-12 xl:px-14 mt-6 rounded-xl py-4 sm:py-6 flex flex-col items-center w-full dark:bg-[#242731] transition-all duration-300">
+    <div className="bg-white px-5 sm:px-8 md:px-10 lg:px-12 xl:px-14 rounded-xl py-4 sm:py-6 flex flex-col items-center w-full dark:bg-[#242731] transition-all duration-300">
       <div className="w-full">
         <h3 className="text-lg sm:text-xl text-[#242731] dark:text-white font-semibold">
           <span className="font-bold">{heading}</span> statistics

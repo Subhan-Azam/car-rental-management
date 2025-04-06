@@ -6,6 +6,7 @@ import { FaUserCircle } from "react-icons/fa";
 import ThemeToggle from "./themeToggle/ThemeToggle";
 import useSearchBar from "@/hooks/useSearchBar";
 import Link from "next/link";
+import useBooking from "@/hooks/useBooking";
 const Navbar = () => {
   const {
     profilePhoto,
@@ -15,6 +16,8 @@ const Navbar = () => {
     setIsDropDownOpen,
     suggestions,
   } = useSearchBar();
+
+  const { clickeViewsHandler } = useBooking();
 
   return (
     <div className="fixed top-0 left-0 sm:left-[250px] w-full sm:w-[calc(100%-250px)] py-4 px-6 flex items-center justify-between bg-white dark:bg-[#242731] dark:text-white transition-all duration-300">
@@ -32,14 +35,11 @@ const Navbar = () => {
         />
       </div>
 
-      {/* Dropdown suggestions */}
       {isDropDownOpen && searchTerm && (
-        <ul className="absolute top-[100%] left-0 w-full mt-1 bg-white dark:bg-[#1F2128] border border-gray-200 dark:border-[#333] rounded-md shadow-lg z-50">
+        <ul className="absolute top-[100%] left-8 w-[250px] mt-1 bg-white dark:bg-[#1F2128] border border-gray-200 dark:border-[#333] rounded-md shadow-lg z-50">
           {suggestions
             ?.filter((item) =>
-              item?.brand
-                .toLowerCase()
-                .includes(searchTerm.toLowerCase())
+              item?.brand.toLowerCase().includes(searchTerm.toLowerCase())
             )
             .map((item) => (
               <Link href={`/dashboard/assets/${item?.id}`} key={item?.id}>
@@ -47,6 +47,7 @@ const Navbar = () => {
                   onClick={() => {
                     setSearchTerm(item?.brand);
                     setIsDropDownOpen(false);
+                    clickeViewsHandler(item?.id);
                   }}
                   className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-[#2a2d36] cursor-pointer"
                 >
@@ -56,9 +57,7 @@ const Navbar = () => {
             ))}
 
           {suggestions.filter((item) =>
-            item?.brand
-              ?.toLowerCase()
-              .includes(searchTerm.toLowerCase())
+            item?.brand?.toLowerCase().includes(searchTerm.toLowerCase())
           ).length === 0 && (
             <li className="px-4 py-2 text-sm text-gray-400 dark:text-gray-500">
               No results found
@@ -79,7 +78,7 @@ const Navbar = () => {
             className="rounded-full object-cover w-[48px] h-[48px]"
           />
         ) : (
-          <FaUserCircle className="text-[#7C7C8D] rounded-full object-cover w-[48px] h-[48px]" />
+          <FaUserCircle className="text-gray-400 rounded-full object-cover w-[48px] h-[48px]" />
         )}
       </div>
     </div>

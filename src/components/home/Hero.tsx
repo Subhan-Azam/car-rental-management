@@ -5,6 +5,7 @@ import { IoIosArrowDroprightCircle } from "react-icons/io";
 import CarRentalForm from "./CarSearchInput";
 import { IoLocationOutline } from "react-icons/io5";
 import HomeButton from "../button/HomeButton";
+import Image from "next/image";
 
 const fetchHero = async () => {
   try {
@@ -57,11 +58,18 @@ const Hero = async () => {
             </div>
 
             <div className="w-full lg:w-[50%] flex justify-center">
-              <img
+              <Image
+                src={item.image}
+                alt={String(item.title)}
+                width={500}
+                height={500}
+                className="w-full max-w-[500px] lg:max-w-[1000px] object-cover rounded-lg"
+              />
+              {/* <img
                 src={item.image}
                 alt={String(item.title)}
                 className="w-full max-w-[500px] lg:max-w-[1000px] object-cover rounded-lg"
-              />
+              /> */}
             </div>
           </div>
         ))}

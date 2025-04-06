@@ -33,7 +33,7 @@ const BookingDropDown = ({
     <div className="relative inline-block">
       <button
         onClick={handleIsOpen}
-        className={`${className} bg-white h-[36px] px-5 flex items-center justify-center gap-3 rounded-[22px] cursor-pointer dark:bg-[#242731] dark:text-[#E0E4E7] transition-all duration-300`}
+        className={`${className} bg-white h-[36px] px-5 flex items-center justify-center gap-3 rounded-[22px] cursor-pointer dark:bg-[#242731] dark:text-[#E0E4E7] transition-all duration-300 -z-50`}
       >
         {selectedOption} <IoMdArrowDropdown size={25} color="#B4B4C6" />
       </button>

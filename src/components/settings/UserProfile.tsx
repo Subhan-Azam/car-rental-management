@@ -141,14 +141,14 @@ const UserProfile = () => {
     <>
       <div className="mt-12 px-4">
         <div className="mb-6">
-          <h1 className="text-[#242731] text-xl md:text-2xl font-bold mb-2">
+          <h1 className="text-[#242731] text-[18px] md:text-[20px] font-bold mb-2 dark:text-white transition-all duration-300">
             Profile
           </h1>
-          <p className="text-[#5F6165] text-[16px] md:text-base">
+          <p className="text-[#5F6165] text-[16px] md:text-base dark:text-[#7C7C8D] transition-all duration-300">
             Update your photo and personal details here.
           </p>
         </div>
-        <div className="border-t border-[#E9EAEC]"></div>
+        <div className="border-t border-[#E9EAEC] dark:border-t-[#323745] transition-all duration-300"></div>
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         <div className="max-w-[788px] flex flex-col gap-6 my-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -166,11 +166,11 @@ const UserProfile = () => {
             ))}
           </div>
         </div>
-        <div className="border-t border-[#E9EAEC]"></div>
+        <div className="border-t border-[#E9EAEC] dark:border-t-[#323745] transition-all duration-300"></div>
         <div className="flex flex-col md:flex-row items-center justify-between max-w-3xl my-6 gap-6">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-16 w-full">
             <div className="flex flex-col gap-1">
-              <h2 className="text-[#242731] font-medium text-[16px]">
+              <h2 className="text-[#242731] font-medium text-[16px] dark:text-white transition-all duration-300">
                 Your Photo
               </h2>
               <p className="text-sm text-[#7C7C8D]">
@@ -215,16 +215,8 @@ const UserProfile = () => {
             />
           </div>
         </div>
-        <div className="border-t border-[#E9EAEC]"></div>
-        <div className="flex flex-col md:flex-row justify-between mt-6 gap-6">
-          <h2 className="text-[#242731] font-medium">Social Profiles</h2>
-          <div className="w-full md:w-2/3 flex flex-col gap-4">
-            <div className="max-w-[376px] flex flex-col gap-5">
-              <UserInput placeholder="facebook.com/" />
-              <UserInput placeholder="twitter.com/" />
-            </div>
-          </div>
-        </div>
+        <div className="border-t border-[#E9EAEC] dark:border-t-[#323745] transition-all duration-300"></div>
+       
       </div>
     </>
   );

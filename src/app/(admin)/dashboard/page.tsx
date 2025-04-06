@@ -11,7 +11,7 @@ import RecommendSection from "@/components/dashboard/RecommendSection";
 const Dashboard = () => {
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
         <PerformanceCard
           className1="bg-[#A162F7]"
           className2="text-white"
@@ -38,7 +38,7 @@ const Dashboard = () => {
         />
       </div>
 
-      <div className="md:grid md:grid-cols-2 grid grid-cols-1 gap-x-[30px]">
+      <div className="my-8 md:grid md:grid-cols-2 grid grid-cols-1 gap-[30px]">
         <DashboardCharts heading="Miles" para="256 Miles" />
         <DashboardCharts
           heading="Car"

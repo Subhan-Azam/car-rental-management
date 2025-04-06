@@ -14,15 +14,12 @@ const MiniCustomCalendar = () => {
 
   return (
     <div className="dark:bg-[#242731] bg-white p-5 rounded-lg shadow-lg w-full max-w-md mx-auto md:max-w-full">
-      {/* Header */}
       <div className="flex items-center justify-between pb-4">
-        {/* Title */}
         <h2 className="dark:text-white text-lg text-gray-900 font-semibold text-center md:text-left">
           {date.toLocaleString("default", { month: "long" })},{" "}
           {date.getFullYear()}
         </h2>
 
-        {/* Navigation Arrows */}
         <div className="flex items-center gap-2">
           <button
             onClick={() =>

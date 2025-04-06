@@ -21,8 +21,10 @@ const UserInput: React.FC<UserInputProps> = ({
 }) => {
   return (
     <div>
-      <label className="block text-[#7C7C8D] font-[500] mb-2">{title}</label>
-      <div className="flex items-center border border-[#E7ECF3] active:border- rounded-[10px] p-2">
+      <label className="block text-[#7C7C8D] font-[500] mb-2 dark:text-[#E0E4E7] transition-all duration-300">
+        {title}
+      </label>
+      <div className="flex items-center border border-[#E7ECF3] active:border- rounded-[10px] p-2 dark:text-[#7C7C8D] transition-all duration-300 dark:border-[#2C303D]">
         {icon}
         <div className="w-full">
           {typeof placeholder === "string" ? (
@@ -32,7 +34,7 @@ const UserInput: React.FC<UserInputProps> = ({
               type={type}
               placeholder={placeholder}
               readOnly={readOnly}
-              className="w-full p-2 outline-none text-[#5F6165]"
+              className="w-full p-2 outline-none text-[#5F6165] dark:bg-transparent"
             />
           ) : (
             placeholder

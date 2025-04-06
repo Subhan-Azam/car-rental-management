@@ -52,7 +52,7 @@ const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
         onClick={handleOverlayClick}
         className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
       >
-        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-lg h-[80vh] flex flex-col relative">
+        <div className="bg-white dark:bg-[#242731] rounded-2xl shadow-2xl w-full max-w-lg h-[80vh] flex flex-col relative">
           <div className="bg-[#A162F7] rounded-t-2xl text-white h-20 flex justify-center items-center">
             <button
               onClick={handleIsOpen}

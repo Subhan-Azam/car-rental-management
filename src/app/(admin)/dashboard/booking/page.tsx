@@ -25,7 +25,7 @@ const Booking = () => {
       <h1 className="font-[700] text-[30px] mb-[30px] dark:text-white">
         Booking
       </h1>
-      <div className="flex max-sm:flex-wrap  gap-3 justify-between items-center  mb-[34px]">
+      <div className="flex max-sm:flex-wrap  gap-3 justify-between items-center mb-[34px]">
         <div className="flex gap-4">
           <BookingDropDown
             isOpen={isOpen}
@@ -48,7 +48,7 @@ const Booking = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-wrap gap-[24px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {handleFilterCar.length > 0 ? (
           handleFilterCar.map((car) => (
             <Link href={`/dashboard/assets/${car?.id}`} key={car?.id}>

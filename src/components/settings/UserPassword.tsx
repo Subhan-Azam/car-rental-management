@@ -24,7 +24,7 @@ const UserPassword = () => {
           <PageChange title="Change Your Password!" />
 
           <form onSubmit={handlePasswordChange}>
-            <div className="flex flex-col space-y-4 w-full h-auto p-8 bg-white shadow-lg border border-[#F4F5F6] rounded-[10px]">
+            <div className="flex flex-col space-y-4 w-full h-auto p-8 bg-white shadow-lg  rounded-[10px] dark:bg-[#1F2128] transition-all duration-300">
               <TextInput
                 value={oldPassword}
                 onChange={setOldPassword}

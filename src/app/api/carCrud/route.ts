@@ -1,8 +1,8 @@
 import { prisma } from "@/config/prisma";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { v2 as cloudinary } from "cloudinary";
+import authOptions from "@/lib/authOption";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,

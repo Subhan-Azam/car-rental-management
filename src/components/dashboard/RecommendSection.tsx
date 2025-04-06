@@ -24,7 +24,7 @@ const RecommendSection = () => {
   const bgColors = ["bg-[#E1DFA4]", "bg-[#E3ECF1]", "bg-[#F4E3E5]"];
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-6">
+      <div className="mt-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[30px] w-full">
         {cars?.map((item, index) => (
           <Link href={`/dashboard/assets/${item?.id}`} key={item?.id}>
             <RecommendCard

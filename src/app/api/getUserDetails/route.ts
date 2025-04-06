@@ -1,8 +1,8 @@
 import { prisma } from "@/config/prisma";
 import { NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { getServerSession } from "next-auth/next";
 import { v2 as cloudinary } from "cloudinary";
+import authOptions from "@/lib/authOption";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -10,18 +10,18 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Get user details
+// GET /api/user
 export const GET = async () => {
-  const session = await getServerSession(authOptions);
   try {
-    console.log("session:>> userdetail api", session?.user);
+    const session = await getServerSession(authOptions);
 
-    if (!session) {
-      return NextResponse.json({ message: "session not found" });
+    console.log("session:>> userdetail api", session?.user?.id);
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
     const user = await prisma.user.findUnique({
-      where: { email: session?.user?.email },
+      where: { id: session?.user?.id },
     });
 
     console.log("user:>> api", user);
@@ -29,6 +29,7 @@ export const GET = async () => {
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
+
     return NextResponse.json(
       {
         message: "Successfully retrieved user info",
@@ -37,7 +38,7 @@ export const GET = async () => {
       { status: 200 }
     );
   } catch (error) {
-    console.log("session => ", session);
+    console.error("GET /api/user error:", error);
     return NextResponse.json(
       {
         success: false,

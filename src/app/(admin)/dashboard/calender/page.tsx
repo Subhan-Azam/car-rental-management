@@ -1,7 +1,7 @@
 import EventCalendar from "@/components/calender/EventCalendar";
+import MiniCustomCalendar from "@/components/calender/MiniCustomCalendar";
 // import FilterBtn from "@/components/calender/FilterBtn";
 // import FullCustomCalendar from "@/components/calender/FullCustomCalendar";
-// import MiniCustomCalendar from "@/components/calender/MiniCustomCalendar";
 
 const Calender = () => {
   return (

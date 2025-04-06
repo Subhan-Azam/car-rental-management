@@ -27,9 +27,8 @@ const RecommendCard: React.FC<RecommendCardPropsTypes> = ({
   return (
     <div
       onClick={onClick}
-      className={` ${className} group bg-opacity-80 rounded-lg p-4 sm:p-6 md:p-8 space-y-4 shadow-md w-full max-w-sm mx-auto`}
+      className={`${className} group bg-opacity-80 rounded-[14px] p-4 sm:p-6 md:p-8 space-y-4 shadow-md w-full`}
     >
-      {/* Recommendation */}
       <div className="flex items-center gap-x-2">
         <FaArrowsSpin className="w-5 md:w-6 h-5 md:h-6 text-gray-600" />
         <h3 className="text-gray-800 font-bold text-sm md:text-base">
@@ -37,8 +36,7 @@ const RecommendCard: React.FC<RecommendCardPropsTypes> = ({
         </h3>
       </div>
 
-      {/* Car Image */}
-      <div className="w-[300px] mx-auto my-3 overflow-hidden rounded-[16px]">
+      <div className="w-full aspect-[3/2] my-3 overflow-hidden rounded-[16px]">
         <Image
           src={image}
           alt="Car Image"
@@ -48,14 +46,12 @@ const RecommendCard: React.FC<RecommendCardPropsTypes> = ({
         />
       </div>
 
-      {/* Car Details */}
       <div>
         <h2 className="text-gray-900 font-bold text-lg md:text-xl">
           {brand} {carName}
         </h2>
 
         <div className="flex items-center justify-between mt-2">
-          {/* Left Side */}
           <div className="flex items-center gap-x-3">
             <h4 className="text-gray-600 text-sm md:text-base font-medium">
               {views}
@@ -64,7 +60,6 @@ const RecommendCard: React.FC<RecommendCardPropsTypes> = ({
             <SlEnergy className="w-4 md:w-5 h-4 md:h-5 text-gray-500" />
           </div>
 
-          {/* Price */}
           <h3 className="text-gray-600 text-sm md:text-base font-medium">
             RS.{price}
           </h3>

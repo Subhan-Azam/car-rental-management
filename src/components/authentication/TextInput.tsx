@@ -26,14 +26,16 @@ const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <div className="flex flex-col gap-[12px] relative">
-      <label className="font-[500]">{title}</label>
+      <label className="font-[500] dark:text-white transition-all duration-300">
+        {title}
+      </label>
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
         type={inputType}
         name={type === "password" ? "password" : "email"}
         placeholder={placeholder}
-        className="w-full p-3 pr-11 border border-[#B1B5C3] rounded-[10px] focus:outline-[#A162F7]"
+        className="w-full p-3 pr-11 border border-[#B1B5C3] rounded-[10px] focus:outline-[#A162F7] dark:dark:bg-[#323745] dark:border-none dark:text-white"
         required
       />
       {type === "password" && (

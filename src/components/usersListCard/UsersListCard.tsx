@@ -13,7 +13,7 @@ const UsersListCard = () => {
         <Link
           href={`/dashboard/userInfo/${user.id}`}
           key={user.id}
-          className="flex items-center space-x-4 p-4 bg-white shadow-md rounded-lg cursor-pointer hover:bg-gray-100"
+          className="flex items-center space-x-4 p-4 bg-white shadow-md rounded-lg cursor-pointer hover:bg-gray-100 dark:bg-[#242731] transition-all duration-300"
         >
           {user.profilePhoto ? (
             <Image
@@ -28,10 +28,10 @@ const UsersListCard = () => {
           )}
 
           <div>
-            <h3 className="text-lg font-bold text-gray-900">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-white transition-all duration-300">
               {user.firstName} {user.lastName}
             </h3>
-            <p className="text-gray-600">{user.email}</p>
+            <p className="text-gray-600 dark:text-[#808191] transition-all duration-300">{user.email}</p>
           </div>
         </Link>
       ))}
