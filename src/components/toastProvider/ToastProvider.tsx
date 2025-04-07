@@ -1,4 +1,4 @@
-"use client"; // Only if using in a client component
+"use client";
 
 import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";

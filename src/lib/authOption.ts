@@ -62,8 +62,7 @@ export const authOptions: AuthOptions = {
             email: user.email,
             role: user.role ?? "USER",
           };
-        } catch (error) {
-          console.log("Authorization error:", error);
+        } catch {
           return null;
         }
       },
@@ -72,17 +71,6 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID! as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET! as string,
-      // authorization: {
-      //   params: { scope: "openid email profile" },
-      // },
-      // profile(profile) {
-      //   return {
-      //     id: profile.sub, // Corrected ID reference
-      //     name: profile.name,
-      //     email: profile.email,
-      //     image: profile.picture,
-      //   };
-      // },
     }),
 
     FacebookProvider({
@@ -112,7 +100,6 @@ export const authOptions: AuthOptions = {
       if (account?.provider === "google" || account?.provider === "facebook") {
         try {
           if (!user.email) {
-            console.error("Error: Email is required but missing.");
             return false;
           }
 
@@ -121,7 +108,6 @@ export const authOptions: AuthOptions = {
           });
 
           if (!existingUser) {
-            // Create new user without password
             existingUser = await prisma.user.create({
               data: {
                 firstName: user.name?.split(" ")[0] || "Unknown",
@@ -137,8 +123,7 @@ export const authOptions: AuthOptions = {
               },
             });
           }
-        } catch (error) {
-          console.error("Error creating user:", error);
+        } catch {
           return false;
         }
       }

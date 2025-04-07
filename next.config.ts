@@ -9,8 +9,9 @@ const nextConfig: NextConfig = {
     domains: [
       "res.cloudinary.com",
       "via.placeholder.com",
-      "platform-lookaside.fbsbx.com"
-    ], // Allow Cloudinary images
+      "platform-lookaside.fbsbx.com",
+      "images.ctfassets.net",
+    ],
   },
 };
 

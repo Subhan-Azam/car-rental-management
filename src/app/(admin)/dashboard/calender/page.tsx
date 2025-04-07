@@ -1,7 +1,7 @@
-import EventCalendar from "@/components/calender/EventCalendar";
-import MiniCustomCalendar from "@/components/calender/MiniCustomCalendar";
-// import FilterBtn from "@/components/calender/FilterBtn";
-// import FullCustomCalendar from "@/components/calender/FullCustomCalendar";
+import CalendarPicker from "@/components/calender/CalendarPicker";
+import DailySchedule from "@/components/calender/DailySchedule";
+import FilterBtn from "@/components/calender/FilterBtn";
+import UpcomingEventsList from "@/components/calender/UpcomingEventsList";
 
 const Calender = () => {
   return (
@@ -10,20 +10,18 @@ const Calender = () => {
         <h1 className="dark:text-white text-[#242731] text-2xl font-bold mb-1 lg:text-left">
           Calendar
         </h1>
-        <MiniCustomCalendar />
-        <EventCalendar />
+        <CalendarPicker />
+        <UpcomingEventsList />
       </div>
 
-      {/* Right Section */}
       <div>
-        {/* Filter Buttons */}
         <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-6">
-          {/* <FilterBtn heading="Toyota" />
+          <FilterBtn heading="Toyota" />
           <FilterBtn heading="Time" />
-          <FilterBtn heading="Status" /> */}
+          <FilterBtn heading="Status" />
         </div>
 
-        {/* <FullCustomCalendar /> */}
+        <DailySchedule />
       </div>
     </div>
   );

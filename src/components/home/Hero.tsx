@@ -22,11 +22,11 @@ const fetchHero = async () => {
     });
 
     return heroSec;
-  } catch (error) {
-    console.error("Error fetching hero data:", error);
+  } catch {
     return [];
   }
 };
+
 const Hero = async () => {
   const data = await fetchHero();
   return (
@@ -59,17 +59,12 @@ const Hero = async () => {
 
             <div className="w-full lg:w-[50%] flex justify-center">
               <Image
-                src={item.image}
+                src={`https:${item.image}`}
                 alt={String(item.title)}
-                width={500}
-                height={500}
+                width={700}
+                height={700}
                 className="w-full max-w-[500px] lg:max-w-[1000px] object-cover rounded-lg"
               />
-              {/* <img
-                src={item.image}
-                alt={String(item.title)}
-                className="w-full max-w-[500px] lg:max-w-[1000px] object-cover rounded-lg"
-              /> */}
             </div>
           </div>
         ))}

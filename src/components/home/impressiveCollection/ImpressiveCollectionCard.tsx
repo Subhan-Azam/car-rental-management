@@ -6,7 +6,6 @@ import { FiUsers } from "react-icons/fi";
 import { TbGasStation } from "react-icons/tb";
 import { TbManualGearbox } from "react-icons/tb";
 import HomeButton from "@/components/button/HomeButton";
-// import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
@@ -29,10 +28,9 @@ const ImpressiveCollectionCard = ({
   enginType,
   transmissionType,
 }: ImpressiveCollectionCardType) => {
-  
   const session = useSession();
   const router = useRouter();
-  
+
   const rentNow = () => {
     if (session) {
       router.push(`/dashboard/assets/${carId}`);
@@ -96,7 +94,6 @@ const ImpressiveCollectionCard = ({
           </div>
 
           <div className="flex justify-center">
-            {/* <Link href={`/dashboard/assets/${carId}`}> */}
             <HomeButton
               title="Rent Now"
               onClick={rentNow}
@@ -104,7 +101,6 @@ const ImpressiveCollectionCard = ({
                 "w-[336px] py-[12px] text-center border border-black rounded-[32px] text-[16px] font-[600] hover:bg-black hover:text-white transition-all duration-250 ease-in-out"
               }
             />
-            {/* </Link> */}
           </div>
         </div>
       </div>

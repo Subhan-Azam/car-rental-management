@@ -20,8 +20,6 @@ const useUserDetails = () => {
   const dispatch = useAppDispatch();
   const { userDetails } = useAppSelector((state) => state.userDetailStore);
 
-  console.log("profilePhoto:>>", profilePhoto);
-  // show user Details
   useEffect(() => {
     setLoading(true);
     if (userDetails) {
@@ -45,7 +43,6 @@ const useUserDetails = () => {
     }
   }, [dispatch, userDetails]);
 
-  // Function to update user details
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {

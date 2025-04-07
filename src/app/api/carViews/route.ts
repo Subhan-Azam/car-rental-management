@@ -3,9 +3,7 @@ import { NextResponse } from "next/server";
 export const POST = async (req: Request) => {
   try {
     const { id } = await req.json();
-    console.log("body:>>", id);
 
-    // Validate the ID format
     if (!id) {
       return NextResponse.json({
         success: false,
@@ -13,12 +11,10 @@ export const POST = async (req: Request) => {
       });
     }
 
-    const updatedCar = await prisma.addCar.update({
+    await prisma.addCar.update({
       where: { id },
       data: { views: { increment: 1 } },
     });
-
-    console.log("api res=====", updatedCar);
 
     return NextResponse.json({
       success: true,

@@ -10,7 +10,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// Post Car ============================================
 export const POST = async (req: Request) => {
   try {
     const {
@@ -27,7 +26,6 @@ export const POST = async (req: Request) => {
     } = await req.json();
 
     const session = await getServerSession(authOptions);
-    console.log("session id :>>", session?.user?.id);
     if (!session) {
       return NextResponse.json({
         success: false,
@@ -35,7 +33,6 @@ export const POST = async (req: Request) => {
       });
     }
 
-    // Validate engine & transmission
     const validEngines = ["PETROL", "DIESEL", "ELECTRIC", "HYBRID"];
     const validTransmissions = ["MANUAL", "AUTOMATIC"];
     const validCarTypes = [
@@ -82,7 +79,7 @@ export const POST = async (req: Request) => {
       publicId = uploadResponse.public_id;
     }
 
-    // Save car details & image URL to database
+    // Save car details
     const response = await prisma.addCar.create({
       data: {
         userID: session.user.id,
@@ -101,7 +98,6 @@ export const POST = async (req: Request) => {
       },
     });
 
-    console.log("Database Response:", response);
 
     return NextResponse.json({
       success: true,
@@ -119,7 +115,6 @@ export const POST = async (req: Request) => {
   }
 };
 
-// Get Car =================================================================
 export const GET = async () => {
   try {
     const cars = await prisma.addCar.findMany();
@@ -140,12 +135,10 @@ export const GET = async () => {
   }
 };
 
-// Delete Car =================================================================
 export const DELETE = async (req: Request) => {
   try {
     const { id } = await req.json();
 
-    // delete car image from cloudinary
     const car = await prisma.addCar.findUnique({
       where: { id: id },
       select: { imagePublicId: true },
@@ -162,9 +155,7 @@ export const DELETE = async (req: Request) => {
       await cloudinary.uploader.destroy(car.imagePublicId);
     }
 
-    // delete car from database
     const res = await prisma.addCar.delete({ where: { id: id } });
-    console.log("api res=====", res);
 
     return NextResponse.json({
       success: true,
@@ -182,7 +173,6 @@ export const DELETE = async (req: Request) => {
   }
 };
 
-// update car ================================================================
 export const PUT = async (req: Request) => {
   try {
     const {
@@ -255,7 +245,6 @@ export const PUT = async (req: Request) => {
       },
     });
 
-    console.log("response", response);
 
     return NextResponse.json({
       success: true,

@@ -1,4 +1,4 @@
-import { carViews, popularCars } from "@/store/slices/carCrudSlice";
+import { popularCars } from "@/store/slices/carCrudSlice";
 import { useAppDispatch } from "@/store/store";
 import { useEffect, useState } from "react";
 
@@ -7,7 +7,6 @@ const usePopularCars = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // popular cars
   useEffect(() => {
     const fetchPopularCars = async () => {
       setLoading(true);
@@ -23,11 +22,7 @@ const usePopularCars = () => {
     fetchPopularCars();
   }, []);
 
-  const clickeViewsHandlern = async (id: string) => {
-    await dispatch(carViews(id));
-  };
-
-  return { clickeViewsHandlern, loading, error };
+  return { loading, error };
 };
 
 export default usePopularCars;

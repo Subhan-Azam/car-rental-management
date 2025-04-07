@@ -35,7 +35,6 @@ const initialState: AuthStateProps = {
   allUsers: [],
 };
 
-// signUp slice
 export const userSignUp = createAsyncThunk(
   "auth/signUp",
   async (
@@ -68,7 +67,6 @@ export const userSignUp = createAsyncThunk(
             "Server error. Please try again later."
         );
       } else {
-        console.log("Unexpected error:", error);
         return rejectWithValue(
           "An unexpected error occurred. Please try again."
         );
@@ -77,7 +75,6 @@ export const userSignUp = createAsyncThunk(
   }
 );
 
-// Forget password
 export const userForgetPassword = createAsyncThunk(
   "auth/forgetPassword",
   async (email: string, { rejectWithValue }) => {
@@ -97,7 +94,6 @@ export const userForgetPassword = createAsyncThunk(
   }
 );
 
-// update newPassword
 export const userNewPassword = createAsyncThunk(
   "auth/userUpdatePassword",
   async (
@@ -124,7 +120,6 @@ export const userNewPassword = createAsyncThunk(
   }
 );
 
-// change password
 interface ChangePassword {
   id: string;
   oldPassword: string;
@@ -138,7 +133,6 @@ export const changePassword = createAsyncThunk(
     try {
       const response = await axiosInstance.put("/changePassword", data);
 
-      console.log("response", response.data);
       return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -153,13 +147,11 @@ export const changePassword = createAsyncThunk(
   }
 );
 
-// get All Users
 export const getAllUsers = createAsyncThunk(
   "auth/getAllUsers",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get("/allUsers");
-      console.log("get All Users", response.data.users);
       return response.data.users;
     } catch (error) {
       if (axios.isAxiosError(error)) {

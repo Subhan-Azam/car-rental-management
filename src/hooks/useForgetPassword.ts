@@ -59,7 +59,6 @@ const useForgetPassword = () => {
           ? error.message
           : "Something went wrong. Please try again.";
 
-      console.log("Error in handleNewPassword:", error);
       toast.error(errorMessage);
       setForgetError(errorMessage);
     } finally {

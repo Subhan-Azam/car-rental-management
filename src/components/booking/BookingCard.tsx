@@ -15,7 +15,6 @@ interface BookingCardType {
   onClick: () => void;
 }
 const BookingCard = ({
-  id,
   brand,
   carName,
   carImage,
@@ -24,8 +23,6 @@ const BookingCard = ({
   engine,
   onClick,
 }: BookingCardType) => {
-  console.log("carImage:>>", carImage);
-  console.log("ID:>>", id);
 
   return (
     <>

@@ -1,12 +1,9 @@
 "use client";
 import React from "react";
 import PerformanceCard from "@/components/dashboard/PerformanceCard";
-import performanceCardImg1 from "../../../../public/icons/dashboard-card-icon.png";
-import performanceCardImg2 from "../../../../public/icons/dashboard-card-icon.png";
-import performanceCardImg3 from "../../../../public/icons/dashboard-card-icon.png";
-import performanceCardImg4 from "../../../../public/icons/dashboard-card-icon.png";
 import DashboardCharts from "@/components/dashboard/DashboardCharts";
 import RecommendSection from "@/components/dashboard/RecommendSection";
+import PerformenceChart from "@/components/dashboard/PerformenceChart";
 
 const Dashboard = () => {
   return (
@@ -14,27 +11,31 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
         <PerformanceCard
           className1="bg-[#A162F7]"
-          className2="text-white"
+          className2="text-[#242731]"
           heading="Energy"
-          src={performanceCardImg1}
+          src={"/icons/lightning-icon.png"}
+          chart={<PerformenceChart title="45%" progressColor="#A162F7" />}
         />
         <PerformanceCard
           className1="bg-white"
           className2="text-[#242731]"
           heading="Range"
-          src={performanceCardImg2}
+          src={"/icons/dashboard-card-icon.png"}
+          chart={<PerformenceChart title="57%" progressColor="#FF7E86" />}
         />
         <PerformanceCard
           className1="bg-white"
           className2="text-[#242731]"
           heading="Break fluid"
-          src={performanceCardImg3}
+          src={"/icons/blood-icon.png"}
+          chart={<PerformenceChart title="9%" progressColor="#A162F7" />}
         />
         <PerformanceCard
           className1="bg-white"
           className2="text-[#242731]"
           heading="Tire Wear"
-          src={performanceCardImg4}
+          src={"/icons/tier-icon.png"}
+          chart={<PerformenceChart title="25%" progressColor="#F6CC0D" />}
         />
       </div>
 

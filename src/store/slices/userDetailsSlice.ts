@@ -26,13 +26,11 @@ const initialState: UserState = {
   error: null,
 };
 
-// Get Details
 export const fetchUserDetails = createAsyncThunk(
   "userDetails/get",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get("/getUserDetails");
-      console.log("response", response.data.user);
       return response.data.user;
     } catch {
       rejectWithValue("Failed to fetch user details");
@@ -40,16 +38,13 @@ export const fetchUserDetails = createAsyncThunk(
   }
 );
 
-// update user details
 export const updateUser = createAsyncThunk(
   "userDetails/updateUser",
   async (updatedData: Partial<userDetailsProps>, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.put("/getUserDetails", updatedData);
-      console.log("response", response.data.user);
       return response.data.user;
     } catch {
-      console.error("Error updating user details");
       return rejectWithValue("Failed to update user details");
     }
   }

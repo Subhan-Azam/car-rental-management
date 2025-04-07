@@ -46,7 +46,6 @@ const useAddCar = () => {
         description,
         image,
       };
-      console.log("Car Data Sent:", carData);
 
       await dispatch(addCar(carData)).unwrap();
 
@@ -61,8 +60,7 @@ const useAddCar = () => {
       setCarType("");
       setDescription("");
       setImage("");
-    } catch (error) {
-      console.log(error);
+    } catch {
       toast.error("error saving car");
     } finally {
       setLoading(false);

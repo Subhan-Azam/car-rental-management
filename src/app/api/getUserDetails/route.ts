@@ -10,12 +10,10 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// GET /api/user
 export const GET = async () => {
   try {
     const session = await getServerSession(authOptions);
 
-    console.log("session:>> userdetail api", session?.user?.id);
     if (!session || !session.user?.id) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
@@ -23,8 +21,6 @@ export const GET = async () => {
     const user = await prisma.user.findUnique({
       where: { id: session?.user?.id },
     });
-
-    console.log("user:>> api", user);
 
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
@@ -38,7 +34,6 @@ export const GET = async () => {
       { status: 200 }
     );
   } catch (error) {
-    console.error("GET /api/user error:", error);
     return NextResponse.json(
       {
         success: false,
@@ -49,11 +44,9 @@ export const GET = async () => {
   }
 };
 
-// update user details
 export const PUT = async (req: Request) => {
   try {
     const body = await req.json();
-    console.log("Received body:", body);
 
     const { id, profilePhoto, ...updatedData } = body;
     if (!id) {
@@ -93,7 +86,6 @@ export const PUT = async (req: Request) => {
       },
     });
 
-    console.log("Updated user:>>", updateUser);
     return NextResponse.json(
       { message: "Successfully updated", user: updateUser },
       { status: 200 }

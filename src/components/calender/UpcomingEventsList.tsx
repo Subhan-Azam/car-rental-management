@@ -1,10 +1,7 @@
 import React from "react";
-// import EventCardCalender from "./EventCardCalender";
+import UpcomingEventsCard from "./UpcomingEventsCard";
 
-// import AvatorImg1 from "../../../public/assets/calendar/avator.png";
-// import AvatorImg2 from "../../../public/assets/calendar/card2Avator.png";
-
-const EventCalendar = () => {
+const UpcomingEventsList = () => {
   return (
     <div className="flex flex-col gap-y-[17px]  py-6 px-[25px] max-sm:py-2 max-sm:px-3 dark:bg-[#242731] bg-white ">
       <h1 className="leading-[31.25px] dark:text-white text-[#242731] text-[24px] font-bold  ">
@@ -20,7 +17,10 @@ const EventCalendar = () => {
         <h3 className=" text-[#72767C] leading-[18.23px] text-[14px] font-medium ">
           09:00
         </h3>
-        {/* <EventCardCalender src={AvatorImg1} /> */}
+        <UpcomingEventsCard
+          className="bg-[#A162F7]"
+          src={"/assets/avator.png"}
+        />
       </div>
       <div className="flex items-center gap-x-[19px] ">
         <h3 className=" text-[#72767C] leading-[18.23px] text-[14px] font-medium ">
@@ -47,7 +47,10 @@ const EventCalendar = () => {
         <h3 className=" text-[#72767C] leading-[18.23px] text-[14px] font-medium ">
           12:00
         </h3>
-        {/* <EventCardCalender className="bg-[#70CF97] " src={AvatorImg2} /> */}
+        <UpcomingEventsCard
+          className="bg-[#70CF97]"
+          src={"/assets/avator-sec.png"}
+        />
       </div>
       <div className="flex items-center gap-x-[19px] ">
         <h3 className=" text-[#72767C] leading-[18.23px] text-[14px] font-medium ">
@@ -59,4 +62,4 @@ const EventCalendar = () => {
   );
 };
 
-export default EventCalendar;
+export default UpcomingEventsList;

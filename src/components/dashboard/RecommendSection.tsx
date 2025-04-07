@@ -5,10 +5,12 @@ import RecommendCard from "./RecommendCard";
 import Link from "next/link";
 import usePopularCars from "@/hooks/usePopularCars";
 import { Loader } from "../loader/Loader";
+import useBooking from "@/hooks/useBooking";
 
 const RecommendSection = () => {
   const { cars } = useAppSelector((state) => state.carCrudStore);
-  const { clickeViewsHandlern, loading, error } = usePopularCars();
+  const { loading, error } = usePopularCars();
+  const { clickeViewsHandler } = useBooking();
 
   if (loading) {
     return (
@@ -33,7 +35,7 @@ const RecommendSection = () => {
               image={item?.imageUrl}
               price={item?.price}
               views={item?.views}
-              onClick={() => clickeViewsHandlern(item?.id)}
+              onClick={() => clickeViewsHandler(item?.id)}
               className={bgColors[index % bgColors.length]}
             />
           </Link>

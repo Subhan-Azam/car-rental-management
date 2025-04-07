@@ -7,7 +7,7 @@ import NotiesCard from "./NotiesCard";
 const Noties = () => {
   return (
     <div className="flex-1 dark:bg-[#242731] bg-white px-5 py-[13px] rounded-[14px] transition-all duration-300">
-      <h1 className="dark:text-white text-[#5a7ceb] leading-[26.04px] text-[20px] font-bold  ">
+      <h1 className="dark:text-white leading-[26.04px] text-[20px] font-bold  ">
         Noties
       </h1>
       <div className=" flex flex-col gap-y-[18px] mt-4 ">

@@ -46,7 +46,6 @@ interface carStateTypes {
   image: string;
 }
 
-// add the car
 export const addCar = createAsyncThunk(
   "CarCrud/add",
   async (carData: carStateTypes, { rejectWithValue }) => {
@@ -59,7 +58,6 @@ export const addCar = createAsyncThunk(
       };
 
       const response = await axiosInstance.post("/carCrud", formattedCarState);
-      console.log("response========", response.data);
       return response.data;
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -70,31 +68,26 @@ export const addCar = createAsyncThunk(
   }
 );
 
-// get all cars
 export const fetchCars = createAsyncThunk(
   "CarCrud/fetch",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get("/carCrud", {});
-      console.log("response.data:>>", response.data.data);
       return response.data.data;
     } catch {
-      return rejectWithValue("Something went wrong. Please try again!");
+      return rejectWithValue("Please try again!");
     }
   }
 );
 
-// delete car
 export const deleteCar = createAsyncThunk(
   "CarCrud/deleteCar",
   async (id: string, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.delete("/carCrud", { data: { id } });
-      console.log("response", response.data);
+      await axiosInstance.delete("/carCrud", { data: { id } });
       return id;
     } catch (error) {
       const axiosError = error as AxiosError;
-      console.log("error", axiosError.message);
       rejectWithValue(axiosError);
     }
   }
@@ -114,7 +107,6 @@ interface updateCarDataType {
   image: string;
 }
 
-// update Car
 export const updateCar = createAsyncThunk(
   "CarCrud/updateCar",
   async (updateCarData: updateCarDataType, { rejectWithValue }) => {
@@ -127,7 +119,6 @@ export const updateCar = createAsyncThunk(
       };
       const response = await axiosInstance.put("/carCrud", formatedData);
 
-      console.log("response.data", response.data);
       return response.data;
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -138,13 +129,11 @@ export const updateCar = createAsyncThunk(
   }
 );
 
-// Views
 export const carViews = createAsyncThunk(
   "CarCrud/Views",
   async (id: string, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.post("/carViews", { id });
-      console.log("response.data", response.data);
       return response.data;
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -153,13 +142,11 @@ export const carViews = createAsyncThunk(
   }
 );
 
-// popular cars
 export const popularCars = createAsyncThunk(
   "CarCrud/PopularCars",
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get("/carViews");
-      console.log("get.data", response.data.data);
       return response.data.data;
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -182,7 +169,7 @@ export const carCrudSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      // add car ====================
+      // add car
       .addCase(addCar.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -196,7 +183,7 @@ export const carCrudSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // Fetch Cars =================
+      // Fetch Cars
       .addCase(fetchCars.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -210,7 +197,7 @@ export const carCrudSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // Delete Car ==================
+      // Delete Car
       .addCase(deleteCar.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -224,7 +211,7 @@ export const carCrudSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // update car ==============
+      // update car
       .addCase(updateCar.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -240,7 +227,7 @@ export const carCrudSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // car views =============
+      // car views
       .addCase(carViews.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -257,7 +244,7 @@ export const carCrudSlice = createSlice({
         state.error = action.payload as string;
       })
 
-      // popular Cars =============
+      // popular Cars
       .addCase(popularCars.pending, (state) => {
         state.loading = true;
         state.error = null;

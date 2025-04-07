@@ -5,7 +5,6 @@ import { carViews } from "@/store/slices/carCrudSlice";
 import useModel from "./useModel";
 
 const useBooking = () => {
-  // booking
   const dispatch = useAppDispatch();
   const { cars } = useCarCrud();
   const [selectedCar, setSelectedCar] = useState<string | null>(null);

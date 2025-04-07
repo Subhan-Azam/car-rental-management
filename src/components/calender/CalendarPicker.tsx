@@ -8,7 +8,7 @@ import {
   MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 
-const MiniCustomCalendar = () => {
+const CalendarPicker = () => {
   const [date, setDate] = useState(new Date());
   const [view, setView] = useState<"month" | "week">("month");
 
@@ -100,4 +100,4 @@ const MiniCustomCalendar = () => {
   );
 };
 
-export default MiniCustomCalendar;
+export default CalendarPicker;

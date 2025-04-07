@@ -22,7 +22,7 @@ const OffrersIcon = ({
         {icon}
       </div>
       <h3 className={`${style} font-[700] text-[20px]`}>{title}</h3>
-      <p className="font-[500] text-[12px] text-[#808191]">{para}</p>
+      <p className="font-[500] text-[12px] text-[#808191] w-[80px] sm:w-auto">{para}</p>
     </div>
   );
 };

@@ -29,7 +29,6 @@ export const PUT = async (req: Request) => {
       );
     }
 
-    // Prevent reusing old password
     const isSamePassword = await bcrypt.compare(newPassword, user.password);
     if (isSamePassword) {
       return NextResponse.json(
@@ -47,7 +46,7 @@ export const PUT = async (req: Request) => {
       where: { id: id },
       data: { password: hashPassword },
     });
-    console.log("changePassword==========", changePassword);
+   
 
     if (!changePassword) {
       return NextResponse.json({

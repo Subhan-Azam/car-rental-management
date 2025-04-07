@@ -14,12 +14,10 @@ export default withAuth(
 
     const pathname = req.nextUrl.pathname;
 
-    // ✅ Admin has full access
     if (user.role === "ADMIN") {
       return NextResponse.next();
     }
 
-    // ✅ Paths that "USER" role can access
     const allowedUserPaths = [
       "/dashboard/assets",
       "/dashboard/booking",
@@ -27,7 +25,6 @@ export default withAuth(
       "/dashboard/settings",
     ];
 
-    // ⛔ Block "USER" if they try to access restricted dashboard pages
     if (pathname.startsWith("/dashboard") && user.role === "USER") {
       if (!allowedUserPaths.includes(pathname)) {
         return NextResponse.redirect(new URL("/dashboard/booking", req.url));
@@ -38,11 +35,11 @@ export default withAuth(
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token, // Ensures only authenticated users can access protected routes
+      authorized: ({ token }) => !!token,
     },
   }
 );
 
 export const config = {
-  matcher: ["/dashboard/:path*"], // Middleware applies to all dashboard routes
+  matcher: ["/dashboard/:path*"],
 };

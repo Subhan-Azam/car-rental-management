@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import DashboardMilesChart from "../charts/DashboardMilesChart";
-import DashboardCarsChart from "../charts/DashboardCarsChart";
+import DashboardMilesChart from "./DashboardMilesChart";
+import DashboardCarsChart from "./DashboardCarsChart";
 
 interface DashboardMilesChartPropsTypes {
   heading?: string;

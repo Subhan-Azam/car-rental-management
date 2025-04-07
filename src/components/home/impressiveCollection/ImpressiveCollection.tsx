@@ -8,8 +8,6 @@ import { Loader } from "@/components/loader/Loader";
 const ImpressiveCollection = () => {
   const { uniqueCarTypes, selectedCar, setSelectedCar, filterdCar, loading } =
     useFilterCars();
-  console.log("Cars data:", uniqueCarTypes);
-  console.log("selectedCar::::::", selectedCar);
 
   return (
     <div className="py-[100px] bg-[#F5F5F5] md:px-28 px-10">

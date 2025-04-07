@@ -19,7 +19,7 @@ const Assets = () => {
       </div>
 
       <div className="flex flex-col xl:flex-row gap-4 sm:gap-6 mt-4">
-        <div className="flex flex-col dark:bg-[#242731] h-[650px] bg-[#438FFE] rounded-[14px] w-full xl:w-[361px] p-5 transition-all duration-300">
+        <div className="flex flex-col dark:bg-[#242731] h-[675px] bg-[#438FFE] rounded-[14px] w-full xl:w-[361px] p-5 transition-all duration-300">
           <div className="flex flex-col gap-5">
             <BlueCard
               title1="Brand"
@@ -45,9 +45,9 @@ const Assets = () => {
             <Image
               src={car?.imageUrl || "/car.png"}
               alt="car img does not show"
-              width={30}
-              height={30}
-              className="object-cover w-full"
+              width={300}
+              height={200}
+              className="object-contain w-full h-auto rounded-[14px]"
             />
           </div>
         </div>

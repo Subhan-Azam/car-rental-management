@@ -6,7 +6,6 @@ import { FaUserCircle } from "react-icons/fa";
 
 export default function UserInfo() {
   const { user } = useUserInfo();
-  console.log("single user detailuser", user);
 
   const router = useRouter();
 

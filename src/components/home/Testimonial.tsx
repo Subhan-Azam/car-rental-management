@@ -3,7 +3,6 @@ import client from "../../../lib/contentfulClient";
 import { MdArrowBack } from "react-icons/md";
 import { MdArrowForward } from "react-icons/md";
 import Image from "next/image";
-// import Image from "next/image";
 
 const fetchTestimonial = async () => {
   const response = await client.getEntries({
@@ -14,7 +13,7 @@ const fetchTestimonial = async () => {
     return {
       heading: item.fields.heading,
       description: item.fields.description,
-      image: item.fields.image?.fields.file.url,
+      image: `https:${item.fields.image?.fields.file.url}`,
       userName: item.fields.userName,
       area: item.fields.area,
     };
@@ -52,15 +51,10 @@ const Testimonial = async () => {
               <Image
                 src={String(item.image)}
                 alt="profile-photo"
-                width={50}
-                height={50}
+                width={150}
+                height={150}
                 className="w-[80px] h-[80px] rounded-full"
               />
-              {/* <img
-                src={String(item.image)}
-                alt="profile-photo"
-                className="w-[80px] h-[80px] rounded-full"
-              /> */}
               <div className="">
                 <h3 className="font-[700] text-[24px] text-[#0F0F0F]">
                   {String(item.userName)}

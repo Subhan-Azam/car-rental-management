@@ -5,14 +5,14 @@ import Image from "next/image";
 import { RxDashboard } from "react-icons/rx";
 import { BiCar } from "react-icons/bi";
 import { HiOutlineCalendar, HiOutlineShoppingBag } from "react-icons/hi";
-import { GiCrossedSabres } from "react-icons/gi";
 import { LuMessageSquareText, LuUsersRound } from "react-icons/lu";
 import { SlSettings } from "react-icons/sl";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import NavbarMainLogo from "../../public/assets/Heading.png";
-import LogoutModal from "./modal/LogoutModal";
 import { signOut, useSession } from "next-auth/react";
 import { FaRegListAlt } from "react-icons/fa";
+import { TbLogout2 } from "react-icons/tb";
+import { MdOutlineDesignServices } from "react-icons/md";
 
 const SideBar = () => {
   const session = useSession();
@@ -52,7 +52,7 @@ const SideBar = () => {
           },
           {
             href: "/dashboard/services",
-            icon: <GiCrossedSabres />,
+            icon: <MdOutlineDesignServices />,
             label: "Services",
           },
           {
@@ -117,13 +117,15 @@ const SideBar = () => {
           </li>
 
           <li className="mb-10">
-            <LogoutModal
+            <div
               onClick={() => signOut()}
-              title="Logout"
-              para="Do you really want to logout?"
-              className1="cursor-pointer flex items-center gap-x-2 p-2 w-full rounded-lg hover:bg-gray-100 dark:focus:bg-[#292E3D] dark:hover:bg-[#292E3D]"
-              className2="text-sm font-medium hidden sm:block dark:text-[#808191] "
-            />
+              className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#292E3D] focus:bg-[#F3F5F8] dark:focus:bg-[#292E3D] cursor-pointer"
+            >
+              <TbLogout2 className="text-gray-600 w-[20px] dark:text-[#808191]" />
+              <span className="text-sm font-medium hidden sm:block dark:text-[#808191]">
+                LogOut
+              </span>
+            </div>
           </li>
         </ul>
       </div>

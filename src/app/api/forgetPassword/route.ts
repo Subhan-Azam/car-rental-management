@@ -9,7 +9,6 @@ export const POST = async (req: Request) => {
   try {
     const body = await req.json();
     const userEmail = body.email;
-    console.log(userEmail);
 
     const compareEmail = await prisma.user.findUnique({
       where: { email: userEmail },
@@ -52,7 +51,6 @@ export const POST = async (req: Request) => {
       html: `Please click <a href=${resetLink}>here</a> to reset your password`,
     };
 
-    console.log("mailOptions----------", mailOptions);
 
     const sendMail = await transporter.sendMail(mailOptions);
     if (!sendMail) {
@@ -79,7 +77,6 @@ export const POST = async (req: Request) => {
   }
 };
 
-// =================================================================
 
 export const PUT = async (req: Request) => {
   try {
@@ -92,7 +89,6 @@ export const PUT = async (req: Request) => {
     const user = await prisma.user.findUnique({
       where: { reset_token: resetToken },
     });
-    console.log("user----------", user);
 
     if (
       !user ||

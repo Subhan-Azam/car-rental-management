@@ -2,8 +2,6 @@ import Hero from "@/components/home/Hero";
 import ServicesCard from "@/components/home/ServicesCard";
 import ImpressiveCollection from "@/components/home/impressiveCollection/ImpressiveCollection";
 import React from "react";
-// import { GoVerified } from "react-icons/go";
-// import { LuHandCoins } from "react-icons/lu";
 import { BsStars } from "react-icons/bs";
 import client from "../../lib/contentfulClient";
 import Testimonial from "@/components/home/Testimonial";
@@ -97,7 +95,6 @@ const Home = async () => {
     <div>
       <Hero />
 
-      {/* Car Brands */}
       <div className="md:mx-28 mx-10 mt-[100px] mb-[120px]">
         <div className="flex justify-between items-center mb-[24px]">
           <h3 className="font-[700] text-[24px]">Rent by Brands</h3>
@@ -139,7 +136,6 @@ const Home = async () => {
 
       <ImpressiveCollection />
 
-      {/* How it Works */}
       <div className="mt-[120px] mb-[100px] lg:mb-[130px] md:mx-28 mx-10">
         <div className="text-center max-w-[720px] mx-auto ">
           <h1 className="text-[48px] font-[700] mb-[24px]">How it woks</h1>
@@ -175,7 +171,6 @@ const Home = async () => {
         </div>
       </div>
 
-      {/* Our Services */}
       <section className="bg-[#242731] text-white py-[100px] md:px-28 px-10 text-center">
         {services?.map((item, index) => {
           return (

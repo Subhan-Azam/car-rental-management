@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 const useCarCrud = () => {
   const dispatch = useAppDispatch();
   const { cars, updateCarData } = useAppSelector((state) => state.carCrudStore);
-  console.log("cars::", cars);
 
   const [brand, setBrand] = useState<string>(updateCarData?.carName || "");
   const [carName, setCarName] = useState<string>(updateCarData?.carName || "");
@@ -46,9 +45,7 @@ const useCarCrud = () => {
     try {
       await dispatch(deleteCar(id)).unwrap();
       toast.success("Car deleted successfully.");
-      console.log(`Car with ID ${id} deleted successfully.`);
-    } catch (error) {
-      console.log("Error in deleteHandler:", error);
+    } catch {
       toast.error("Failed to delete car.");
     }
   };
@@ -81,10 +78,7 @@ const useCarCrud = () => {
   const updateHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    console.log("submit working:>>>>");
-
     if (!updateCarData?.id) {
-      console.log("Car ID is missing");
       return;
     }
 
@@ -107,8 +101,7 @@ const useCarCrud = () => {
       await dispatch(fetchCars()).unwrap();
 
       toast.success(response.message || "Car updated successfully.");
-    } catch (error) {
-      console.log("error in update car hook======", error);
+    } catch {
       toast.error("Error updating car");
     }
   };
