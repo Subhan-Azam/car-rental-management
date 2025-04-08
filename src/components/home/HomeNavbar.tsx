@@ -5,6 +5,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import HomeButton from "../button/HomeButton";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { IMAGES } from "@/constants/images";
 
 const HomeNavbar = () => {
   const session = useSession();
@@ -15,7 +16,7 @@ const HomeNavbar = () => {
         <RxHamburgerMenu color="white" size={41} />
       </button>
       <Image
-        src={"/assets/home-heading.png"}
+        src={IMAGES.HOME_HEADING}
         alt="heading"
         width={100}
         height={100}
@@ -33,7 +34,7 @@ const HomeNavbar = () => {
       >
         <HomeButton
           title={!session.data?.user ? "Login / Register" : "Dashboard"}
-          style="w-[168px] h-[40px] pt-[6px] text-center border border-[#FFFFFF80] rounded-[48px] text-[#FFFFFF] font-[600] text-[16px]"
+          style="w-[168px] h-[40px] pt-[6px] text-center border border-white_translucent rounded-[48px] text-pure_white font-[600] text-[16px]"
         />
       </Link>
     </div>

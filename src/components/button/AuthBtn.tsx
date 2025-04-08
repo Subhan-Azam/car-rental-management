@@ -1,12 +1,6 @@
 import React from "react";
 import { Loader } from "../loader/Loader";
-
-interface AuthBtnProps {
-  title: string;
-  loading?: boolean;
-  style?: string;
-  onClick?: () => void;
-}
+import { AuthBtnProps } from "@/types/types";
 
 const AuthBtn: React.FC<AuthBtnProps> = ({
   title,
@@ -20,7 +14,7 @@ const AuthBtn: React.FC<AuthBtnProps> = ({
     className={
       title === "Cancel" || title === "Update"
         ? style
-        : `w-full h-[50px] flex justify-center items-center py-3 font-[700] text-[20px] bg-[#A162F7] text-white rounded-[10px] hover:bg-purple-700 transition`
+        : `w-full h-[50px] flex justify-center items-center py-3 font-[700] text-[20px] bg-amethyst_purple text-white rounded-[10px] hover:bg-purple-700 transition`
     }
   >
     {loading ? (

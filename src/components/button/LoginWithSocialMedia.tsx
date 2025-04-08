@@ -1,12 +1,8 @@
 import React from "react";
 import { MdFacebook } from "react-icons/md";
 import { FaGoogle } from "react-icons/fa";
+import { LoginWithSocialMediaProps } from "@/types/types";
 
-interface LoginWithSocialMediaProps {
-  className?: string;
-  title?: string;
-  signIn?: () => void;
-}
 const LoginWithSocialMedia: React.FC<LoginWithSocialMediaProps> = ({
   className,
   title,

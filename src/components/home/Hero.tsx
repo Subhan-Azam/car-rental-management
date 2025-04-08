@@ -6,6 +6,7 @@ import CarRentalForm from "./CarSearchInput";
 import { IoLocationOutline } from "react-icons/io5";
 import HomeButton from "../button/HomeButton";
 import Image from "next/image";
+import { CMSType } from "@/types/types";
 
 const fetchHero = async () => {
   try {
@@ -13,11 +14,11 @@ const fetchHero = async () => {
       content_type: "hero",
     });
 
-    const heroSec = response.items?.map((item) => {
+    const heroSec = response.items?.map((item: CMSType) => {
       return {
-        title: item.fields.title,
-        description: item.fields.description,
-        image: item.fields.image?.fields.file.url,
+        title: item?.fields?.title || "",
+        description: item?.fields?.description || "",
+        image: item?.fields?.image?.fields?.file?.url || "",
       };
     });
 
@@ -70,7 +71,7 @@ const Hero = async () => {
         ))}
       </div>
 
-      <div className="lg:-mt-20 mt-0 shadow-xl bg-[#FFFFFFE5] p-4 pt-8 rounded-none md:rounded-[16px] max-w-[1216px] h-auto md:h-[145px] mx-auto">
+      <div className="lg:-mt-20 mt-0 shadow-xl bg-white_overlay p-4 pt-8 rounded-none md:rounded-[16px] max-w-[1216px] h-auto md:h-[145px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
           <CarRentalForm
             icon={<IoLocationOutline />}

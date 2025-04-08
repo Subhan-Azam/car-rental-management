@@ -1,20 +1,16 @@
 import React, { useRef } from "react";
 import CarInput from "../addCar/CarInput";
 import CarDropDown from "../addCar/CarDropDown";
-import { Car } from "@/store/slices/carCrudSlice";
 import useCarCrud from "@/hooks/useCarCrud";
 import { IoCloseOutline, IoCloudUploadOutline } from "react-icons/io5";
 import Image from "next/image";
 import AuthBtn from "../button/AuthBtn";
 
-interface UpdateModalType {
-  car: Car;
-  handleIsOpen: () => void;
-  handleOverlayClick: (e: React.MouseEvent<HTMLDivElement>) => void;
-}
+import { UpdateModalType } from "@/types/types";
 
 const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
   const {
+    loading,
     brand,
     setBrand,
     carName,
@@ -52,8 +48,8 @@ const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
         onClick={handleOverlayClick}
         className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
       >
-        <div className="bg-white dark:bg-[#242731] rounded-2xl shadow-2xl w-full max-w-lg h-[80vh] flex flex-col relative">
-          <div className="bg-[#A162F7] rounded-t-2xl text-white h-20 flex justify-center items-center">
+        <div className="bg-white dark:bg-charcoal_black rounded-2xl shadow-2xl w-full max-w-lg h-[80vh] flex flex-col relative">
+          <div className="bg-amethyst_purple rounded-t-2xl text-white h-20 flex justify-center items-center">
             <button
               onClick={handleIsOpen}
               className="absolute top-4 right-4 text-xl font-bold text-white hover:text-gray-300 transition-all ease-in-out"
@@ -143,7 +139,7 @@ const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
               />
 
               <div>
-                <label className="block text-[#7C7C8D] mb-2 font-[500] dark:text-[#E0E4E7]">
+                <label className="block text-cool_gray mb-2 font-[500] dark:text-light_gray_blue">
                   Description:
                 </label>
 
@@ -152,7 +148,7 @@ const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
                   onChange={(e) => setDescription(e.target.value)}
                   name="description"
                   placeholder="Car Description"
-                  className="w-full px-[22px] py-[14px] font-[500] text-[#5F6165] border outline-none focus:outline-[#A162F7] dark:bg-[#1F2128] dark:text-[#7C7C8D] dark:border-[#2C303D] rounded-[10px] transition-all duration-300"
+                  className={`w-full px-[22px] py-[14px] font-[500] text-slate_gray border outline-none focus:outline-amethyst_purple dark:bg-jet_black dark:text-cool_gray dark:border-gunmetal_gray rounded-[10px] transition-all duration-300`}
                   rows={3}
                   required
                 ></textarea>
@@ -177,11 +173,11 @@ const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
                     width={100}
                     height={100}
                     alt="user photo"
-                    className="w-full h-full object-cover rounded-[10px] dark:border-[#2C303D]"
+                    className="w-full h-full object-cover rounded-[10px] dark:border-gunmetal_gray"
                   />
                 ) : (
-                  <div className="group w-full h-full border outline-none rounded-[10px] flex justify-center items-center dark:border-[#2C303D] dark:bg-[#777E90]">
-                    <IoCloudUploadOutline className="text-[60px] group-hover:scale-125 hover:outline-[#A162F7] transition-all ease-in-out duration-200 text-[#7C7C8D] dark:text-white" />
+                  <div className="group w-full h-full border outline-none rounded-[10px] flex justify-center items-center dark:border-gunmetal_gray dark:bg-dusty_blue">
+                    <IoCloudUploadOutline className="text-[60px] group-hover:scale-125 hover:outline-amethyst_purple transition-all ease-in-out duration-200 text-cool_gray dark:text-white" />
                   </div>
                 )}
               </div>
@@ -194,15 +190,13 @@ const UpdateModal = ({ handleIsOpen, handleOverlayClick }: UpdateModalType) => {
                 />
                 <button
                   onClick={updateHandler}
-                  className=" font-[600] text-[18px] mt-2 -mb-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+                  className={`font-[600] text-[18px] mt-2 -mb-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition ${
+                    loading && "animate-pulse bg-blue-700"
+                  }`}
                   title="Update"
                 >
                   Update
                 </button>
-                {/* <AuthBtn
-                  style=" font-[600] text-[18px] mt-2 -mb-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-                  title="Update"
-                /> */}
               </div>
             </form>
           </div>

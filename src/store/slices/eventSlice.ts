@@ -1,19 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { axiosInstance } from "@/axiosInstance/axiosInstance";
-
-export interface CalendarEvent {
-  id: string;
-  title: string;
-  start: string;
-  color?: string;
-}
-
-interface EventsState {
-  events: CalendarEvent[];
-  loading: boolean;
-  error: string | null;
-}
+import { axiosInstance } from "@/lib/axiosInstance";
+import { EventsState } from "@/types/types";
+import { CalendarEvent } from "@/types/types";
 
 const initialState: EventsState = {
   events: [],

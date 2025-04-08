@@ -1,10 +1,7 @@
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
-interface EventCardCalenderPropsTypes {
-  className?: string;
-  src?: string | StaticImageData;
-}
+import { EventCardCalenderPropsTypes } from "@/types/types";
 
 const UpcomingEventsCard: React.FC<EventCardCalenderPropsTypes> = ({
   src,

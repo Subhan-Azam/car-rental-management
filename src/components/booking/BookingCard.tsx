@@ -3,17 +3,8 @@ import React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { LuUserRound } from "react-icons/lu";
 import { RiRepeatLine } from "react-icons/ri";
+import { BookingCardType } from "@/types/types";
 
-interface BookingCardType {
-  id: string;
-  brand: string;
-  carName: string;
-  carImage: string;
-  price: string;
-  views: number;
-  engine: string;
-  onClick: () => void;
-}
 const BookingCard = ({
   brand,
   carName,
@@ -23,12 +14,11 @@ const BookingCard = ({
   engine,
   onClick,
 }: BookingCardType) => {
-
   return (
     <>
       <div
         onClick={onClick}
-        className="group cursor-pointer w-full bg-white rounded-[16px] p-4 sm:p-6 flex flex-col justify-between dark:bg-[#242731] transition-all duration-300 hover:shadow-md"
+        className="group cursor-pointer w-full bg-white rounded-[16px] p-4 sm:p-6 flex flex-col justify-between dark:bg-charcoal_black transition-all duration-300 hover:shadow-md"
       >
         <>
           <div>
@@ -36,9 +26,9 @@ const BookingCard = ({
               <h2 className="font-[700] text-[18px] dark:text-white">
                 {brand}
               </h2>
-              <FaRegHeart className="text-[#A4A5A6] w-[20px]" />
+              <FaRegHeart className="text-light_gray w-[20px]" />
             </div>
-            <p className="text-[#72767C] text-[16px]">{carName}</p>
+            <p className="text-dove_gray text-[16px]">{carName}</p>
           </div>
 
           <div className="w-full aspect-[4/3] my-4 overflow-hidden rounded-[16px]">
@@ -51,15 +41,15 @@ const BookingCard = ({
             />
           </div>
 
-          <div className="flex items-center justify-between text-[#72767C]">
+          <div className="flex items-center justify-between text-dove_gray">
             <div className="flex gap-3 dark:text-white">
               <div className="flex items-center gap-1 text-[16px]">
-                <LuUserRound color="#A162F7" />
+                <LuUserRound className="text-amethyst_purple" />
                 <span>{views === null ? 0 : views}</span>
               </div>
 
               <div className="flex items-center gap-1 text-[16px]">
-                <RiRepeatLine color="#A162F7" />
+                <RiRepeatLine className="text-amethyst_purple" />
 
                 <span>
                   {engine?.slice(0, 1).toUpperCase() +

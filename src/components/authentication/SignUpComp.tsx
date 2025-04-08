@@ -67,17 +67,19 @@ const SignUpComp = () => {
         <div className="flex flex-wrap justify-center gap-4">
           <LoginWithSocialMedia
             title="Sign in with Google"
-            className="bg-white text-black"
+            className="bg-pure_white text-black"
           />
           <LoginWithSocialMedia
             title="Sign in with Facebook"
-            className="bg-[#4776D0] text-white"
+            className="bg-vivid_blue text-pure_white"
           />
         </div>
 
         <OrSec />
         <form onSubmit={handleSubmit}>
-          <div className="w-full max-w-[506px] h-auto p-8 bg-white shadow-lg border border-[#F4F5F6] rounded-[10px]">
+          <div
+            className={`w-full max-w-[506px] h-auto p-8 bg-pure_white shadow-lg border border-gainsboro_gray rounded-[10px]`}
+          >
             <div className="space-y-[14px]">
               {InputsArray?.map((textInput, index) => (
                 <TextInput

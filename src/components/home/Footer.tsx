@@ -7,17 +7,18 @@ import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 import { RiGlobalLine } from "react-icons/ri";
+import { IMAGES } from "@/constants/images";
 
 const Footer = () => {
   return (
     <>
-      <footer className="lg:h-[300px] h-auto lg:py-0 py-10 mt-[120px] bg-[#242731] text-white">
+      <footer className="lg:h-[300px] h-auto lg:py-0 py-10 mt-[120px] bg-charcoal_black text-white">
         <div className="mx-10 md:mx-28 flex lg:flex-row flex-col justify-center items-center lg:gap-[102px] gap-14 h-full">
           <div className="max-w-[510px]">
             <h1 className="font-[700] text-[36px] mb-[21px] ">
               Download our mobile app ⚡️
             </h1>
-            <p className="text-[16px] text-[#FFFFFFCC]">
+            <p className="text-[16px] text-semi_transparent_white">
               Get exclusive access to car rentals with our mobile app. Download
               now and experience convenience on the go.
             </p>
@@ -39,13 +40,8 @@ const Footer = () => {
         </div>
       </footer>
 
-      <footer className="bg-[#242731] lg:h-[113px] h-auto lg:py-0 py-8 flex flex-col lg:flex-row gap-6 lg:gap-0 items-center justify-between md:px-28 px-10 border-t border-[#FFFFFF1A]">
-        <Image
-          src={"/assets/home-heading.png"}
-          alt="logo"
-          width={200}
-          height={200}
-        />
+      <footer className="bg-charcoal_black lg:h-[113px] h-auto lg:py-0 py-8 flex flex-col lg:flex-row gap-6 lg:gap-0 items-center justify-between md:px-28 px-10 border-t border-white_light_translucent">
+        <Image src={IMAGES.HOME_HEADING} alt="logo" width={200} height={200} />
         <div className="flex gap-[40px] text-white">
           <p className="">Rent</p>
           <p className="">Share</p>

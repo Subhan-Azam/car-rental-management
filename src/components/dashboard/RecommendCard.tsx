@@ -4,16 +4,7 @@ import React from "react";
 import { FaArrowsSpin } from "react-icons/fa6";
 import { TfiSettings } from "react-icons/tfi";
 import { SlEnergy } from "react-icons/sl";
-
-interface RecommendCardPropsTypes {
-  brand: string;
-  className?: string;
-  carName: string;
-  image: string;
-  price: string;
-  views: number;
-  onClick: () => void;
-}
+import { RecommendCardPropsTypes } from "@/types/types";
 
 const RecommendCard: React.FC<RecommendCardPropsTypes> = ({
   brand,

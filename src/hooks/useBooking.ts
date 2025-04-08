@@ -18,10 +18,7 @@ const useBooking = () => {
     await dispatch(carViews(id));
   };
 
-  const uniqueCars = [
-    "All Cars",
-    ...new Set(cars.map?.((car) => car?.brand)),
-  ];
+  const uniqueCars = ["All Cars", ...new Set(cars.map?.((car) => car?.brand))];
 
   const { isOpen, setIsOpen, handleIsOpen } = useModel();
   const [selectedOption, setSelectedOption] = useState<string>(

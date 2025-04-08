@@ -11,7 +11,7 @@ const useCarCrud = () => {
   const [carName, setCarName] = useState<string>(updateCarData?.carName || "");
   const [model, setModel] = useState<string>(updateCarData?.model || "");
   const [mileage, setMileage] = useState<string>(updateCarData?.mileage || "");
-  const [loading, setloading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [engineType, setEngineType] = useState<string>(
     updateCarData?.engine || ""
   );
@@ -28,12 +28,12 @@ const useCarCrud = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setloading(true);
+        setLoading(true);
         dispatch(fetchCars()).unwrap();
       } catch {
         alert("cars not get");
       } finally {
-        setloading(false);
+        setLoading(false);
       }
     };
 
@@ -83,6 +83,7 @@ const useCarCrud = () => {
     }
 
     try {
+      setLoading(true);
       const updateCarDataPayload = {
         id: updateCarData?.id,
         brand,
@@ -103,6 +104,8 @@ const useCarCrud = () => {
       toast.success(response.message || "Car updated successfully.");
     } catch {
       toast.error("Error updating car");
+    } finally {
+      setLoading(false);
     }
   };
 

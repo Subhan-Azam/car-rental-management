@@ -8,6 +8,7 @@ import timeGridDay from "@fullcalendar/timegrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import { EventClickArg } from "@fullcalendar/core";
 import { useEvents } from "@/hooks/useEvent";
+import { COLORS } from "@/constants/colors";
 
 const DailySchedule = () => {
   const { events, addEvent, deleteData } = useEvents();
@@ -15,7 +16,7 @@ const DailySchedule = () => {
   const handleDateClick = async (arg: DateClickArg) => {
     const title = prompt("Enter event title:");
     if (title) {
-      addEvent({ title, start: arg.dateStr, color: "#4CAF50" });
+      addEvent({ title, start: arg.dateStr, color: COLORS.medium_sea_green });
     }
   };
 
@@ -28,7 +29,7 @@ const DailySchedule = () => {
   };
 
   return (
-    <div className="dark:bg-[#242731] bg-white p-5 max-sm:p-2 rounded-lg shadow-lg border border-gray-200 w-full max-w-4xl mx-auto">
+    <div className="dark:bg-charcoal_black bg-white p-5 max-sm:p-2 rounded-lg shadow-lg border border-gray-200 w-full max-w-4xl mx-auto">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridWeek, timeGridDay, interactionPlugin]}
         initialView="dayGridMonth"
@@ -48,7 +49,7 @@ const DailySchedule = () => {
 
       <style jsx global>{`
         .fc-toolbar {
-          background-color: #2884ff !important;
+          background-color: ${COLORS.vivid_blue} !important;
           padding: 12px 15px;
           border-radius: 10px 10px 0 0;
           text-align: center;
@@ -56,7 +57,7 @@ const DailySchedule = () => {
 
         .fc-button-group,
         .fc-button-group * {
-          background-color: #549cfd !important;
+          background-color: ${COLORS.light_sky_blue} !important;
           border-radius: 8px;
         }
 
@@ -73,12 +74,12 @@ const DailySchedule = () => {
 
         .dark .fc-button-group,
         .dark .fc-button-group * {
-          background-color: #374151 !important;
+          background-color: ${COLORS.charcoal_dark} !important;
         }
 
         .dark .fc-button {
           color: white !important;
-          background: #3b82f6 !important;
+          background: ${COLORS.vivid_blue} !important;
         }
 
         .dark .fc-daygrid-day {

@@ -18,13 +18,13 @@ const CarsListCard = () => {
     <div className="space-y-4">
       {loading ? (
         <div className="flex justify-center w-full mt-20">
-          <Loader style="w-8 h-8 border-4 border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom" />
+          <Loader style="w-8 h-8 border-4 border-amethyst_purple border-b-transparent rounded-full inline-block animate-spinCustom" />
         </div>
       ) : (
         <>
           {cars?.map((car) => (
             <div key={car.id}>
-              <div className="flex flex-col lg:flex-row flex-wrap items-center justify-between gap-4 p-4 bg-white shadow-md rounded-[16px] hover:bg-gray-100 dark:bg-[#242731] transition-all duration-300">
+              <div className="flex flex-col lg:flex-row flex-wrap items-center justify-between gap-4 p-4 bg-white shadow-md rounded-[16px] hover:bg-gray-100 dark:bg-charcoal_black transition-all duration-300">
                 <div className="flex flex-col md:flex-row gap-4 flex-1">
                   <div className="min-w-[130px] flex items-center pl-0 sm:pl-5">
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white transition-all duration-300">

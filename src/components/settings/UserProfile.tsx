@@ -39,13 +39,13 @@ const UserProfile = () => {
 
   const userInputArray = [
     {
-      icon: <FiHome className="w-6 h-6 text-[#7C7C8D]" />,
+      icon: <FiHome className="w-6 h-6 text-cool_gray" />,
       title: "Live in",
       type: "text",
       placeholder: loading ? (
         <Loader
           style={
-            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-amethyst_purple border-b-transparent rounded-full inline-block animate-spinCustom"
           }
         />
       ) : city ? (
@@ -59,13 +59,13 @@ const UserProfile = () => {
     },
 
     {
-      icon: <FiHome className="w-6 h-6 text-[#7C7C8D]" />,
+      icon: <FiHome className="w-6 h-6 text-cool_gray" />,
       title: "Street Address",
       type: "text",
       placeholder: loading ? (
         <Loader
           style={
-            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-amethyst_purple border-b-transparent rounded-full inline-block animate-spinCustom"
           }
         />
       ) : street ? (
@@ -79,13 +79,13 @@ const UserProfile = () => {
     },
 
     {
-      icon: <HiOutlineMail className="w-6 h-6 text-[#7C7C8D]" />,
+      icon: <HiOutlineMail className="w-6 h-6 text-cool_gray" />,
       title: "Email Address",
       type: "email",
       placeholder: loading ? (
         <Loader
           style={
-            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-amethyst_purple border-b-transparent rounded-full inline-block animate-spinCustom"
           }
         />
       ) : email ? (
@@ -97,13 +97,13 @@ const UserProfile = () => {
     },
 
     {
-      icon: <LiaBirthdayCakeSolid className="w-6 h-6 text-[#7C7C8D]" />,
+      icon: <LiaBirthdayCakeSolid className="w-6 h-6 text-cool_gray" />,
       title: "Date Of Birth",
       type: "date",
       placeholder: loading ? (
         <Loader
           style={
-            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-amethyst_purple border-b-transparent rounded-full inline-block animate-spinCustom"
           }
         />
       ) : dateOfBirth ? (
@@ -117,13 +117,13 @@ const UserProfile = () => {
     },
 
     {
-      icon: <IoIosMale className="w-6 h-6 text-[#7C7C8D]" />,
+      icon: <IoIosMale className="w-6 h-6 text-cool_gray" />,
       title: "Gender",
       type: "text",
       placeholder: loading ? (
         <Loader
           style={
-            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom"
+            "ml-7 mt-[2px] w-[15px] h-[15px] border-[1.5px] border-amethyst_purple border-b-transparent rounded-full inline-block animate-spinCustom"
           }
         />
       ) : gender ? (
@@ -141,14 +141,14 @@ const UserProfile = () => {
     <>
       <div className="mt-12 px-4">
         <div className="mb-6">
-          <h1 className="text-[#242731] text-[18px] md:text-[20px] font-bold mb-2 dark:text-white transition-all duration-300">
+          <h1 className="text-charcoal_black text-[18px] md:text-[20px] font-bold mb-2 dark:text-white transition-all duration-300">
             Profile
           </h1>
-          <p className="text-[#5F6165] text-[16px] md:text-base dark:text-[#7C7C8D] transition-all duration-300">
+          <p className="text-slate_gray text-[16px] md:text-base dark:text-cool_gray transition-all duration-300">
             Update your photo and personal details here.
           </p>
         </div>
-        <div className="border-t border-[#E9EAEC] dark:border-t-[#323745] transition-all duration-300"></div>
+        <div className="border-t border-light_gray_blue_b dark:border-t-onyx_gray transition-all duration-300"></div>
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
         <div className="max-w-[788px] flex flex-col gap-6 my-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -166,14 +166,14 @@ const UserProfile = () => {
             ))}
           </div>
         </div>
-        <div className="border-t border-[#E9EAEC] dark:border-t-[#323745] transition-all duration-300"></div>
+        <div className="border-t border-light_gray_blue_b dark:border-t-onyx_gray transition-all duration-300"></div>
         <div className="flex flex-col md:flex-row items-center justify-between max-w-3xl my-6 gap-6">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-16 w-full">
             <div className="flex flex-col gap-1">
-              <h2 className="text-[#242731] font-medium text-[16px] dark:text-white transition-all duration-300">
+              <h2 className="text-charcoal_black font-medium text-[16px] dark:text-white transition-all duration-300">
                 Your Photo
               </h2>
-              <p className="text-sm text-[#7C7C8D]">
+              <p className="text-sm text-cool_gray">
                 This will be displayed on your profile
               </p>
             </div>
@@ -203,7 +203,7 @@ const UserProfile = () => {
             </div>
           </div>
           <div className="flex gap-4">
-            <button className="font-medium text-[#7C7C8D] hover:text-red-600">
+            <button className="font-medium text-cool_gray hover:text-red-600">
               Delete
             </button>
 
@@ -211,12 +211,11 @@ const UserProfile = () => {
               title="Update"
               para="Do you really want to update?"
               onClick={updateHandler}
-              className2="font-medium text-[#A162F7] hover:text-purple-700"
+              className2="font-medium text-amethyst_purple hover:text-purple-700"
             />
           </div>
         </div>
-        <div className="border-t border-[#E9EAEC] dark:border-t-[#323745] transition-all duration-300"></div>
-       
+        <div className="border-t border-light_gray_blue_b dark:border-t-onyx_gray transition-all duration-300"></div>
       </div>
     </>
   );

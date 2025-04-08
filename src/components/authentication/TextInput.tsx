@@ -3,14 +3,7 @@ import React from "react";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoEyeOffOutline } from "react-icons/io5";
 import useHideShowPassword from "@/hooks/useHideShowPassword";
-
-interface TextInputProps {
-  value: string;
-  onChange: (value: string) => void;
-  type?: string;
-  title?: string;
-  placeholder?: string;
-}
+import { TextInputProps } from "@/types/types";
 
 const TextInput: React.FC<TextInputProps> = ({
   value,
@@ -26,7 +19,7 @@ const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <div className="flex flex-col gap-[12px] relative">
-      <label className="font-[500] dark:text-white transition-all duration-300">
+      <label className="font-[500] dark:text-pure_white transition-all duration-300">
         {title}
       </label>
       <input
@@ -35,7 +28,7 @@ const TextInput: React.FC<TextInputProps> = ({
         type={inputType}
         name={type === "password" ? "password" : "email"}
         placeholder={placeholder}
-        className="w-full p-3 pr-11 border border-[#B1B5C3] rounded-[10px] focus:outline-[#A162F7] dark:dark:bg-[#323745] dark:border-none dark:text-white"
+        className="w-full p-3 pr-11 border border-light_grayish_blue rounded-[10px] focus:outline-amethyst_purple dark:dark:bg-onyx_gray dark:border-none dark:text-pure_white"
         required
       />
       {type === "password" && (

@@ -13,7 +13,7 @@ const CalendarPicker = () => {
   const [view, setView] = useState<"month" | "week">("month");
 
   return (
-    <div className="dark:bg-[#242731] bg-white p-5 rounded-lg shadow-lg w-full max-w-md mx-auto md:max-w-full">
+    <div className="dark:bg-charcoal_black bg-white p-5 rounded-lg shadow-lg w-full max-w-md mx-auto md:max-w-full">
       <div className="flex items-center justify-between pb-4">
         <h2 className="dark:text-white text-lg text-gray-900 font-semibold text-center md:text-left">
           {date.toLocaleString("default", { month: "long" })},{" "}
@@ -49,11 +49,11 @@ const CalendarPicker = () => {
       </div>
 
       {/* Toggle Buttons */}
-      <div className="flex items-center justify-center dark:bg-[#2B2E38] bg-[#F9F9F9] rounded-[19px] mb-3 w-full">
+      <div className="flex items-center justify-center dark:bg-dark_charcoal bg-off_white_light rounded-[19px] mb-3 w-full">
         <button
           className={`flex-1 py-2 rounded-full transition ${
             view === "week"
-              ? "bg-[#FF6370] text-white"
+              ? "bg-light_coral_red text-white"
               : "dark:text-white text-gray-500"
           }`}
           onClick={() => setView("week")}
@@ -63,7 +63,7 @@ const CalendarPicker = () => {
         <button
           className={`flex-1 py-2 rounded-[19px] transition ${
             view === "month"
-              ? "bg-[#FF6370] text-white"
+              ? "bg-light_coral_red text-white"
               : "dark:text-white text-gray-500"
           }`}
           onClick={() => setView("month")}

@@ -1,30 +1,8 @@
-import { axiosInstance } from "@/axiosInstance/axiosInstance";
+import { axiosInstance } from "@/lib/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
-
-export interface Car {
-  id: string;
-  userID: string;
-  brand: string;
-  carName: string;
-  model: string;
-  mileage: string;
-  engine: string;
-  transmission: string;
-  price: string;
-  carType: string;
-  description: string;
-  image: string;
-  imageUrl: string;
-  views: number;
-}
-
-interface AddCarState {
-  cars: Car[];
-  loading: boolean;
-  error: string | null;
-  updateCarData: Car | null;
-}
+import { AddCarState, carStateTypes } from "@/types/types";
+import { updateCarDataType } from "@/types/types";
 
 const initialState: AddCarState = {
   cars: [],
@@ -32,19 +10,6 @@ const initialState: AddCarState = {
   error: null,
   updateCarData: null,
 };
-
-interface carStateTypes {
-  brand: string;
-  carName: string;
-  model: string;
-  mileage: string;
-  engineType: string;
-  transmissionType: string;
-  price: string;
-  carType: string;
-  description: string;
-  image: string;
-}
 
 export const addCar = createAsyncThunk(
   "CarCrud/add",
@@ -93,19 +58,7 @@ export const deleteCar = createAsyncThunk(
   }
 );
 
-interface updateCarDataType {
-  id: string;
-  brand: string;
-  carName: string;
-  model: string;
-  mileage: string;
-  engineType: string;
-  transmissionType: string;
-  price: string;
-  carType: string;
-  description: string;
-  image: string;
-}
+
 
 export const updateCar = createAsyncThunk(
   "CarCrud/updateCar",

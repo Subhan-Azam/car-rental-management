@@ -8,11 +8,11 @@ import { HiOutlineCalendar, HiOutlineShoppingBag } from "react-icons/hi";
 import { LuMessageSquareText, LuUsersRound } from "react-icons/lu";
 import { SlSettings } from "react-icons/sl";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import NavbarMainLogo from "../../public/assets/Heading.png";
 import { signOut, useSession } from "next-auth/react";
 import { FaRegListAlt } from "react-icons/fa";
 import { TbLogout2 } from "react-icons/tb";
 import { MdOutlineDesignServices } from "react-icons/md";
+import { IMAGES } from "@/constants/images";
 
 const SideBar = () => {
   const session = useSession();
@@ -74,13 +74,17 @@ const SideBar = () => {
           },
         ];
   return (
-    <aside className="pt-1 flex flex-col justify-between w-[60px] sm:w-[250px] h-screen fixed left-0 top-0 bg-white dark:bg-[#242731] dark:text-white transition-all duration-300">
+    <aside
+      className={`pt-1 flex flex-col justify-between w-[60px] sm:w-[250px] h-screen fixed left-0 top-0 bg-pure_white dark:bg-charcoal_black dark:text-pure_white transition-all duration-300`}
+    >
       <div>
         <div className="flex items-center p-6">
           <Image
-            src={NavbarMainLogo}
+            src={IMAGES.NAVBAR_LOGO}
             className="hidden sm:block"
             alt="Navbar Logo does not show"
+            width={200}
+            height={200}
           />
         </div>
         <div className="px-3 pb-4 pt-5">
@@ -89,7 +93,7 @@ const SideBar = () => {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 focus:bg-[#F3F5F8] text-[#5F6165] dark:hover:bg-[#292E3D] dark:focus:bg-[#292E3D] dark:text-[#808191]"
+                  className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 active:bg-gray-200 focus:bg-off_white text-slate_gray dark:hover:bg-charcoal_blue dark:focus:bg-charcoal_blue dark:text-storm_gray"
                 >
                   <span className="w-[20px]">{item.icon}</span>
                   <span className="text-sm font-medium sm:block hidden">
@@ -107,10 +111,10 @@ const SideBar = () => {
           <li>
             <Link
               href="/dashboard/settings"
-              className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#292E3D] focus:bg-[#F3F5F8] dark:focus:bg-[#292E3D]"
+              className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-charcoal_blue focus:bg-off_white dark:focus:bg-charcoal_blue"
             >
-              <SlSettings className="text-gray-600 w-[20px] dark:text-[#808191]" />
-              <span className="text-sm font-medium hidden sm:block dark:text-[#808191]">
+              <SlSettings className="text-gray-600 w-[20px] dark:text-storm_gray" />
+              <span className="text-sm font-medium hidden sm:block dark:text-storm_gray">
                 Settings
               </span>
             </Link>
@@ -119,10 +123,10 @@ const SideBar = () => {
           <li className="mb-10">
             <div
               onClick={() => signOut()}
-              className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-[#292E3D] focus:bg-[#F3F5F8] dark:focus:bg-[#292E3D] cursor-pointer"
+              className="flex items-center gap-x-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-charcoal_blue focus:bg-off_white dark:focus:bg-charcoal_blue cursor-pointer"
             >
-              <TbLogout2 className="text-gray-600 w-[20px] dark:text-[#808191]" />
-              <span className="text-sm font-medium hidden sm:block dark:text-[#808191]">
+              <TbLogout2 className="text-gray-600 w-[20px] dark:text-storm_gray" />
+              <span className="text-sm font-medium hidden sm:block dark:text-storm_gray">
                 LogOut
               </span>
             </div>

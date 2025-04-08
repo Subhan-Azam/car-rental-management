@@ -24,7 +24,9 @@ const NewPassword = () => {
         />
 
         <form onSubmit={handleNewPassword}>
-          <div className="w-[506px] h-auto p-8 bg-white shadow-lg border border-[#F4F5F6] rounded-[10px]">
+          <div
+            className={`w-[506px] h-auto p-8 bg-pure_white shadow-lg border border-gainsboro_gray rounded-[10px]`}
+          >
             <TextInput
               value={newPassword}
               onChange={setNewPassword}

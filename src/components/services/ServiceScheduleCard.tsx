@@ -1,10 +1,5 @@
 import React from "react";
-
-interface ServiceScheduleCardPropsTypes {
-  para?: string;
-  date?: string;
-  price?: string;
-}
+import { ServiceScheduleCardPropsTypes } from "@/types/types";
 
 const ServiceScheduleCard: React.FC<ServiceScheduleCardPropsTypes> = ({
   para,
@@ -13,15 +8,15 @@ const ServiceScheduleCard: React.FC<ServiceScheduleCardPropsTypes> = ({
 }) => {
   return (
     <div>
-      <h3 className=" dark:text-[#E0E4E7] text-[#242731] leading-[20.83px] font-medium ">
+      <h3 className=" dark:text-light_gray_blue text-charcoal_black leading-[20.83px] font-medium ">
         {para}
       </h3>
       <div className="flex items-center justify-between mt-4 ">
-        <h4 className=" text-[#72767C] text-[14px] leading-[18.23px] font-medium ">
+        <h4 className=" text-dove_gray text-[14px] leading-[18.23px] font-medium ">
           {date}
         </h4>
-        <span className="dark:bg-[#242731] bg-[#ECECEC] w-[1px] h-[20px] max-sm:hidden "></span>
-        <h4 className=" text-[#72767C] text-[14px] leading-[18.23px] font-medium">
+        <span className="dark:bg-charcoal_black bg-light_silver w-[1px] h-[20px] max-sm:hidden "></span>
+        <h4 className=" text-dove_gray text-[14px] leading-[18.23px] font-medium">
           {price}
         </h4>
       </div>

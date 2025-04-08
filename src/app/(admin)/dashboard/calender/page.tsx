@@ -7,7 +7,9 @@ const Calender = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 ">
       <div className="flex flex-col gap-y-6">
-        <h1 className="dark:text-white text-[#242731] text-2xl font-bold mb-1 lg:text-left">
+        <h1
+          className={`dark:text-pure_white text-charcoal_black text-2xl font-bold mb-1 lg:text-left`}
+        >
           Calendar
         </h1>
         <CalendarPicker />

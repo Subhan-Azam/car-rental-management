@@ -3,9 +3,9 @@ import { useAppDispatch, useAppSelector } from "@/store/store";
 import {
   fetchUserDetails,
   updateUser,
-  userDetailsProps,
 } from "@/store/slices/userDetailsSlice";
 import { toast } from "react-toastify";
+import { userDetailsProps } from "@/types/types";
 
 const useUserDetails = () => {
   const [email, setEmail] = useState<string>("");

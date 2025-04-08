@@ -1,12 +1,8 @@
 "use client";
 
-import { ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-interface ToastProviderType {
-  children: ReactNode;
-}
+import { ToastProviderType } from "@/types/types";
 
 const ToastProvider = ({ children }: ToastProviderType) => {
   return (

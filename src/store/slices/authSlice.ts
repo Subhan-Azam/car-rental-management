@@ -1,29 +1,7 @@
-import { axiosInstance } from "@/axiosInstance/axiosInstance";
+import { axiosInstance } from "@/lib/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-interface User {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  city: string;
-  street: string;
-  dateOfBirth: Date;
-  gender: string;
-  profilePhoto: string;
-  role: string;
-}
-
-interface AuthStateProps {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  loading: boolean;
-  error: string | null;
-  allUsers: User[];
-}
+import { AuthStateProps, ChangePassword } from "@/types/types";
 
 const initialState: AuthStateProps = {
   firstName: "",
@@ -119,13 +97,6 @@ export const userNewPassword = createAsyncThunk(
     }
   }
 );
-
-interface ChangePassword {
-  id: string;
-  oldPassword: string;
-  newPassword: string;
-  confirmPassword: string;
-}
 
 export const changePassword = createAsyncThunk(
   "auth/changePassword",

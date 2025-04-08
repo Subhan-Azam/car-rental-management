@@ -22,7 +22,7 @@ const Booking = () => {
 
   return (
     <div>
-      <h1 className="font-[700] text-[30px] mb-[30px] dark:text-white">
+      <h1 className="font-[700] text-[30px] mb-[30px] dark:text-pure_white">
         Booking
       </h1>
       <div className="flex max-sm:flex-wrap  gap-3 justify-between items-center mb-[34px]">
@@ -35,15 +35,17 @@ const Booking = () => {
             setSelectedCar={setSelectedCar}
             setSelectedOption={setSelectedOption}
             setIsOpen={setIsOpen}
-            className="text-[#5F6165]"
+            className="text-slate_gray"
           />
         </div>
 
         <div className="flex gap-[16px]">
-          <div className="w-[44px] h-[44px] rounded-full bg-white flex justify-center items-center shadow-md dark:text-white dark:bg-[#242731]">
+          <div
+            className={`w-[44px] h-[44px] rounded-full bg-pure_white flex justify-center items-center shadow-md dark:text-pure_white dark:bg-charcoal_black`}
+          >
             <LuLayoutGrid className="w-[24px]" />
           </div>
-          <div className="w-[44px] h-[44px] rounded-full bg-purple-500 flex justify-center items-center text-white shadow-md">
+          <div className="w-[44px] h-[44px] rounded-full bg-purple-500 flex justify-center items-center text-pure_white shadow-md">
             <VscSettings className="w-[24px]" />
           </div>
         </div>
@@ -65,7 +67,7 @@ const Booking = () => {
             </Link>
           ))
         ) : (
-          <p className="text-gray-500 dark:text-white font-bold text-xl">
+          <p className="text-gray-500 dark:text-pure_white font-bold text-xl">
             No cars available.
           </p>
         )}

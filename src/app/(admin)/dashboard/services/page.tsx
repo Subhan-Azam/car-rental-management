@@ -3,6 +3,7 @@ import ServicesSchedule from "@/components/services/ServicesSchedule";
 import ServicesStation from "@/components/services/ServicesStation";
 import VehicleConditionSummary from "@/components/services/VehicleConditionSummary";
 import YourOrder from "@/components/services/YourOrder";
+import { IMAGES } from "@/constants/images";
 import React from "react";
 
 const Services = () => {
@@ -20,37 +21,37 @@ const Services = () => {
       </div>
 
       <div className="mt-8">
-        <div className="grid place-items-center sm:place-items-start grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 dark:bg-[#242731] bg-white p-6 rounded-[14px]">
+        <div className={`grid place-items-center sm:place-items-start grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 dark:bg-charcoal_black bg-pure_white p-6 rounded-[14px]`}>
           <VehicleConditionSummary
-            className="bg-[#A162F7] w-full"
+            className="bg-amethyst_purple w-full"
             condition="Don’t Replace"
             parts="Engine"
             title="Oil Level"
-            imgSrc="/assets/oil-level.png"
+            imgSrc={IMAGES.OIL_LEVEL}
           />
 
           <VehicleConditionSummary
-            className="bg-[#70CF97] w-full"
+            className="bg-medium_spring_green w-full"
             condition="Still Good"
             parts="Wheels"
             title="Brake Pads"
-            imgSrc="/assets/brake-pad.png"
+            imgSrc={IMAGES.BRAKE_PAD}
           />
 
           <VehicleConditionSummary
-            className="bg-[#F6CC0D] w-full"
+            className="bg-vibrant_yellow w-full"
             condition="Need Change"
             parts="Drivetrain"
             title="Steering"
-            imgSrc="/assets/steering.png"
+            imgSrc={IMAGES.STEERING}
           />
 
           <VehicleConditionSummary
-            className="bg-[#FF764C] w-full"
+            className="bg-vivid_orange w-full"
             condition="Don’t Replace"
             parts="Engine"
             title="Oil Level"
-            imgSrc="/assets/oil-level.png"
+            imgSrc={IMAGES.OIL_LEVEL}
           />
         </div>
       </div>

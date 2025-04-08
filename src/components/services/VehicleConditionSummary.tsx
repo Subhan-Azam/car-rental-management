@@ -1,13 +1,6 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import React from "react";
-
-interface ServicesCardPropsTypes {
-  imgSrc?: string | StaticImageData;
-  title?: string;
-  parts?: string;
-  condition?: string;
-  className?: string;
-}
+import { ServicesCardPropsTypes } from "@/types/types";
 
 const VehicleConditionSummary: React.FC<ServicesCardPropsTypes> = ({
   imgSrc,
@@ -31,16 +24,16 @@ const VehicleConditionSummary: React.FC<ServicesCardPropsTypes> = ({
       </h2>
 
       <div className="w-full flex items-center justify-between mt-3">
-        <h4 className="dark:text-[#808191] text-[#72767C] text-[13px] sm:text-[14px] font-medium">
+        <h4 className="dark:text-storm_gray text-dove_gray text-[13px] sm:text-[14px] font-medium">
           {parts}
         </h4>
-        <span className="bg-[#ECECEC] w-px h-5 mx-2"></span>
-        <h4 className="dark:text-[#808191] text-[#72767C] text-[13px] sm:text-[14px] font-medium">
+        <span className="bg-light_silver w-px h-5 mx-2"></span>
+        <h4 className="dark:text-storm_gray text-dove_gray text-[13px] sm:text-[14px] font-medium">
           {condition}
         </h4>
       </div>
 
-      <div className="mt-4 flex bg-[#F5F5F5] w-full h-[3px] rounded-lg">
+      <div className={`mt-4 flex bg-white_smoke w-full h-[3px] rounded-lg`}>
         <span className={` ${className} h-[5px] rounded-lg mt-[-1px]`}></span>
       </div>
     </div>

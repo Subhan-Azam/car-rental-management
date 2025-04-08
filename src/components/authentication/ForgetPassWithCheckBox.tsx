@@ -8,14 +8,14 @@ const ForgetPassWithCheckBox = () => {
         <input type="checkbox" className="mr-2 text-red-500" />
         <label
           htmlFor="remember-me"
-          className="text-[#B1B5C3] font-[500] text-[16px]"
+          className="text-light_grayish_blue font-[500] text-[16px]"
         >
           Remember me
         </label>
       </div>
       <Link
         href="/auth/forgetPassword"
-        className="text-[#A162F7] font-[500] text-[16px]"
+        className="text-amethyst_purple font-[500] text-[16px]"
       >
         Forgot your password?
       </Link>

@@ -10,7 +10,7 @@ const ImpressiveCollection = () => {
     useFilterCars();
 
   return (
-    <div className="py-[100px] bg-[#F5F5F5] md:px-28 px-10">
+    <div className={`py-[100px] bg-white_smoke md:px-28 px-10`}>
       <div className="text-center max-w-[720px] mx-auto">
         <h1 className="text-[44px] font-[700]">
           Our Impressive Collection of Cars
@@ -22,14 +22,14 @@ const ImpressiveCollection = () => {
         </p>
       </div>
       {loading ? (
-        <Loader style="w-8 h-8 border-4 border-[#A162F7] border-b-transparent rounded-full inline-block animate-spinCustom" />
+        <Loader style="w-8 h-8 border-4 border-amethyst_purple border-b-transparent rounded-full inline-block animate-spinCustom" />
       ) : (
         <>
           <div className="flex sm:flex-nowrap flex-wrap gap-[16px] justify-center mt-[48px]">
             <HomeButton
               title="Popular Cars"
               onClick={() => setSelectedCar(null)}
-              style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] bg-[#FFFFFF] rounded-[58px] ${
+              style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] bg-pure_white rounded-[58px] ${
                 selectedCar === null
                   ? "bg-black text-white"
                   : "bg-white text-black hover:bg-gray-200 transition-all duration-250 ease-in-out"
@@ -40,7 +40,7 @@ const ImpressiveCollection = () => {
                 key={carType}
                 onClick={() => setSelectedCar(carType)}
                 carType={carType}
-                style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] bg-[#FFFFFF] rounded-[58px] ${
+                style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] bg-pure_white rounded-[58px] ${
                   selectedCar === carType
                     ? "bg-black text-white"
                     : "bg-white text-black hover:bg-gray-200 transition-all duration-250 ease-in-out"

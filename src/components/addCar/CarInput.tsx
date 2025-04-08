@@ -1,12 +1,6 @@
 import React from "react";
+import { CarInputProps } from "@/types/types";
 
-interface CarInputProps {
-  type: string;
-  title?: string;
-  placeholder?: string;
-  value?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-}
 const CarInput = ({
   type,
   title,
@@ -16,7 +10,7 @@ const CarInput = ({
 }: CarInputProps) => {
   return (
     <div className="w-full">
-      <label className="block text-[#7C7C8D] font-[500] mb-2 dark:text-[#E0E4E7]">
+      <label className="block text-cool_gray font-[500] mb-2 dark:text-light_gray_blue">
         {title}
       </label>
       <input
@@ -25,7 +19,7 @@ const CarInput = ({
         type={type}
         name="modelYear"
         placeholder={placeholder}
-        className="w-full px-[22px] py-[14px] rounded-[10px] font-[500] text-[#5F6165] border outline-none focus:outline-[#A162F7] dark:bg-[#1F2128] dark:text-[#7C7C8D] dark:border-[#2C303D] transition-all duration-300"
+        className={`w-full px-[22px] py-[14px] rounded-[10px] font-[500] text-slate_gray border outline-none focus:outline-amethyst_purple dark:bg-jet_black dark:text-cool_gray dark:border-gunmetal_gray transition-all duration-300`}
         required
       />
     </div>

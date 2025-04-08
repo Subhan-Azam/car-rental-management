@@ -1,5 +1,6 @@
 "use client";
 
+import { COLORS } from "@/constants/colors";
 import React, { PureComponent } from "react";
 import {
   BarChart,
@@ -38,32 +39,32 @@ export default class SpeedChart extends PureComponent {
           >
             <CartesianGrid
               strokeDasharray="3 3"
-              stroke="#F2F2F2"
+              stroke={COLORS.light_gray}
               horizontal={true}
               vertical={false}
             />
 
-            <XAxis dataKey="name" stroke="#fff" tick={false} />
+            <XAxis dataKey="name" stroke={COLORS.pure_white} tick={false} />
 
             <YAxis
               domain={[0, 30]}
-              stroke="#fff"
+              stroke={COLORS.pure_white}
               tick={{ fill: "black", fontSize: 14 }}
               ticks={[0, 5, 10, 15, 20, 25, 30]}
             />
 
             <Tooltip
               contentStyle={{
-                backgroundColor: "#333",
+                backgroundColor: COLORS.dark_charcoal_a,
                 border: "none",
-                color: "#fff",
+                color: COLORS.pure_white,
               }}
               cursor={{ fill: "rgba(255, 255, 255, 0.1)" }}
             />
 
             <Bar
               dataKey="speed"
-              fill="#FF6370"
+              fill={COLORS.light_coral_red}
               radius={[10, 10, 0, 0]}
               barSize={24}
             >
@@ -72,7 +73,7 @@ export default class SpeedChart extends PureComponent {
                   key={index}
                   value={entry.name === "Thu" ? "23km/h" : ""}
                   position="top"
-                  fill="#fff"
+                  fill={COLORS.pure_white}
                   fontSize={14}
                   offset={10}
                 />

@@ -1,4 +1,5 @@
 "use client";
+import { COLORS } from "@/constants/colors";
 import React from "react";
 import {
   AreaChart,
@@ -28,12 +29,24 @@ const DashboardCarsChart = () => {
       >
         <defs>
           <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#FF764C" stopOpacity={0.7} />
-            <stop offset="100%" stopColor="#FF764C" stopOpacity={0} />
+            <stop
+              offset="0%"
+              stopColor={COLORS.vivid_orange}
+              stopOpacity={0.7}
+            />
+            <stop
+              offset="100%"
+              stopColor={COLORS.vivid_orange}
+              stopOpacity={0}
+            />
           </linearGradient>
         </defs>
 
-        <CartesianGrid vertical={true} horizontal={false} stroke="#F2F2F2" />
+        <CartesianGrid
+          vertical={true}
+          horizontal={false}
+          stroke={COLORS.light_gray}
+        />
         <XAxis dataKey="name" />
         <Tooltip
           cursor={false}
@@ -46,7 +59,7 @@ const DashboardCarsChart = () => {
             outline: "none",
           }}
           itemStyle={{
-            color: "#FF764C",
+            color: COLORS.vivid_orange,
             fontWeight: 700,
             fontSize: "10px",
           }}
@@ -59,7 +72,7 @@ const DashboardCarsChart = () => {
         <Area
           type="monotone"
           dataKey="pv"
-          stroke="#FF764C"
+          stroke={COLORS.vivid_orange}
           fill="url(#colorPv)"
         />
       </AreaChart>

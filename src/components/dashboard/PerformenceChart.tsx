@@ -1,10 +1,7 @@
+import { COLORS } from "@/constants/colors";
 import React, { PureComponent } from "react";
 import { PieChart, Pie, Cell } from "recharts";
-
-interface PerformenceChartProps {
-  title: string;
-  progressColor?: string;
-}
+import { PerformenceChartProps } from "@/types/types";
 
 export default class PerformenceChart extends PureComponent<PerformenceChartProps> {
   renderCustomLabel = () => {
@@ -34,7 +31,10 @@ export default class PerformenceChart extends PureComponent<PerformenceChartProp
       { name: "Remaining", value: remaining },
     ];
 
-    const COLORS = [progressColor || "#F4F5F9", "#2F2F2F"];
+    const COLOR = [
+      progressColor || COLORS.gainsboro_gray,
+      COLORS.charcoal_gray,
+    ];
 
     return (
       <div style={{ width: "200px", height: "200px" }}>
@@ -45,7 +45,7 @@ export default class PerformenceChart extends PureComponent<PerformenceChartProp
             cy={100}
             innerRadius={40}
             outerRadius={50}
-            fill="#8884d8"
+            fill={COLORS.light_indigo}
             dataKey="value"
             startAngle={90}
             endAngle={-270}
@@ -53,10 +53,7 @@ export default class PerformenceChart extends PureComponent<PerformenceChartProp
             labelLine={false}
           >
             {data.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
-              />
+              <Cell key={`cell-${index}`} fill={COLOR[index % COLOR.length]} />
             ))}
           </Pie>
         </PieChart>

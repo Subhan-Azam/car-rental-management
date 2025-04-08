@@ -3,19 +3,20 @@ import client from "../../../lib/contentfulClient";
 import { MdArrowBack } from "react-icons/md";
 import { MdArrowForward } from "react-icons/md";
 import Image from "next/image";
+import { CMSType } from "@/types/types";
 
 const fetchTestimonial = async () => {
   const response = await client.getEntries({
     content_type: "testimonial",
   });
 
-  const testimonials = response.items.map((item) => {
+  const testimonials = response.items.map((item: CMSType) => {
     return {
-      heading: item.fields.heading,
-      description: item.fields.description,
-      image: `https:${item.fields.image?.fields.file.url}`,
-      userName: item.fields.userName,
-      area: item.fields.area,
+      heading: item?.fields?.heading || "",
+      description: item?.fields?.description || "",
+      image: item?.fields?.image?.fields?.file?.url || "",
+      userName: item?.fields?.userName || "",
+      area: item?.fields?.area || "",
     };
   });
   return testimonials;
@@ -34,16 +35,16 @@ const Testimonial = async () => {
                 </h1>
               </div>
               <div className="flex gap-4 justify-center mt-5 md:mt-0">
-                <button className="flex items-center justify-center w-[64px] h-[64px] rounded-full text-[24px] border border-[#C0C0C0] text-[#C0C0C0] focus:bg-[#242731] focus:text-white">
+                <button className="flex items-center justify-center w-[64px] h-[64px] rounded-full text-[24px] border border-silver_gray text-silver_gray focus:bg-charcoal_black focus:text-white">
                   <MdArrowBack />
                 </button>
-                <button className="flex items-center justify-center w-[64px] h-[64px] rounded-full text-[24px] border border-[#C0C0C0] text-[#C0C0C0] focus:bg-[#242731] focus:text-white">
+                <button className="flex items-center justify-center w-[64px] h-[64px] rounded-full text-[24px] border border-silver_gray text-silver_gray focus:bg-charcoal_black focus:text-white">
                   <MdArrowForward />
                 </button>
               </div>
             </div>
 
-            <p className="font-[600] text-[32px] mb-[64px] text-[#0F0F0F]">
+            <p className="font-[600] text-[32px] mb-[64px] text-jet_black_a">
               {String(item.description)}
             </p>
 
@@ -56,12 +57,10 @@ const Testimonial = async () => {
                 className="w-[80px] h-[80px] rounded-full"
               />
               <div className="">
-                <h3 className="font-[700] text-[24px] text-[#0F0F0F]">
+                <h3 className="font-[700] text-[24px] text-jet_black_a">
                   {String(item.userName)}
                 </h3>
-                <p className="text-[20px] text-[#737373]">
-                  {String(item.area)}
-                </p>
+                <p className="text-[20px] text-dim_gray">{String(item.area)}</p>
               </div>
             </div>
           </div>

@@ -1,12 +1,7 @@
 "use client";
 import { useState } from "react";
+import { CarRentalFormType } from "@/types/types";
 
-interface CarRentalFormType {
-  title: string;
-  icon: React.ReactElement;
-  type: "text" | "date";
-  placeholder?: string;
-}
 export default function CarRentalForm({
   title,
   icon,

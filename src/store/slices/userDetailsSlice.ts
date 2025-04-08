@@ -1,24 +1,7 @@
-import { axiosInstance } from "@/axiosInstance/axiosInstance";
+import { axiosInstance } from "@/lib/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-export interface userDetailsProps {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  city: string;
-  street: string;
-  dateOfBirth: Date;
-  gender: string;
-  profilePhoto: string;
-}
-
-interface UserState {
-  userDetails: userDetailsProps | null;
-  loading: boolean;
-  error: string | null;
-}
+import { userDetailsProps } from "@/types/types";
+import { UserState } from "@/types/types";
 
 const initialState: UserState = {
   userDetails: null,

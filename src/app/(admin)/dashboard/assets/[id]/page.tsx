@@ -13,13 +13,15 @@ const Assets = () => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="dark:text-white text-[#242731] leading-[39.06px] text-[24px] sm:text-[28px] md:text-[30px] font-bold">
+        <h1
+          className={`dark:text-pure_white text-charcoal_black leading-[39.06px] text-[24px] sm:text-[28px] md:text-[30px] font-bold`}
+        >
           {car?.carName}
         </h1>
       </div>
 
       <div className="flex flex-col xl:flex-row gap-4 sm:gap-6 mt-4">
-        <div className="flex flex-col dark:bg-[#242731] h-[675px] bg-[#438FFE] rounded-[14px] w-full xl:w-[361px] p-5 transition-all duration-300">
+        <div className="flex flex-col dark:bg-charcoal_black h-[675px] bg-azure_blue rounded-[14px] w-full xl:w-[361px] p-5 transition-all duration-300">
           <div className="flex flex-col gap-5">
             <BlueCard
               title1="Brand"

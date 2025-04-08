@@ -4,6 +4,7 @@ import PageChange from "@/components/authentication/PageChange";
 import AuthBtn from "@/components/button/AuthBtn";
 import TextInput from "@/components/authentication/TextInput";
 import useChangePassword from "@/hooks/useChangePassword";
+
 const UserPassword = () => {
   const {
     oldPassword,
@@ -24,7 +25,9 @@ const UserPassword = () => {
           <PageChange title="Change Your Password!" />
 
           <form onSubmit={handlePasswordChange}>
-            <div className="flex flex-col space-y-4 w-full h-auto p-8 bg-white shadow-lg  rounded-[10px] dark:bg-[#1F2128] transition-all duration-300">
+            <div
+              className={`flex flex-col space-y-4 w-full h-auto p-8 bg-white shadow-lg  rounded-[10px] dark:bg-jet_black transition-all duration-300`}
+            >
               <TextInput
                 value={oldPassword}
                 onChange={setOldPassword}

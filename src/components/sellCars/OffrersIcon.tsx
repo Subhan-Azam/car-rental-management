@@ -1,12 +1,6 @@
 import React from "react";
+import { OffrersIconType } from "@/types/types";
 
-interface OffrersIconType {
-  title: string;
-  para: string;
-  icon: React.ReactNode;
-  style?: string;
-  iconStyle?: string;
-}
 const OffrersIcon = ({
   title,
   para,
@@ -22,7 +16,9 @@ const OffrersIcon = ({
         {icon}
       </div>
       <h3 className={`${style} font-[700] text-[20px]`}>{title}</h3>
-      <p className="font-[500] text-[12px] text-[#808191] w-[80px] sm:w-auto">{para}</p>
+      <p className="font-[500] text-[12px] text-storm_gray w-[80px] sm:w-auto">
+        {para}
+      </p>
     </div>
   );
 };

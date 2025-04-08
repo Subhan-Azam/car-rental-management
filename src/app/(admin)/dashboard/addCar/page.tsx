@@ -41,12 +41,16 @@ const AddCar = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <div className="bg-white  p-7 rounded-md dark:bg-[#242731] transition-all duration-300">
+    <div
+      className={`bg-pure_white  p-7 rounded-md dark:bg-charcoal_black transition-all duration-300`}
+    >
       <div className="mb-6">
-        <h1 className="text-[#242731] text-xl md:text-2xl font-bold mb-2 dark:text-white">
+        <h1
+          className={`text-char text-xl md:text-2xl font-bold mb-2 dark:text-pure_white`}
+        >
           Add Car
         </h1>
-        <p className="text-[#7C7C8D] text-[16px] md:text-base">
+        <p className="text-cool_gray text-[16px] md:text-base">
           You can add a new car
         </p>
       </div>
@@ -125,7 +129,7 @@ const AddCar = () => {
         </div>
 
         <div>
-          <label className="block text-[#7C7C8D] mb-2 font-[500] dark:text-[#E0E4E7]">
+          <label className="block text-cool_graymb-2 font-[500] dark:text-light_gray_blue">
             Description:
           </label>
 
@@ -134,7 +138,7 @@ const AddCar = () => {
             onChange={(e) => setDescription(e.target.value)}
             name="description"
             placeholder="Car Description"
-            className="w-full px-[22px] py-[14px] font-[500] text-[#5F6165] border outline-none focus:outline-[#A162F7] dark:bg-[#1F2128] dark:text-[#7C7C8D] dark:border-[#2C303D] rounded-[10px] transition-all duration-300"
+            className={`w-full px-[22px] py-[14px] font-[500] text-slate_gray border outline-none focus:outline-amethyst_purple dark:bg-jet_black dark:text-cool_gray dark:border-gunmetal_gray rounded-[10px] transition-all duration-300`}
             rows={3}
             required
           ></textarea>
@@ -149,7 +153,7 @@ const AddCar = () => {
         />
         <div
           onClick={handleImageClick}
-          className="cursor-pointer w-[200px] h-[100px]"
+          className="cursor-pointer w-[200px] h-[100px] "
         >
           {image ? (
             <Image
@@ -157,11 +161,13 @@ const AddCar = () => {
               width={100}
               height={100}
               alt="user photo"
-              className="w-full h-full object-cover rounded-[10px] dark:border-[#2C303D] transition-all duration-300"
+              className="w-full h-full object-cover rounded-[10px]  dark:border-gunmetal_gray transition-all duration-300"
             />
           ) : (
-            <div className="group w-full h-full border outline-none rounded-[10px] flex justify-center items-center dark:border-[#2C303D] dark:bg-[#1F2128] transition-all duration-300">
-              <IoCloudUploadOutline className="text-[60px] group-hover:scale-125 hover:outline-[#A162F7] transition-all ease-in-out duration-200 text-[#7C7C8D] dark:text-white" />
+            <div
+              className={`group w-full h-full border outline-none rounded-[10px] flex justify-center items-center dark:border-gunmetal_gray dark:bg-jet_black transition-all duration-300`}
+            >
+              <IoCloudUploadOutline className="text-[60px] group-hover:scale-125 hover:outline-amethyst_purple transition-all ease-in-out duration-200 text-cool_gray dark:text-pure_white" />
             </div>
           )}
         </div>

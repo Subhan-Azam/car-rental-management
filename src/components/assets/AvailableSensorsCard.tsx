@@ -2,11 +2,7 @@
 import React, { useState } from "react";
 import { IoCheckmark } from "react-icons/io5";
 import { GoGraph } from "react-icons/go";
-
-interface AvailableSensorsCardPropsTypes {
-  para?: string;
-  unit?: string;
-}
+import { AvailableSensorsCardPropsTypes } from "@/types/types";
 
 const AvailableSensorsCard: React.FC<AvailableSensorsCardPropsTypes> = ({
   para,
@@ -24,22 +20,30 @@ const AvailableSensorsCard: React.FC<AvailableSensorsCardPropsTypes> = ({
           className="hidden peer"
         />
         <div
-          className={`w-[18px] h-[18px] rounded-[3px] border-[1px] border-[#A4A5A6] flex items-center justify-center transition-all duration-300 
-          ${checked ? "bg-[#FF6370] border-none" : "bg-white border-gray-400"}`}
+          className={`w-[18px] h-[18px] rounded-[3px] border-[1px] border-light_gray flex items-center justify-center transition-all duration-300 
+          ${
+            checked
+              ? "bg-light_coral_red border-none"
+              : "bg-pure_white border-gray-400"
+          }`}
         >
-          {checked && <IoCheckmark className="text-white" />}
+          {checked && <IoCheckmark className="text-pure_white" />}
         </div>
       </label>
 
       <h1
-        className={` dark:text-white text-[13px] font-medium leading-[16.93px]  transition-colors duration-300 ${
-          checked ? "dark:text-[#D43B3B] text-[#D43B3B]" : "text-[#242731]"
+        className={` dark:text-pure_white text-[13px] font-medium leading-[16.93px]  transition-colors duration-300 ${
+          checked
+            ? "dark:text-crimson_red text-crimson_red"
+            : "text-charcoal_black"
         }`}
       >
         Asset - {para}
         <span
           className={`${
-            checked ? "dark:text-[#D43B3B] text-[#D43B3B]" : "text-[#A4A5A6] "
+            checked
+              ? "dark:text-crimson_red text-crimson_red"
+              : "text-light_gray "
           }`}
         >
           ({unit})
@@ -48,7 +52,7 @@ const AvailableSensorsCard: React.FC<AvailableSensorsCardPropsTypes> = ({
 
       <GoGraph
         className={`w-5 h-5 transition-colors duration-300 ${
-          checked ? "text-[#D43B3B]" : "text-[#A4A5A6] "
+          checked ? "text-crimson_red" : "text-light_gray "
         }`}
       />
     </div>

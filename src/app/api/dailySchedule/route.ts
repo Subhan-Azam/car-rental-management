@@ -1,4 +1,5 @@
 import { prisma } from "@/config/prisma";
+import { COLORS } from "@/constants/colors";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -29,7 +30,7 @@ export async function POST(req: Request) {
       data: {
         title,
         start: new Date(start),
-        color: color || "#4CAF50",
+        color: color || COLORS.medium_sea_green,
       },
     });
 

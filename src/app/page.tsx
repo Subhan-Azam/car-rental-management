@@ -10,6 +10,8 @@ import { IoArrowForwardOutline } from "react-icons/io5";
 import Footer from "@/components/home/Footer";
 import WorkCard from "@/components/home/WorkCard";
 import Image from "next/image";
+import { IMAGES } from "@/constants/images";
+import { CMSType } from "@/types/types";
 
 const serviceData = async () => {
   const response = await client.getEntries({
@@ -18,8 +20,8 @@ const serviceData = async () => {
 
   const services = response.items.map((item) => {
     return {
-      heading: item.fields.heading,
-      description: item.fields.description,
+      heading: item.fields.heading || "",
+      description: item.fields.description || "",
     };
   });
 
@@ -33,8 +35,8 @@ const serviceCardData = async () => {
 
   const serviceCard = response.items.map((item) => {
     return {
-      heading: item.fields.heading,
-      description: item.fields.description,
+      heading: item.fields.heading || "",
+      description: item.fields.description || "",
     };
   });
 
@@ -46,10 +48,10 @@ const fetchCarBrands = async () => {
     content_type: "carBrands",
   });
 
-  const carBrands = response.items.map((item) => {
+  const carBrands = response.items.map((item: CMSType) => {
     return {
-      icon: item.fields.icon?.fields.file.url,
-      name: item.fields.name,
+      icon: item?.fields?.icon?.fields?.file?.url || "",
+      name: item?.fields?.name || "",
     };
   });
   return carBrands;
@@ -60,10 +62,10 @@ const fetchCarBody = async () => {
     content_type: "carBody",
   });
 
-  const carBody = response.items.map((item) => {
+  const carBody = response.items.map((item: CMSType) => {
     return {
-      icon: item.fields.icon?.fields.file.url,
-      name: item.fields.name,
+      icon: item?.fields?.icon?.fields?.file?.url || "",
+      name: item?.fields?.name || "",
     };
   });
   return carBody;
@@ -74,11 +76,11 @@ const fetchWorkCard = async () => {
     content_type: "worksCard",
   });
 
-  const workCard = response.items.map((item) => {
+  const workCard = response.items.map((item: CMSType) => {
     return {
-      icon: item.fields.icon?.fields.file.url,
-      heading: item.fields.heading,
-      description: item.fields.description,
+      icon: item?.fields?.icon?.fields?.file?.url || "",
+      heading: item?.fields?.heading || "",
+      description: item?.fields?.description || "",
     };
   });
   return workCard;
@@ -160,9 +162,11 @@ const Home = async () => {
             })}
           </div>
 
-          <div className="lg:absolute right-0 w-full h-[450px] lg:w-[740px] lg:h-[638px] bg-[#F5F5F5] flex justify-end items-center px-7 lg:pr-10 rounded-[24px] lg:mt-0 mt-4">
+          <div
+            className={`lg:absolute right-0 w-full h-[450px] lg:w-[740px] lg:h-[638px] bg-white_smoke flex justify-end items-center px-7 lg:pr-10 rounded-[24px] lg:mt-0 mt-4`}
+          >
             <Image
-              src={"/assets/works-image.png"}
+              src={IMAGES.WORK_IMAGE}
               alt="image"
               width={500}
               height={500}
@@ -171,7 +175,9 @@ const Home = async () => {
         </div>
       </div>
 
-      <section className="bg-[#242731] text-white py-[100px] md:px-28 px-10 text-center">
+      <section
+        className={`bg-charcoal_black text-pure_white py-[100px] md:px-28 px-10 text-center`}
+      >
         {services?.map((item, index) => {
           return (
             <div key={index} className="max-w-4xl mx-auto">

@@ -7,6 +7,7 @@ import ThemeToggle from "./themeToggle/ThemeToggle";
 import useSearchBar from "@/hooks/useSearchBar";
 import Link from "next/link";
 import useBooking from "@/hooks/useBooking";
+
 const Navbar = () => {
   const {
     profilePhoto,
@@ -20,8 +21,12 @@ const Navbar = () => {
   const { clickeViewsHandler } = useBooking();
 
   return (
-    <div className="fixed top-0 left-0 sm:left-[250px] w-full sm:w-[calc(100%-250px)] py-4 px-6 flex items-center justify-between bg-white dark:bg-[#242731] dark:text-white transition-all duration-300">
-      <div className=" flex items-center gap-x-4 rounded-md py-2 px-4 w-[250px] bg-gray-100 dark:text-white dark:bg-[#1F2128] transition-all duration-300">
+    <div
+      className={`fixed top-0 left-0 sm:left-[250px] w-full sm:w-[calc(100%-250px)] py-4 px-6 flex items-center justify-between bg-pure_white dark:bg-charcoal_black dark:text-pure_white transition-all duration-300`}
+    >
+      <div
+        className={`flex items-center gap-x-4 rounded-md py-2 px-4 w-[250px] bg-gray-100 dark:text-pure_white dark:bg-jet_black transition-all duration-300`}
+      >
         <RiSearchLine className="text-gray-500 dark:text-gray-300 w-5 h-5" />
         <input
           type="text"
@@ -36,7 +41,9 @@ const Navbar = () => {
       </div>
 
       {isDropDownOpen && searchTerm && (
-        <ul className="absolute top-[100%] left-8 w-[250px] mt-1 bg-white dark:bg-[#1F2128] border border-gray-200 dark:border-[#333] rounded-md shadow-lg z-50">
+        <ul
+          className={`absolute top-[100%] left-8 w-[250px] mt-1 bg-pure_white dark:bg-jet_black border border-gray-200 dark:border-dark_charcoal_a rounded-md shadow-lg z-50`}
+        >
           {suggestions
             ?.filter((item) =>
               item?.brand.toLowerCase().includes(searchTerm.toLowerCase())
@@ -49,7 +56,7 @@ const Navbar = () => {
                     setIsDropDownOpen(false);
                     clickeViewsHandler(item?.id);
                   }}
-                  className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-[#2a2d36] cursor-pointer"
+                  className="px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-dark_slate_gray cursor-pointer"
                 >
                   {item?.brand}
                 </li>

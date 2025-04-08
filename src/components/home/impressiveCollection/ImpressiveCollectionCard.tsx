@@ -8,16 +8,7 @@ import { TbManualGearbox } from "react-icons/tb";
 import HomeButton from "@/components/button/HomeButton";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
-interface ImpressiveCollectionCardType {
-  carId: string;
-  imageUrl: string;
-  carName: string;
-  price: string;
-  milage: string;
-  enginType: string;
-  transmissionType: string;
-}
+import { ImpressiveCollectionCardType } from "@/types/types";
 
 const ImpressiveCollectionCard = ({
   carId,
@@ -57,14 +48,14 @@ const ImpressiveCollectionCard = ({
             <span className="font-[600] text-[20px] ">{carName}</span>
             <div className="mt-[10px]">
               <span className="font-[800] text-[32px]">{price}</span>
-              <span className="text-[#00000080] font-[600] text-[16px]">
+              <span className="text-black_translucent font-[600] text-[16px]">
                 /day
               </span>
             </div>
           </div>
 
           <div className="flex justify-center">
-            <div className="flex items-center justify-evenly w-[336px] h-[63px] bg-[#F6F6F6] rounded-[16px] border mb-[20px]">
+            <div className="flex items-center justify-evenly w-[336px] h-[63px] bg-off_white_a rounded-[16px] border mb-[20px]">
               <div className="flex flex-col items-center w-[56px] gap-[6px]">
                 <SlSpeedometer className="w-[20px]" />
                 <p className="font-[500]">

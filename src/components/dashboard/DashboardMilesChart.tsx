@@ -1,3 +1,4 @@
+import { COLORS } from "@/constants/colors";
 import {
   BarChart,
   Bar,
@@ -28,7 +29,7 @@ const DashboardMilesChart = () => {
         <Tooltip
           contentStyle={{
             zIndex: 30,
-            backgroundColor: "#282B32",
+            backgroundColor: COLORS.dark_charcoal_b,
             borderRadius: "5px",
             padding: "5px 8px",
             boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
@@ -49,10 +50,14 @@ const DashboardMilesChart = () => {
         />
 
         {data.map((entry, index) => (
-          <ReferenceLine key={index} x={entry.name} stroke="#F2F2F2" />
+          <ReferenceLine
+            key={index}
+            x={entry.name}
+            stroke={COLORS.light_gray}
+          />
         ))}
 
-        <Bar dataKey="pv" fill="#2884FF" />
+        <Bar dataKey="pv" fill={COLORS.vivid_blue} />
       </BarChart>
     </ResponsiveContainer>
   );

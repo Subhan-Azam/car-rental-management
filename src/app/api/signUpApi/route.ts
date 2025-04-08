@@ -9,7 +9,7 @@ export const POST = async (req: Request) => {
 
     const userRole = role === "ADMIN" ? "ADMIN" : "USER";
 
-    const userExist = await prisma.user.findUnique({ where: { email } });
+    const userExist = await prisma.user.findUnique({ where: { email: email } });
     if (userExist) {
       return NextResponse.json(
         {

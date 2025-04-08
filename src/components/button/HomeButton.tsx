@@ -1,13 +1,6 @@
 import React from "react";
+import { HomeButtonType } from "@/types/types";
 
-interface HomeButtonType {
-  title?: string;
-  style: string;
-  carType?: string;
-  onClick?: () => void;
-  icon?: React.ReactElement;
-  desc?: string;
-}
 const HomeButton = ({
   title,
   carType,

@@ -1,11 +1,7 @@
 "use client";
 import React from "react";
+import { CarCrudBtnType } from "@/types/types";
 
-interface CarCrudBtnType {
-  title?: string;
-  style: string;
-  onClick?: () => void;
-}
 const CarCrudBtn = ({ title, onClick, style }: CarCrudBtnType) => {
   return (
     <>

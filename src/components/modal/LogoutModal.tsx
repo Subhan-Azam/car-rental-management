@@ -1,14 +1,8 @@
 "use client";
 import { TbLogout2 } from "react-icons/tb";
 import useModel from "@/hooks/useModel";
+import { LogoutModalProps } from "@/types/types";
 
-interface LogoutModalProps {
-  onClick?: () => void;
-  title?: string;
-  para?: string;
-  className1?: string;
-  className2?: string;
-}
 const LogoutModal = ({
   onClick,
   title,
@@ -22,7 +16,7 @@ const LogoutModal = ({
     <>
       <button onClick={handleIsOpen} className={`${className1}`}>
         {title === "Logout" && (
-          <TbLogout2 className="text-gray-600 w-[20px] dark:text-[#808191]" />
+          <TbLogout2 className="text-gray-600 w-[20px] dark:text-storm_gray" />
         )}
         <span className={`${className2}`}>{title}</span>
       </button>
