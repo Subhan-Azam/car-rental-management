@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://car-rental-management-1znd-mmf0gb6rn-subhanazams-projects.vercel.app/api",
   timeout: 5000,
 });
