@@ -15,7 +15,7 @@ const ImpressiveCollection = () => {
         <h1 className="text-[44px] font-[700]">
           Our Impressive Collection of Cars
         </h1>
-        <p className="text-[18px] font-[500] mt-[24px]">
+        <p className="text-[18px] font-[500] mt-[24px] ">
           Ranging from elegant sedans to powerful sports cars, all carefully
           selected to provide our customers with the ultimate driving
           experience.
@@ -31,7 +31,7 @@ const ImpressiveCollection = () => {
               onClick={() => setSelectedCar(null)}
               style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] bg-pure_white rounded-[58px] ${
                 selectedCar === null
-                  ? "bg-black text-white"
+                  ? "bg-jet_black text-white"
                   : "bg-white text-black hover:bg-gray-200 transition-all duration-250 ease-in-out"
               }`}
             />
@@ -42,7 +42,7 @@ const ImpressiveCollection = () => {
                 carType={carType}
                 style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] bg-pure_white rounded-[58px] ${
                   selectedCar === carType
-                    ? "bg-black text-white"
+                    ? "bg-jet_black text-white"
                     : "bg-white text-black hover:bg-gray-200 transition-all duration-250 ease-in-out"
                 }`}
               />

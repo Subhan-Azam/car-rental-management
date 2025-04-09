@@ -11,10 +11,17 @@ const fetchTestimonial = async () => {
   });
 
   const testimonials = response.items.map((item: CMSType) => {
+    const imageUrl = item?.fields?.image?.fields?.file?.url || "";
+    const fullImageUrl = imageUrl.startsWith("//")
+      ? `https:${imageUrl}`
+      : imageUrl.startsWith("http")
+      ? imageUrl
+      : `https:${imageUrl}`;
+
     return {
       heading: item?.fields?.heading || "",
       description: item?.fields?.description || "",
-      image: item?.fields?.image?.fields?.file?.url || "",
+      image: fullImageUrl,
       userName: item?.fields?.userName || "",
       area: item?.fields?.area || "",
     };

@@ -1,3 +1,4 @@
+
 import React from "react";
 import client from "../../../lib/contentfulClient";
 import HomeNavbar from "./HomeNavbar";
@@ -15,10 +16,14 @@ const fetchHero = async () => {
     });
 
     const heroSec = response.items?.map((item: CMSType) => {
+      const imageUrl = item?.fields?.image?.fields?.file?.url || "";
+      const cleanedUrl = imageUrl.replace(/^https?:/, '');
+      const fullImageUrl = `https:${cleanedUrl}`;
+
       return {
         title: item?.fields?.title || "",
         description: item?.fields?.description || "",
-        image: item?.fields?.image?.fields?.file?.url || "",
+        image: fullImageUrl,
       };
     });
 
@@ -41,11 +46,11 @@ const Hero = async () => {
             className="flex flex-col-reverse lg:flex-row items-center justify-between py-12 gap-8"
           >
             <div className="text-white text-center lg:text-left max-w-2xl lg:ml-28 md:mx-0 mx-10">
-              <h1 className="font-[700] text-4xl leading-tight lg:text-[64px] ">
-                {String(item.title)}
+              <h1 className="font-[700] text-4xl leading-tight lg:text-[64px]">
+                {item.title}
               </h1>
               <p className="text-[18px] lg:text-[18px] mt-[40px] mb-[24px]">
-                {String(item.description)}
+                {item.description}
               </p>
 
               <div className="border-t-2 border-gray-500 mt-6 pt-4">
@@ -60,11 +65,12 @@ const Hero = async () => {
 
             <div className="w-full lg:w-[50%] flex justify-center">
               <Image
-                src={`https:${item.image}`}
-                alt={String(item.title)}
+                src={item.image}
+                alt={item.title}
                 width={700}
                 height={700}
                 className="w-full max-w-[500px] lg:max-w-[1000px] object-cover rounded-lg"
+                priority
               />
             </div>
           </div>
