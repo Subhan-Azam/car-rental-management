@@ -324,12 +324,6 @@ export interface updateCarDataType {
   image: string;
 }
 
-export interface UserState {
-  userDetails: userDetailsProps | null;
-  loading: boolean;
-  error: string | null;
-}
-
 export interface userDetailsProps {
   id: string;
   firstName: string;
@@ -341,6 +335,12 @@ export interface userDetailsProps {
   dateOfBirth: Date;
   gender: string;
   profilePhoto: string;
+}
+
+export interface UserState {
+  userDetails: userDetailsProps | null;
+  loading: boolean;
+  error: string | null;
 }
 
 export interface EventsState {

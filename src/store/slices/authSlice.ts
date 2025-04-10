@@ -38,11 +38,10 @@ export const userSignUp = createAsyncThunk(
       });
 
       return response.data;
-    } catch (error: unknown) {
+    } catch (error) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(
-          error.response?.data?.message ||
-            "Server error. Please try again later."
+          error.response?.data?.message || "Please try again."
         );
       } else {
         return rejectWithValue(
@@ -150,14 +149,14 @@ export const authSlice = createSlice({
       })
       .addCase(userSignUp.fulfilled, (state, action) => {
         state.loading = false;
-        state.firstName = action.payload.firstName || "";
-        state.lastName = action.payload.lastName || "";
-        state.email = action.payload.email || "";
-        state.password = action.payload.password || "";
+        state.firstName = action?.payload?.firstName || "";
+        state.lastName = action?.payload?.lastName || "";
+        state.email = action?.payload?.email || "";
+        state.password = action?.payload?.password || "";
       })
       .addCase(userSignUp.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload as string;
+        state.error = action?.payload as string;
       })
       // Handling forget password actions
       .addCase(userForgetPassword.pending, (state) => {

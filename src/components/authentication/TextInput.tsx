@@ -37,10 +37,10 @@ const TextInput: React.FC<TextInputProps> = ({
           onClick={togglePasswordVisibility}
           className="absolute right-3 top-[50px]"
         >
-          {isPasswordVisible ? (
-            <MdOutlineRemoveRedEye size={20} className=" text-gray-600" />
+          {!isPasswordVisible ? (
+            <MdOutlineRemoveRedEye size={20} className=" text-dusty_blue" />
           ) : (
-            <IoEyeOffOutline size={20} className=" text-gray-600" />
+            <IoEyeOffOutline size={20} className=" text-dusty_blue" />
           )}
         </button>
       )}

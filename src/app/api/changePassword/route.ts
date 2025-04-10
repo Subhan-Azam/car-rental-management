@@ -9,7 +9,7 @@ export const PUT = async (req: Request) => {
     const user = await prisma.user.findUnique({
       where: { id: id },
     });
-    
+
     if (!user || !user.password) {
       return NextResponse.json({
         success: false,

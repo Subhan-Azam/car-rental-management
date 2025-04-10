@@ -42,8 +42,6 @@ const useSignUp = () => {
 
       toast.success("You are registerd successfully");
       router.replace("/auth/login");
-
-      setAuthError(null);
     } catch (err) {
       setAuthError(err as string);
     } finally {
