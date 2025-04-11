@@ -46,7 +46,6 @@ export const PUT = async (req: Request) => {
       where: { id: id },
       data: { password: hashPassword },
     });
-   
 
     if (!changePassword) {
       return NextResponse.json({

@@ -98,7 +98,6 @@ export const POST = async (req: Request) => {
       },
     });
 
-
     return NextResponse.json({
       success: true,
       message: "Car added successfully",
@@ -244,7 +243,6 @@ export const PUT = async (req: Request) => {
         imagePublicId: publicId,
       },
     });
-
 
     return NextResponse.json({
       success: true,

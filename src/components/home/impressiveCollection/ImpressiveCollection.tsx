@@ -29,9 +29,9 @@ const ImpressiveCollection = () => {
             <HomeButton
               title="Popular Cars"
               onClick={() => setSelectedCar(null)}
-              style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] bg-pure_white rounded-[58px] ${
+              style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] rounded-[58px] ${
                 selectedCar === null
-                  ? "bg-jet_black text-white"
+                  ? "bg-black text-white"
                   : "bg-white text-black hover:bg-gray-200 transition-all duration-250 ease-in-out"
               }`}
             />
@@ -40,9 +40,9 @@ const ImpressiveCollection = () => {
                 key={carType}
                 onClick={() => setSelectedCar(carType)}
                 carType={carType}
-                style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] bg-pure_white rounded-[58px] ${
+                style={` h-[50px] font-[500] px-[20px] flex item-center text-[18px] rounded-[58px] ${
                   selectedCar === carType
-                    ? "bg-jet_black text-white"
+                    ? "bg-black text-white"
                     : "bg-white text-black hover:bg-gray-200 transition-all duration-250 ease-in-out"
                 }`}
               />

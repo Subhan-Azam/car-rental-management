@@ -58,8 +58,6 @@ export const deleteCar = createAsyncThunk(
   }
 );
 
-
-
 export const updateCar = createAsyncThunk(
   "CarCrud/updateCar",
   async (updateCarData: updateCarDataType, { rejectWithValue }) => {
@@ -88,19 +86,6 @@ export const carViews = createAsyncThunk(
     try {
       const response = await axiosInstance.post("/carViews", { id });
       return response.data;
-    } catch (error) {
-      const axiosError = error as AxiosError;
-      return rejectWithValue(axiosError.response?.data || "Failed to views");
-    }
-  }
-);
-
-export const popularCars = createAsyncThunk(
-  "CarCrud/PopularCars",
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axiosInstance.get("/carViews");
-      return response.data.data;
     } catch (error) {
       const axiosError = error as AxiosError;
       return rejectWithValue(axiosError.response?.data || "Failed to views");
@@ -193,20 +178,6 @@ export const carCrudSlice = createSlice({
         );
       })
       .addCase(carViews.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
-      })
-
-      // popular Cars
-      .addCase(popularCars.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(popularCars.fulfilled, (state, action) => {
-        state.loading = false;
-        state.cars = action.payload;
-      })
-      .addCase(popularCars.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

@@ -51,7 +51,6 @@ export const POST = async (req: Request) => {
       html: `Please click <a href=${resetLink}>here</a> to reset your password`,
     };
 
-
     const sendMail = await transporter.sendMail(mailOptions);
     if (!sendMail) {
       return NextResponse.json({
@@ -76,7 +75,6 @@ export const POST = async (req: Request) => {
     );
   }
 };
-
 
 export const PUT = async (req: Request) => {
   try {
